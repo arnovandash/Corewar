@@ -18,6 +18,7 @@
 # define COREWAR_H
 
 /*
+** ---------
 ** Includes:
 ** ---------
 */
@@ -29,6 +30,7 @@
 # include "libft.h"
 
 /*
+** --------
 ** Defines:
 ** --------
 */
@@ -85,6 +87,7 @@
 # define AFF   0x10
 
 /*
+** -----------
 ** Structures:
 ** -----------
 */
@@ -119,6 +122,7 @@ typedef struct	s_env
 }				t_env;
 
 /*
+** --------------------
 ** Function Prototypes:
 ** --------------------
 */
