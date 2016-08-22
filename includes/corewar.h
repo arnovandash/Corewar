@@ -137,7 +137,7 @@ void			run_simulation(t_env *env);
 void			free_env(t_env *env);
 
 /*
-**				main.c
+**		main.c
 */
 int				main(int argc, char **argc);
 
