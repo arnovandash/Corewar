@@ -19,6 +19,7 @@
 
 /*
 ** Includes:
+** ---------
 */
 
 # include <unistd.h>
@@ -29,6 +30,7 @@
 
 /*
 ** Defines:
+** ________
 */
 
 /*
@@ -84,6 +86,7 @@
 
 /*
 ** Structures:
+** -----------
 */
 
 typedef struct	s_live_state
@@ -112,11 +115,12 @@ typedef struct	s_env
 	L_STATE		live;
 	t_settings	settings;
 	t_process	*processes;
-	int			*core;
+	uint32_t	*core;
 }				t_env;
 
 /*
 ** Function Prototypes:
+** --------------------
 */
 
 /*
@@ -136,10 +140,10 @@ int				main(int argc, char **argc);
 #endif
 
 /*
-**	Kesh:  1,   4,  7   0
-**	Rob :  2,   3,  5,  8
-**	Arno:  9,  10, 11, 12
-**	Lee : 13,  14, 15, 16
+**	Kesh:  1,   4,  7   0 assembler
+**	Rob :  2,   3,  5,  8 run_simulation
+**	Arno:  9,  10, 11, 12 read_program
+**	Lee : 13,  14, 15, 16 manage_args, init & free
 */
 
 /*
