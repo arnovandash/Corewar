@@ -45,6 +45,7 @@
 # define CYCLE_TO_DIE CYCLE_DELTA
 # define NBR_LIVE     1
 # define MAX_PLAYERS  2
+# define MAX_PROCESS  1000
 
 /*
 **		Shorthand:
@@ -85,6 +86,11 @@
 # define LLDI  0x0e
 # define LFORK 0x0f
 # define AFF   0x10
+
+/*
+**		Error Messages:
+*/
+# define ERR_MSG_00 "Error: Not enough memory avaliable."
 
 /*
 ** -----------
@@ -130,16 +136,22 @@ typedef struct	s_env
 /*
 **		Preprogramming prototypes:
 */
-void			init_env(t_env *env);
 void			manage_args(t_env *env, int argc, char **argv);
 void			read_program(t_env *env);
 void			run_simulation(t_env *env);
-void			free_env(t_env *env);
 
 /*
-**		main.c
+**		error_quit.c
 */
-int				main(int argc, char **argc);
+void			error_quit(int error);
+/*
+**		free_env.c
+*/
+void			free_env(t_env *env);
+/*
+**		init_env.c
+*/
+void			init_env(t_env *env);
 
 #endif
 
