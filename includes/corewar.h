@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/21 09:45:21 by khansman         ###   ########.fr       */
+/*   Updated: 2016/08/22 17:58:14 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,12 @@
 # define C_FI_A 0b00000000111111111111000000000000 >> 12
 # define C_FI_B 0b00000000000000000000111111111111 >> 00
 
+# define C_ARG1 0b11000000 >> 6
+# define C_ARG2 0b00110000 >> 4
+# define C_ARG3 0b00001100 >> 2
+# define C_ARG4 0b00000011
+
+
 /*
 **		Modes:
 */
@@ -106,24 +112,33 @@ typedef struct	s_live_state
 	char		last_call;
 }				t_live_state;
 
+typedef struct	s_reg
+{
+	unsigned char	reg[REG_SIZE];
+}				t_reg;
+
 typedef struct	s_process
 {
-	char		player;
-	int			address;
-	PROCES2		*next;
+	header_t		*header;
+	unsigned int	pc;
+	int				carry;
+	int				cycle_to_next;
+	reg_t			registers[REG_NUMBER];
 }				t_process;
 
 typedef struct	s_settings
 {
 	int			dump_cycle;
-	int			pc;
 }				t_settings;
 
 typedef struct	s_env
 {
 	L_STATE		live;
+	header_t	*headers;
 	t_settings	settings;
-	t_process	*processes;
+	header_t	programs[MAX_PLAYERS];
+	int			num_programs;
+	t_list		*processes;
 	uint32_t	*core;
 }				t_env;
 
@@ -154,6 +169,12 @@ void			free_env(t_env *env);
 void			init_env(t_env *env);
 
 #endif
+
+/*
+** register = 1 byite code 01
+** direct = 4 code 10 define in op.h '%' else if index  byte = 2
+** indirect = 2 code 11
+*/
 
 /*
 **	Kesh:  1,   4,  7   0 assembler
