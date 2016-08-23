@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/22 17:58:14 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/23 10:24:53 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@
 
 typedef unsigned long int ul_int;
 typedef unsigned char char_u;
-typedef unsigned char[REG_SIZE] register;
+typedef unsigned char reg_t[REG_SIZE];
 
 typedef struct	s_player
 {
@@ -134,16 +134,18 @@ typedef struct	s_env
 
 /*
 ** --------------------
-** Function Prototypes:
-** --------------------
 */
 
 /*
 **		Preprogramming prototypes:
 */
 void			manage_args(t_env *env, int argc, char **argv);
-void			read_program(t_env *env);
 void			run_simulation(t_env *env);
+
+/*
+**		read_program.c
+*/
+void			read_programs(t_env *env);
 
 /*
 **		error_quit.c

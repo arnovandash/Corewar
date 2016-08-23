@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 13:53:22 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/22 14:10:47 by khansman         ###   ########.fr       */
+/*   Updated: 2016/08/23 10:04:36 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		ft_set_dump_cycle(t_env *env, char *str)
 
 	if (set)
 		error_quit(2);
-	else if (!str || !ft_are_all_digits((str))
+	else if (!str || !ft_are_all_digits(str))
 		error_quit(3);
 	else
 		env->dump_cycle = ft_atoi(str);
@@ -59,7 +59,7 @@ int		ft_set_dump_cycle(t_env *env, char *str)
 
 void	init_env(t_env *env)
 {
-	if (!(env->memory = malloc(MEM_SIZE))
+	if (!(env->memory = malloc(MEM_SIZE)))
 		error_quit(0);
 	ft_bzero(env->memory, (MEM_SIZE));
 	env->cycle = CYCLE_TO_DIE;
