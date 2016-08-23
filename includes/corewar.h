@@ -27,25 +27,15 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
+
 # include "libft.h"
+# include "op.h"
 
 /*
 ** --------
 ** Defines:
 ** --------
 */
-
-/*
-**		Set_up:
-*/
-# define CORESIZE     4096
-# define REG_SIZE     4
-# define REG_NUMBER   CORESIZE
-# define CYCLE_DELTA  1000
-# define CYCLE_TO_DIE CYCLE_DELTA
-# define NBR_LIVE     1
-# define MAX_PLAYERS  2
-# define MAX_PROCESS  1000
 
 /*
 **		Shorthand:
@@ -64,14 +54,6 @@
 # define C_ARG2 0b00110000 >> 4
 # define C_ARG3 0b00001100 >> 2
 # define C_ARG4 0b00000011
-
-
-/*
-**		Modes:
-*/
-# define IMMIDIAT 0
-# define RELATIVE 1
-# define INDIRECT 2
 
 /*
 **		Instructions:
@@ -108,7 +90,7 @@ typedef unsigned long int ul_int;
 typedef unsigned char char_u;
 typedef unsigned char[REG_SIZE] register;
 
-typedef struct s_player
+typedef struct	s_player
 {
 	char		*file_name; //passed in argv
 	int			number; // if -n else the previous +1
@@ -117,11 +99,11 @@ typedef struct s_player
 
 typedef struct	s_process
 {
-	t_player		*player;
-	ul_int			pc;
-	char			carry;
-	int				cycle_to_next;
-	reg_t			*registers; //malloc to REG_NUMBER
+	t_player	*player;
+	ul_int		pc;
+	char		carry;
+	int			cycle_to_next;
+	reg_t		*registers; //malloc to REG_NUMBER
 }				t_process;
 
 typedef struct	s_env
