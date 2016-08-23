@@ -19,29 +19,29 @@
 int		ft_set_player_number(t_env *env, char *s1, char *s2)
 {
 	int		num;
+	int		k;
 
 	num = (s1) ? ft_atoi(s1) : 0;
+	k = -1;
 	if (!s2 || (s1 && !ft_are_all_digits(s1)) || (num > MAX_PLAYERS))
 		error_quit(4);
 	else if (s1)
 	{
-		if (env->players[num].file_name != NULL)
-			error_quit(5);
-		env->players[num].file_name = ft_strdup(s2);
-		env->players[num].number = num;
+		while (++k < env->num_players)
+			if (env->players[k].number == num)
+				error_quit(5);
+		env->players[env->num_players].number = num;
 	}
 	else if (!s1)
 	{
-		while(num < MAX_PLAYERS && env->players[num].file_name)
-			num++;
-		if (num >= MAX_PLAYERS)
-			error_quit(6);
-		else
-		{
-			env->players[num].file_name = ft_strdup(s2);
-			env->players[num].number = num;
-		}
+		while (++k < env->num_players)
+			if (env->players[k].number == env->num_players)
+				error_quit(5);
+		env->players[env->num_players].number = env->num_players;
 	}
+	env->players[env->num_players].file_name = ft_strdup(s2);
+	env->num_players++;
+	return (s1 == NULL);
 }
 
 int		ft_set_dump_cycle(t_env *env, char *str)
