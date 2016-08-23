@@ -12,6 +12,10 @@
 
 #include "corewar.h"
 
+/*
+**	The functions in this file are for initialising the enviroment variables.
+*/
+
 void	init_env(t_env *env)
 {
 	if (!(env->core = malloc(CORESIZE * sizeof(int))) ||

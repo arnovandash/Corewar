@@ -12,6 +12,10 @@
 
 #include "corewar.h"
 
+/*
+**	The functions in this file are for freeing the enviroment variables.
+*/
+
 void	free_env(t_env *env)
 {
 	free(env->core);
