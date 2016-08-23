@@ -104,42 +104,34 @@
 ** -----------
 */
 
-typedef struct	s_live_state
-{
-	int			l_count_p1;
-	int			l_count_p2;
-	int			cycles_to_die;
-	char		last_call;
-}				t_live_state;
+typedef unsigned long int ul_int;
+typedef unsigned char char_u;
+typedef unsigned char[REG_SIZE] register;
 
-typedef struct	s_reg
+typedef struct s_player
 {
-	unsigned char	reg[REG_SIZE];
-}				t_reg;
+	char		*file_name; //passed in argv
+	int			number; // if -n else the previous +1
+	header_t	player_ref; // filled by Arno
+}				t_player;
 
 typedef struct	s_process
 {
-	header_t		*header;
-	unsigned int	pc;
-	int				carry;
+	t_player		*player;
+	ul_int			pc;
+	char			carry;
 	int				cycle_to_next;
-	reg_t			registers[REG_NUMBER];
+	reg_t			*registers; //malloc to REG_NUMBER
 }				t_process;
-
-typedef struct	s_settings
-{
-	int			dump_cycle;
-}				t_settings;
 
 typedef struct	s_env
 {
-	L_STATE		live;
-	header_t	*headers;
-	t_settings	settings;
-	header_t	programs[MAX_PLAYERS];
-	int			num_programs;
+	char_u		*memory; //malloc to MEM_SIZE
+	int			num_players;
+	t_player	players[MAX_PLAYERS];
 	t_list		*processes;
-	uint32_t	*core;
+	ul_int		cycle;
+	int			dump_cycle;
 }				t_env;
 
 /*
