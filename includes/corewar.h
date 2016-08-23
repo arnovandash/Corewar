@@ -69,9 +69,6 @@
 /*
 **		Modes:
 */
-# define IMMIDIAT 0
-# define RELATIVE 1
-# define INDIRECT 2
 
 /*
 **		Instructions:
@@ -108,7 +105,7 @@ typedef unsigned long int ul_int;
 typedef unsigned char char_u;
 typedef unsigned char[REG_SIZE] register;
 
-typedef struct s_player
+typedef struct	s_player
 {
 	char		*file_name; //passed in argv
 	int			number; // if -n else the previous +1
@@ -117,11 +114,11 @@ typedef struct s_player
 
 typedef struct	s_process
 {
-	t_player		*player;
-	ul_int			pc;
-	char			carry;
-	int				cycle_to_next;
-	reg_t			*registers; //malloc to REG_NUMBER
+	t_player	*player;
+	ul_int		pc;
+	char		carry;
+	int			cycle_to_next;
+	reg_t		*registers; //malloc to REG_NUMBER
 }				t_process;
 
 typedef struct	s_env

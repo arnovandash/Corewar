@@ -13,7 +13,7 @@
 #include "corewar.h"
 
 /*
-**	The functions in this program are supposed to display the appropiate
+**	The functions in this file are supposed to display the appropiate
 **	error message, before exitting the program. 
 */
 
