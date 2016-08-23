@@ -12,6 +12,11 @@
 
 #include "corewar.h"
 
+/*
+**	The functions in this program are supposed to display the appropiate
+**	error message, before exitting the program. 
+*/
+
 void	error_quit(int error)
 {
 	if (error == 0)
