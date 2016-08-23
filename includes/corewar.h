@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/23 08:41:33 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/23 18:06:15 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@
 */
 
 typedef unsigned long int ul_int;
+typedef unsigned int u_int;
 typedef unsigned char char_u;
 typedef unsigned char[REG_SIZE] register;
 
@@ -101,10 +102,18 @@ typedef struct	s_process
 {
 	t_player	*player;
 	ul_int		pc;
+	u_int		live;
 	char		carry;
 	int			cycle_to_next;
 	reg_t		*registers; //malloc to REG_NUMBER
 }				t_process;
+
+typedef struct	s_arg_len
+{
+	int	arg1;
+	int	arg2;
+	int	arg3;
+}				t_arg_len;
 
 typedef struct	s_env
 {
@@ -113,7 +122,11 @@ typedef struct	s_env
 	t_player	players[MAX_PLAYERS];
 	t_list		*processes;
 	ul_int		cycle;
-	int			dump_cycle;
+	ul_int		dump_cycle;
+	int			check_from_mod;
+	ul_int		cycles_to_die;
+	t_player	*last_alive;
+	void		(*function[17])(t_env *env, t_arg_len arg_len, t_process *process);
 }				t_env;
 
 /*
