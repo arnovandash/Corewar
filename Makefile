@@ -53,7 +53,7 @@ re: fclean all
 me:
 	@echo ${LOGNAME} > author
 
-norm:
+norme:
 	@clear
 	@echo "Starting Norminette, good luck!"
 	@norminette $(SRC)
