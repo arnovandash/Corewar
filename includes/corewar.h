@@ -76,9 +76,25 @@
 # define AFF   0x10
 
 /*
+**		Colour codes:
+*/
+# define C_RED \e[31m
+
+/*
 **		Error Messages:
 */
-# define ERR_MSG_00 "Error: Not enough memory avaliable."
+# define ERR_MSG_00 "C_RED Error: Not enough memory avaliable.\n"
+# define ERR_MSG_01 "C_RED Error: No arguments specified.\n"
+# define ERR_MSG_02 "C_RED Error: Multiple definitions for dump cycles.\n"
+# define ERR_MSG_03 "C_RED Error: Invalid dump cycle.\n"
+# define ERR_MSG_04 "C_RED Error: Invalid player set.\n"
+# define ERR_MSG_05 "C_RED Error: Player Number has already been set.\n"
+# define ERR_MSG_06 "C_RED Error: Max players already reached.\n"
+
+/*
+**		Strings:
+*/
+
 
 /*
 ** -----------
@@ -140,7 +156,13 @@ void			free_env(t_env *env);
 /*
 **		init_env.c
 */
+int				ft_set_player_number(t_env *env, char *s1, char *s2);
+int				ft_set_dump_cycle(t_env *env, char *str);
 void			init_env(t_env *env);
+/*
+**		manage_args.c
+*/
+void			manage_args(t_env *env, int argc, char **argv);
 
 #endif
 

@@ -16,9 +16,51 @@
 **	The functions in this file are for initialising the enviroment variables.
 */
 
+int		ft_set_player_number(t_env *env, char *s1, char *s2)
+{
+	int		num;
+
+	num = (s1) ? ft_atoi(s1) : 0;
+	if (!s2 || (s1 && !ft_are_all_digits(s1)) || (num > MAX_PLAYERS))
+		error_quit(4);
+	else if (s1)
+	{
+		if (env->players[num].file_name != NULL)
+			error_quit(5);
+		env->players[num].file_name = ft_strdup(s2);
+		env->players[num].number = num;
+	}
+	else if (!s1)
+	{
+		while(num < MAX_PLAYERS && env->players[num].file_name)
+			num++;
+		if (num >= MAX_PLAYERS)
+			error_quit(6);
+		else
+		{
+			env->players[num].file_name = ft_strdup(s2);
+			env->players[num].number = num;
+		}
+	}
+}
+
+int		ft_set_dump_cycle(t_env *env, char *str)
+{
+	static int	set;
+
+	if (set)
+		error_quit(2);
+	else if (!str || !ft_are_all_digits((str))
+		error_quit(3);
+	else
+		env->dump_cycle = ft_atoi(str);
+	return (1);
+}
+
 void	init_env(t_env *env)
 {
 	if (!(env->memory = malloc(MEM_SIZE))
 		error_quit(0);
 	ft_bzero(env->memory, (MEM_SIZE));
+	env->cycle = CYCLE_TO_DIE;
 }
