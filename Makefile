@@ -6,7 +6,7 @@
 #    By: ghavenga <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/04 07:37:46 by ghavenga          #+#    #+#              #
-#    Updated: 2016/08/23 10:19:42 by arnovan-         ###   ########.fr        #
+#    Updated: 2016/08/23 11:17:36 by arnovan-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@ LIBFT= -L libft/ -lft
 HEADER= -I ./includes/ -I ./libft/includes/
 
 SP= ./srcs/
-SRC= $(SP)main.c $(SP)manage_args.c $(SP)free_env.c 	\
-	 $(SP)init_env.c $(SP)main.c $(SP)read_programs.c
+SRC= $(SP)main.c $(SP)read_programs.c $(SP)error-quit.c \
+	 $(SP)free_env.c $(SP)init_env.c $(SP)manage_args.c
 
 all: $(NAME)
 
@@ -53,7 +53,7 @@ re: fclean all
 me:
 	@echo ${LOGNAME} > author
 
-norme:
+norm:
 	@clear
 	@echo "Starting Norminette, good luck!"
 	@norminette $(SRC)

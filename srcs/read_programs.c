@@ -6,7 +6,7 @@
 /*   By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 10:09:11 by arnovan-          #+#    #+#             */
-/*   Updated: 2016/08/23 10:17:02 by arnovan-         ###   ########.fr       */
+/*   Updated: 2016/08/23 11:39:38 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,26 @@
 void	read_programs(t_env *env)
 {
 	int 	fd;
+	int		p_num;
 	char	*cursor;
 
-//	int balls = 0;
-	printf("dfsfsdf");
-	cursor = NULL;
-	fd = open(env->file_name, O_RDONLY);
-	while (get_next_line(fd, &cursor))
+				printf("num players %i\n", env->num_players);
+	p_num = 0;
+	while (p_num < env->num_players)
 	{
-		while (*cursor != '\0')
+		fd = open(env->players[p_num].file_name, O_RDONLY);
+
+		printf("filename: %s\n", env->players[p_num].file_name);
+		while (get_next_line(fd, &cursor))
 		{
-		//	printf("cursod : %c\n", cursor[balls]);
+			while (*cursor != '\0')
+			{
+				printf("Blah: %c\n", *cursor);
+			}
+			cursor = NULL;
+			cursor++;
 		}
-		cursor = NULL;
+		close(fd);
+		p_num++;
 	}
-	close(fd);
 }

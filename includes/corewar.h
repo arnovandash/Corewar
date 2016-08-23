@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/23 10:24:53 by arnovan-         ###   ########.fr       */
+/*   Updated: 2016/08/23 11:39:35 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
+# include <fcntl.h>
 
 # include "libft.h"
 # include "op.h"
@@ -94,7 +95,6 @@
 /*
 **		Strings:
 */
-
 
 /*
 ** -----------

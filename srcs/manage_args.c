@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 08:44:02 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/23 10:05:46 by arnovan-         ###   ########.fr       */
+/*   Updated: 2016/08/23 11:17:14 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	manage_args(t_env *env, int argc, char **argv)
 
 	k = 0;
 	if (argc <= 1)
-		ft_error_quit(1);
+		error_quit(1);
 	while (argv[++k])
 	{
 		if (!ft_strcmp(argv[k], "-dump"))
