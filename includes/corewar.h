@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/24 12:22:05 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/24 17:55:23 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,13 +120,13 @@ typedef struct	s_process
 	reg_t		*registers; //malloc to REG_NUMBER
 }				t_process;
 
-typedef struct	s_arg_len
+typedef struct	s_arg_code
 {
 	int	arg1;
 	int	arg2;
 	int	arg3;
 	int	total;
-}				t_arg_len;
+}				t_arg_code;
 
 typedef struct	s_env
 {
@@ -139,7 +139,7 @@ typedef struct	s_env
 	int			check_for_mod;
 	ul_int		cycles_to_die;
 	t_player	*last_alive;
-	void        (*function[17])(struct s_env *env, t_arg_len arg_len, t_process *process);
+	void        (*function[17])(struct s_env *env, t_arg_code arg_code, t_process *process);
 }				t_env;
 
 /*
