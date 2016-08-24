@@ -6,7 +6,7 @@
 #    By: ghavenga <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/04 07:37:46 by ghavenga          #+#    #+#              #
-#    Updated: 2016/08/24 11:44:27 by rojones          ###   ########.fr        #
+#    Updated: 2016/08/24 12:17:43 by rojones          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,9 @@ HEADER= -I ./includes/ -I ./libft/includes/
 
 SP= ./srcs/
 SRC= $(SP)main.c $(SP)read_programs.c $(SP)error-quit.c \
-	 $(SP)free_env.c $(SP)init_env.c $(SP)manage_args.c
+	 $(SP)free_env.c $(SP)init_env.c $(SP)manage_args.c \
+	 $(SP)run_simulation.c $(SP)destroy_process.c		\
+	 $(SP)run_process.c
 
 all: $(NAME)
 

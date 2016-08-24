@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 08:34:36 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/24 10:59:38 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/24 12:18:47 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,31 +19,30 @@ static int	loop_processes(t_env *env, int check)
 	t_process	*pro;
 	int			mod;
 
-	mv = env->provesses;
+	mv = env->processes;
 	pre = NULL;
 	mod = 0;
 	while (mv)
 	{
 		pro = (t_process *)mv->content;
-		set_register(pro);
 		if (check == 1)
 		{
-			if (pro->player.live == 0)
+			if (pro->player->live == 0)
 				destroy_process(mv, pre);
 			else 
 			{
-				if (pro->player.live >= NBR_LIVE)
+				if (pro->player->live >= NBR_LIVE)
 					mod = 1;
-				run_process(pro, env);
+				run_process(env, pro);
 				env->last_alive = pro->player;
 				pre = mv;
 				mv = mv->next;
 			}
-			pro->player.live = 0;
+			pro->player->live = 0;
 		}
 		else
 		{
-			run_process(pro, env);
+			run_process(env, pro);
 			pre = mv;
 			mv = mv->next;
 		}
@@ -65,7 +64,7 @@ void	run_simulation(t_env *env)
 	int			check;
 	int			mod;
 	
-	while (env->proceses && env->cycle <= env->dump_cycle && env->cycle_to_die > 0)
+	while (env->processes && env->cycle <= env->dump_cycle && env->cycles_to_die > 0)
 	{
 		check = 0;
 		mod = 0;
@@ -76,13 +75,13 @@ void	run_simulation(t_env *env)
 			env->check_for_mod++;
 		if (env->check_for_mod == MAX_CHECKS || mod > 0)
 		{
-			env->cycle_to_die = env->cycle_to_die - CYCLE_DELTA;
+			env->cycles_to_die = env->cycles_to_die - CYCLE_DELTA;
 			env->check_for_mod = 0;
 		}
 		env->cycle++;
 	}
-	if (env->cycle == env->dump_cycle)
-		dump_mem(env);
+	if (env->cycle == env->dump_cycle);
+//		dump_mem(env);
 	else
 		print_last_alive(env->last_alive);
 }

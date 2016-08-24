@@ -6,13 +6,13 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 11:48:58 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/24 10:55:52 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/24 12:21:03 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void	set_pc(t_env *env, t_process *pro, char_u opcode)
+static void	set_pc(t_process *pro, char_u opcode)
 {
 	if (opcode == 0)
 		pro->pc = (pro->pc + 5 > MEM_SIZE) ?
@@ -57,7 +57,7 @@ void	run_process(t_env *env, t_process *pro)
 	init_arg_len(&arg_len);
 	opcode = env->memory[pro->pc];
 	pro->pi = pro->pc;
-	if (opcode > 0 && < 17 && (opcode != 1 || opcode != 9 || opcode != 12
+	if (opcode > 0 && opcode < 17 && (opcode != 1 || opcode != 9 || opcode != 12
 				|| opcode != 14 || opcode != 16))
 	{
 		get_arg_len(env->memory[opcode + 1], &arg_len);
@@ -66,7 +66,7 @@ void	run_process(t_env *env, t_process *pro)
 			pro->pc + arg_len.total;
 	}
 	else
-		set_pc(env, pro, opcode);
-	if (opcod < 17)
-		(*env->function[opcode])(env, arg_len, pro)
+		set_pc(pro, opcode);
+	if (opcode < 17)
+		(*env->function[opcode])(env, arg_len, pro);
 }
