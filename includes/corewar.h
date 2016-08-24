@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/24 11:40:34 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/24 12:22:05 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ typedef struct	s_process
 	ul_int		pi;// program index the current index of the program
 	char		carry;
 	int			cycle_to_next;
-	reg_t		*reg; //malloc to REG_NUMBER
+	reg_t		*registers; //malloc to REG_NUMBER
 }				t_process;
 
 typedef struct	s_arg_len
@@ -136,7 +136,7 @@ typedef struct	s_env
 	t_list		*processes;
 	ul_int		cycle;
 	unsigned long int		dump_cycle;
-	int			check_from_mod;
+	int			check_for_mod;
 	ul_int		cycles_to_die;
 	t_player	*last_alive;
 	void        (*function[17])(struct s_env *env, t_arg_len arg_len, t_process *process);
@@ -151,7 +151,8 @@ typedef struct	s_env
 */
 void			manage_args(t_env *env, int argc, char **argv);
 void			run_simulation(t_env *env);
-
+void			run_process(t_env *env, t_process *pro);
+void			destroy_process(t_list *dest, t_list *pre);
 /*
 **		read_program.c
 */
