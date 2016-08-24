@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/12 10:33:30 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/22 08:17:50 by khansman         ###   ########.fr       */
+/*   Updated: 2016/08/23 09:07:34 by khansman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,5 +140,6 @@ int					ft_get_line(int fd, char **line);
 char				*ft_itoa_base(int value, int base);
 void				ft_print_hex(unsigned char num);
 void				ft_print_memory(const void *addr, size_t size);
+int					ft_are_all_digits(char *str);
 
 #endif

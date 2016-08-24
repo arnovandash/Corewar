@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/24 10:59:44 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/24 11:40:34 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
+# include <fcntl.h>
+# include <limits.h>
 
 # include "libft.h"
 # include "op.h"
@@ -70,9 +72,24 @@
 # define AFF   0x10
 
 /*
+**		Colour codes:
+*/
+# define C_RED \e[31m
+
+/*
 **		Error Messages:
 */
-# define ERR_MSG_00 "Error: Not enough memory avaliable."
+# define ERR_MSG_00 "C_RED Error: Not enough memory avaliable.\n"
+# define ERR_MSG_01 "C_RED Error: No arguments specified.\n"
+# define ERR_MSG_02 "C_RED Error: Multiple definitions for dump cycles.\n"
+# define ERR_MSG_03 "C_RED Error: Invalid dump cycle.\n"
+# define ERR_MSG_04 "C_RED Error: Invalid player set.\n"
+# define ERR_MSG_05 "C_RED Error: Player Number has already been set.\n"
+# define ERR_MSG_06 "C_RED Error: Max players already reached.\n"
+
+/*
+**		Strings:
+*/
 
 /*
 ** -----------
@@ -83,7 +100,7 @@
 typedef unsigned long int ul_int;
 typedef unsigned int u_int;
 typedef unsigned char char_u;
-typedef unsigned char reg[REG_SIZE] ;
+typedef unsigned char reg_t[REG_SIZE];
 
 typedef struct	s_player
 {
@@ -98,10 +115,9 @@ typedef struct	s_process
 	t_player	*player;
 	ul_int		pc;// program counter the next function to run
 	ul_int		pi;// program index the current index of the program
-	u_int		live;
 	char		carry;
 	int			cycle_to_next;
-	reg			*reg; //malloc to REG_NUMBER
+	reg_t		*reg; //malloc to REG_NUMBER
 }				t_process;
 
 typedef struct	s_arg_len
@@ -119,7 +135,7 @@ typedef struct	s_env
 	t_player	players[MAX_PLAYERS];
 	t_list		*processes;
 	ul_int		cycle;
-	ul_int		dump_cycle;
+	unsigned long int		dump_cycle;
 	int			check_from_mod;
 	ul_int		cycles_to_die;
 	t_player	*last_alive;
@@ -128,16 +144,18 @@ typedef struct	s_env
 
 /*
 ** --------------------
-** Function Prototypes:
-** --------------------
 */
 
 /*
 **		Preprogramming prototypes:
 */
 void			manage_args(t_env *env, int argc, char **argv);
-void			read_program(t_env *env);
 void			run_simulation(t_env *env);
+
+/*
+**		read_program.c
+*/
+void			read_programs(t_env *env);
 
 /*
 **		error_quit.c
@@ -150,15 +168,15 @@ void			free_env(t_env *env);
 /*
 **		init_env.c
 */
+int				ft_set_player_number(t_env *env, char *s1, char *s2);
+int				ft_set_dump_cycle(t_env *env, char *str);
 void			init_env(t_env *env);
+/*
+**		manage_args.c
+*/
+void			manage_args(t_env *env, int argc, char **argv);
 
 #endif
-
-/*
-** register = 1 byite code 01
-** direct = 4 code 10 define in op.h '%' else if index  byte = 2
-** indirect = 2 code 11
-*/
 
 /*
 **	Kesh:  1,   4,  7   0 assembler

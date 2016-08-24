@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_env.c                                         :+:      :+:    :+:   */
+/*   ft_are_all_digits.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/22 14:07:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/22 14:07:15 by khansman         ###   ########.fr       */
+/*   Created: 2016/08/23 09:04:27 by khansman          #+#    #+#             */
+/*   Updated: 2016/08/23 09:06:58 by khansman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
+#include "libft.h"
 
-/*
-**	The functions in this file are for freeing the enviroment variables.
-*/
-
-void	free_env(t_env *env)
+int	ft_are_all_digits(char *str)
 {
-	int		k;
-
-	k = 0;
-	free(env->memory);
+	if (!str || !*str)
+		return (-1);
+	while (*str)
+	{
+		if (!(ft_isdigit(*str)))
+			return (0);
+		str++;
+	}
+	return (1);
 }

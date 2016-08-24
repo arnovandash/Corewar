@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 10:02:10 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/21 10:02:12 by khansman         ###   ########.fr       */
+/*   Updated: 2016/08/24 11:32:26 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,15 @@
 **	carefull to never free something which hasn't been malloced yet.
 */
 
-int		main(int argc, char **argc)
+int		main(int argc, char **argv)
 {
 	static t_env	env;
 
 	init_env(&env);//initialise all the enviroment variables.
 	manage_args(&env, argc, argv);//setup the flag details.
 	read_programs(&env);//reads from the .cor files into memory.
-	run_simulation(&env);//runs the corewar battle.
+	if (env.processes == NULL)
+		puts("ERROR: no processes ?????????????????????");
+//	run_simulation(&env);//runs the corewar battle.
 	free_env(&env);//frees all the malloced instructions.
 }
