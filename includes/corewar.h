@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/23 18:06:15 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/24 10:59:44 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,10 @@
 # define PROCESS t_process
 # define PROCES2 struct s_process
 
-# define C_TYPE 0b11110000000000000000000000000000 >> 28
-# define C_MO_A 0b00001100000000000000000000000000 >> 26
-# define C_MO_B 0b00000011000000000000000000000000 >> 24
-# define C_FI_A 0b00000000111111111111000000000000 >> 12
-# define C_FI_B 0b00000000000000000000111111111111 >> 00
-
-# define C_ARG1 0b11000000 >> 6
-# define C_ARG2 0b00110000 >> 4
-# define C_ARG3 0b00001100 >> 2
-# define C_ARG4 0b00000011
+# define C_ARG1(x) (x & 0b11000000) >> 6
+# define C_ARG2(x) (x & 0b00110000) >> 4
+# define C_ARG3(x) (x & 0b00001100) >> 2
+# define C_ARG4(x) (x & 0b00000011)
 
 /*
 **		Instructions:
@@ -89,23 +83,25 @@
 typedef unsigned long int ul_int;
 typedef unsigned int u_int;
 typedef unsigned char char_u;
-typedef unsigned char[REG_SIZE] register;
+typedef unsigned char reg[REG_SIZE] ;
 
 typedef struct	s_player
 {
 	char		*file_name; //passed in argv
 	int			number; // if -n else the previous +1
-	header_t	player_ref; // filled by Arno
+	u_int		live;
+	t_header	player_ref; // filled by Arno
 }				t_player;
 
 typedef struct	s_process
 {
 	t_player	*player;
-	ul_int		pc;
+	ul_int		pc;// program counter the next function to run
+	ul_int		pi;// program index the current index of the program
 	u_int		live;
 	char		carry;
 	int			cycle_to_next;
-	reg_t		*registers; //malloc to REG_NUMBER
+	reg			*reg; //malloc to REG_NUMBER
 }				t_process;
 
 typedef struct	s_arg_len
@@ -113,6 +109,7 @@ typedef struct	s_arg_len
 	int	arg1;
 	int	arg2;
 	int	arg3;
+	int	total;
 }				t_arg_len;
 
 typedef struct	s_env
@@ -126,7 +123,7 @@ typedef struct	s_env
 	int			check_from_mod;
 	ul_int		cycles_to_die;
 	t_player	*last_alive;
-	void		(*function[17])(t_env *env, t_arg_len arg_len, t_process *process);
+	void        (*function[17])(struct s_env *env, t_arg_len arg_len, t_process *process);
 }				t_env;
 
 /*

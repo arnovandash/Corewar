@@ -6,37 +6,67 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 11:48:58 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/23 18:06:12 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/24 10:55:52 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void	init_arg_len(t_arg_len *arg_len)
+static void	set_pc(t_env *env, t_process *pro, char_u opcode)
 {
-	arg_lem->arg1 = 0;
-	arg_lem->arg2 = 0;
-	arg_lem->arg3 = 0;
+	if (opcode == 0)
+		pro->pc = (pro->pc + 5 > MEM_SIZE) ?
+			pro->pc + 5 - MEM_SIZE : pro->pc + 5;
+	if (opcode == 9 || opcode == 12 || opcode == 15)
+		pro->pc = (pro->pc + IND_SIZE + 1 > MEM_SIZE) ?
+			pro->pc + IND_SIZE + 1 - MEM_SIZE : pro->pc + IND_SIZE + 1;
 }
 
-static void	get_arg_len(char_u encod, t_arg_len *arg_len)
+static void init_arg_len(t_arg_len *arg_len)
 {
-	arg_lem->arg1 = encode & C_ARG1;
-	arg_lem->arg2 = encode & C_ARG2;
-	arg_lem->arg3 = encode & C_ARG3;
+	arg_len->arg1 = 0;
+	arg_len->arg2 = 0;
+	arg_len->arg3 = 0;
+	arg_len->total = 0;
 }
+
+static int arg_case(char_u code)
+{
+	if (code == 1)
+		return (1);
+	if (code == 2)
+		return (DIR_SIZE);
+	if (code == 3)
+		return (IND_SIZE);
+	return (0);
+}
+
+static void get_arg_len(char_u encode, t_arg_len *arg_len )
+{   
+	arg_len->arg1 = arg_case(C_ARG1(encode));
+	arg_len->arg2 = arg_case(C_ARG2(encode));
+	arg_len->arg3 = arg_case(C_ARG3(encode)); 
+	arg_len->total = arg_len->arg1 + arg_len->arg2 + arg_len->arg3;
+}
+
 void	run_process(t_env *env, t_process *pro)
 {
-	int			opcode;
+	char_u		opcode;
 	t_arg_len	arg_len;
 
-	init_arg_len(&ar_glen);
-	if (pro->pc > MEM_SIZE)
-		pro->pc = pro->pc - MEM_SIZE;
+	init_arg_len(&arg_len);
 	opcode = env->memory[pro->pc];
-	if (opcode != 1 || opcode != 9 || opcode != 13 || opcode != 14 ||
-			opcode != 16)
+	pro->pi = pro->pc;
+	if (opcode > 0 && < 17 && (opcode != 1 || opcode != 9 || opcode != 12
+				|| opcode != 14 || opcode != 16))
+	{
 		get_arg_len(env->memory[opcode + 1], &arg_len);
+		pro->pc = (pro->pc + arg_len.total > MEM_SIZE) ?
+			pro->pc + arg_len.total - MEM_SIZE :
+			pro->pc + arg_len.total;
+	}
+	else
+		set_pc(env, pro, opcode);
 	if (opcod < 17)
 		(*env->function[opcode])(env, arg_len, pro)
 }

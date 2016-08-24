@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 08:34:36 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/23 11:54:27 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/24 10:59:38 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,21 @@ static int	loop_processes(t_env *env, int check)
 	while (mv)
 	{
 		pro = (t_process *)mv->content;
+		set_register(pro);
 		if (check == 1)
 		{
-			if (pro->live == 0)
+			if (pro->player.live == 0)
 				destroy_process(mv, pre);
 			else 
 			{
-				if (pro->live >= NBR_LIVE)
+				if (pro->player.live >= NBR_LIVE)
 					mod = 1;
 				run_process(pro, env);
 				env->last_alive = pro->player;
 				pre = mv;
 				mv = mv->next;
 			}
+			pro->player.live = 0;
 		}
 		else
 		{
@@ -62,7 +64,7 @@ void	run_simulation(t_env *env)
 {
 	int			check;
 	int			mod;
-
+	
 	while (env->proceses && env->cycle <= env->dump_cycle && env->cycle_to_die > 0)
 	{
 		check = 0;
