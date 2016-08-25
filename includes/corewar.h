@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/25 13:38:20 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/25 16:17:16 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,7 @@ void			run_simulation(t_env *env);
 **		game operations
 */
 void			ft_load(t_env *env, t_arg_code a_case, t_process *pro);
+void			ft_store(t_env *env, t_arg_code acode, t_process *pro);
 #endif
 
 /*

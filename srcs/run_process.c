@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 11:48:58 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/25 13:30:45 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/25 15:12:21 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ void	run_process(t_env *env, t_process *pro)
 					|| opcode != 14 || opcode != 16))
 		{
 			get_arg_code(env->memory[pro->pi + 1], &arg_code);
-			pro->pc = (pro->pc + arg_code.total > MEM_SIZE) ?
-				pro->pc + arg_code.total - MEM_SIZE :
-				pro->pc + arg_code.total;
+			pro->pc = (pro->pc + 1 + arg_code.total > MEM_SIZE) ?
+				pro->pc + 1 + arg_code.total - MEM_SIZE :
+				pro->pc + 1 + arg_code.total;
 		}
 		else
 			set_pc(pro, opcode);

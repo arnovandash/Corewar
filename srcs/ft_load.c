@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/24 12:38:03 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/25 14:48:48 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/25 16:11:25 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ static void	ft_load_reg(t_env *env, t_process *pro, char_u reg_arg2)
 	reg_arg1 = 0;
 	reg_arg1 = (pro->pi + 2 < MEM_SIZE) ? env->memory[pro->pi + 2] - 1:
 		env->memory[pro->pi + 2 - MEM_SIZE] - 1;
-   	puts("regnumber");
-	ft_print_hex(reg_arg1);
 	if (reg_arg1 < REG_NUMBER)
 		ft_memcpy(pro->registers[reg_arg2], pro->registers[reg_arg1], REG_SIZE);
 }
