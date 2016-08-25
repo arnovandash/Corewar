@@ -144,20 +144,14 @@ typedef struct	s_env
 
 /*
 ** --------------------
+** Function prototypes:
+** --------------------
 */
 
 /*
-**		Preprogramming prototypes:
+**		destroy_process.c
 */
-void			manage_args(t_env *env, int argc, char **argv);
-void			run_simulation(t_env *env);
-void			run_process(t_env *env, t_process *pro);
 void			destroy_process(t_list *dest, t_list *pre);
-/*
-**		read_program.c
-*/
-void			read_programs(t_env *env);
-
 /*
 **		error_quit.c
 */
@@ -174,10 +168,26 @@ int				ft_set_player_number(t_env *env, char *s1, char *s2);
 int				ft_set_dump_cycle(t_env *env, char *str);
 void			init_env(t_env *env);
 /*
+**		init_functions.c
+*/
+void			init_functions(t_env *env);
+/*
 **		manage_args.c
 */
 void			init_list(t_env *env);
 void			manage_args(t_env *env, int argc, char **argv);
+/*
+**		read_program.c
+*/
+void			read_programs(t_env *env);
+/*
+**		run_process.c
+*/
+void			run_process(t_env *env, t_process *pro);
+/*
+**		run_simulation.c
+*/
+void			run_simulation(t_env *env);
 
 #endif
 
