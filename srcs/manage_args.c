@@ -27,13 +27,16 @@ void	init_list(t_env *env)
 		process.player = &(env->players[k]);
 		if (!(process.registers = (reg_t *)malloc(REG_NUMBER)))
 			error_quit(0);
-		ft_bzero(&process.registers, REG_NUMBER);
+		ft_bzero(process.registers, REG_NUMBER);
 		if (!(element = ft_lstnew(&process, sizeof(t_process))))
 			error_quit(0);
 		if (list != env->processes)
+		{
 			list->next = element;
+			list = list->next;
+		}
 		else
-			list = element;
+			env->processes = element;
 	}
 }
 

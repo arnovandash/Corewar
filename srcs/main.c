@@ -28,9 +28,9 @@ int		main(int argc, char **argv)
 
 	init_env(&env);//initialise all the enviroment variables.
 	manage_args(&env, argc, argv);//setup the flag details.
-	read_programs(&env);//reads from the .cor files into memory.
+	//read_programs(&env);//reads from the .cor files into memory.
 	if (env.processes == NULL)
-		puts("ERROR: no processes ?????????????????????");
+		puts("ERROR: no processes ?????????????????????\n");
 //	run_simulation(&env);//runs the corewar battle.
 	free_env(&env);//frees all the malloced instructions.
 }

@@ -13,8 +13,11 @@
 NAME= corewar
 
 CC= gcc -o
-CFLAGS= -Wall -Werror -Wextra
+
+CFLAGS= -Wall -Werror -Wextra -g3
+
 LIBFT= -L libft/ -lft
+
 HEADER= -I ./includes/ -I ./libft/includes/
 
 SP= ./srcs/
