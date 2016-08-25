@@ -12,23 +12,32 @@
 
 NAME= corewar
 
-CC= gcc -o
+CC = gcc -o
 
-CFLAGS= -Wall -Werror -Wextra -g3
+CFLAGS = -Wall -Werror -Wextra -g3
 
-LIBFT= -L libft/ -lft
+LIBFT = -L libft/ -lft
 
-HEADER= -I ./includes/ -I ./libft/includes/
+HEADER = -I ./includes/ -I ./libft/includes/
 
-SP= ./srcs/
-SRC= $(SP)main.c $(SP)read_programs.c $(SP)error_quit.c \
-	 $(SP)free_env.c $(SP)init_env.c $(SP)manage_args.c \
-	 $(SP)run_simulation.c $(SP)destroy_process.c		\
-	 $(SP)run_process.c
+SP = ./srcs/
+
+SRC_F = main.c 				\
+		read_programs.c		\
+		error_quit.c		\
+		free_env.c 			\
+		init_env.c			\
+		manage_args.c		\
+	 	run_simulation.c	\
+		destroy_process.c	\
+	 	run_process.c		\
+
+SRC = $(addprefix $(SP), $(SRCS_F))
 
 all: $(NAME)
 
 $(NAME):
+	@make qme
 	@clear
 	@echo "\x1b[31m-----Compiling Libft\x1b[0m"
 	@make -C libft fclean
@@ -62,9 +71,17 @@ fclean: clean
 re: fclean all
 
 me:
-	@echo ${LOGNAME} > author
+	@make qme
+	@echo "\x1b[32mAuthor:"
+	cat -e author
 
-norm:
+qme:
+	@if [ ! -f author ]; then \
+		whoami > author; git add author; git commit -m "added author"; \
+		git push; \
+		fi
+
+norme:
 	@clear
 	@echo "Starting Norminette, good luck!"
 	@norminette $(SRC)
