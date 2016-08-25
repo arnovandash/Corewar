@@ -93,7 +93,7 @@ SRCS4 = ft_lstnew.c			\
 		ft_print_hex.c		\
 		get_next_line.c		\
 		ft_are_all_digits.c	\
-
+		ft_print_memory.c	\
 
 SRCS_ALL = $(SRCS1) $(SRCS2) $(SRCS3) $(SRCS4)
 
