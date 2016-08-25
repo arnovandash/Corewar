@@ -6,7 +6,7 @@
 /*   By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 10:09:11 by arnovan-          #+#    #+#             */
-/*   Updated: 2016/08/23 11:39:38 by arnovan-         ###   ########.fr       */
+/*   Updated: 2016/08/24 11:43:03 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	read_programs(t_env *env)
 		{
 			while (*cursor != '\0')
 			{
-				printf("Blah: %c\n", *cursor);
+				printf("Blah: %s\n", cursor);
 			}
 			cursor = NULL;
 			cursor++;
