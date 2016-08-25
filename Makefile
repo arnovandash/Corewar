@@ -39,6 +39,12 @@ $(NAME):
 	@echo "\x1b[34m+++++Done Compiling $(NAME)\x1b[0m"
 	@echo "\x1b[32m+++++Completed All Compiling\x1b[0m"
 
+force:
+	@if [ -f $(NAME) ]; then \
+		make re; else \
+		make $(NAME); \
+		fi;
+
 quick:
 	@clear
 	@echo "\x1b[31m-----Compiling $(NAME)\x1b[0m"
