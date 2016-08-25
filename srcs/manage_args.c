@@ -12,6 +12,31 @@
 
 #include "corewar.h"
 
+void	init_list(t_env *env)
+{
+	int		k;
+	t_list		*list;
+	t_list		*element;
+	t_process	process;
+
+	k = -1;
+	list = env->processes;
+	ft_bzero(&process, sizeof(process));
+	while (++k < env->num_players)
+	{
+		process.player = &(env->players[k]);
+		if (!(process.registers = (reg_t *)malloc(REG_NUMBER)))
+			error_quit(0);
+		ft_bzero(&process.registers, REG_NUMBER);
+		if (!(element = ft_lstnew(&process, sizeof(t_process))))
+			error_quit(0);
+		if (list != env->processes)
+			list->next = element;
+		else
+			list = element;
+	}
+}
+
 void	manage_args(t_env *env, int argc, char **argv)
 {
 	int		k;
@@ -28,4 +53,5 @@ void	manage_args(t_env *env, int argc, char **argv)
 		else
 			ft_set_player_number(env, NULL, argv[k]);
 	}
+	init_list(env);
 }

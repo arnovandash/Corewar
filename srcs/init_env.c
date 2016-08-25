@@ -63,4 +63,5 @@ void	init_env(t_env *env)
 		error_quit(0);
 	ft_bzero(env->memory, (MEM_SIZE));
 	env->cycle = CYCLE_TO_DIE;
+	env->num_players = 0;
 }

@@ -84,13 +84,13 @@
 /*
 **		Error Messages:
 */
-# define ERR_MSG_00 "C_RED Error: Not enough memory avaliable.\n"
-# define ERR_MSG_01 "C_RED Error: No arguments specified.\n"
-# define ERR_MSG_02 "C_RED Error: Multiple definitions for dump cycles.\n"
-# define ERR_MSG_03 "C_RED Error: Invalid dump cycle.\n"
-# define ERR_MSG_04 "C_RED Error: Invalid player set.\n"
-# define ERR_MSG_05 "C_RED Error: Player Number has already been set.\n"
-# define ERR_MSG_06 "C_RED Error: Max players already reached.\n"
+# define ERR_MSG_00 "\e[31mError: Not enough memory avaliable.\n"
+# define ERR_MSG_01 "\e[31mError: No arguments specified.\n"
+# define ERR_MSG_02 "\e[31mError: Multiple definitions for dump cycles.\n"
+# define ERR_MSG_03 "\e[31mError: Invalid dump cycle.\n"
+# define ERR_MSG_04 "\e[31mError: Invalid player set.\n"
+# define ERR_MSG_05 "\e[31mError: Player Number has already been set.\n"
+# define ERR_MSG_06 "\e[31mError: Max players already reached.\n"
 
 /*
 **		Strings:
@@ -155,6 +155,7 @@ void			error_quit(int error);
 **		free_env.c
 */
 void			free_env(t_env *env);
+void			free_env(t_env *env);
 /*
 **		init_env.c
 */
@@ -164,6 +165,7 @@ void			init_env(t_env *env);
 /*
 **		manage_args.c
 */
+void			init_list(t_env *env);
 void			manage_args(t_env *env, int argc, char **argv);
 
 #endif
