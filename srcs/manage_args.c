@@ -27,7 +27,7 @@ void	init_list(t_env *env)
 				|| !(element = ft_lstnew(&process, sizeof(t_process))))
 			error_quit(0);
 		process.player = &(env->players[k]);
-		ft_bzero(process.registers, REG_NUMBER);
+		ft_bzero(process.registers, REG_NUMBER * sizeof(reg_t));
 		ft_memcpy(process.registers[0], &(process.player[k].number),
 			sizeof(int));
 		if (!env->processes && (env->processes = element))
