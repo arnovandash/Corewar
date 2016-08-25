@@ -18,7 +18,7 @@ LIBFT= -L libft/ -lft
 HEADER= -I ./includes/ -I ./libft/includes/
 
 SP= ./srcs/
-SRC= $(SP)main.c $(SP)read_programs.c $(SP)error-quit.c \
+SRC= $(SP)main.c $(SP)read_programs.c $(SP)error_quit.c \
 	 $(SP)free_env.c $(SP)init_env.c $(SP)manage_args.c \
 	 $(SP)run_simulation.c $(SP)destroy_process.c		\
 	 $(SP)run_process.c
