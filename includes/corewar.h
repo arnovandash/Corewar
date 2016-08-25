@@ -97,10 +97,10 @@
 ** -----------
 */
 
-typedef unsigned long int ul_int;
-typedef unsigned int u_int;
-typedef unsigned char char_u;
-typedef unsigned char reg_t[REG_SIZE];
+typedef unsigned long int	ul_int;
+typedef unsigned int		u_int;
+typedef unsigned char		char_u;
+typedef unsigned char		reg_t[REG_SIZE];
 
 typedef struct	s_player
 {
@@ -139,7 +139,8 @@ typedef struct	s_env
 	int			check_for_mod;
 	ul_int		cycles_to_die;
 	t_player	*last_alive;
-	void        (*function[17])(struct s_env *env, t_arg_len arg_len, t_process *process);
+	void        (*function[17])(struct s_env *env, t_arg_len arg_len,\
+		t_process *process);
 }				t_env;
 
 /*

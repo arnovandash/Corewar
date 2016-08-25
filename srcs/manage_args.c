@@ -14,7 +14,7 @@
 
 void	init_list(t_env *env)
 {
-	int		k;
+	int			k;
 	t_list		*list;
 	t_list		*element;
 	t_process	process;
@@ -23,22 +23,17 @@ void	init_list(t_env *env)
 	ft_bzero(&process, sizeof(process));
 	while (++k < env->num_players)
 	{
+		if (!(process.registers = (reg_t *)malloc(REG_NUMBER * sizeof(reg_t)))
+				|| !(element = ft_lstnew(&process, sizeof(t_process))))
+			error_quit(0);
 		process.player = &(env->players[k]);
-		if (!(process.registers = (reg_t *)malloc(REG_NUMBER)))
-			error_quit(0);
+		ft_memcpy(process.registers[0], &(process.player[k].number),
+			sizeof(int));
 		ft_bzero(process.registers, REG_NUMBER);
-		if (!(element = ft_lstnew(&process, sizeof(t_process))))
-			error_quit(0);
-		if (!env->processes)
-		{
-			env->processes = element;
+		if (!env->processes && (env->processes = element))
 			list = env->processes;
-		}
-		else
-		{
-			list->next = element;
+		else if ((list->next = element))
 			list = list->next;
-		}
 	}
 }
 
