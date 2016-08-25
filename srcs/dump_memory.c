@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printhex.c                                      :+:      :+:    :+:   */
+/*   dump_memory.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/21 14:47:20 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/25 12:33:34 by rojones          ###   ########.fr       */
+/*   Created: 2016/08/25 12:17:13 by rojones           #+#    #+#             */
+/*   Updated: 2016/08/25 12:32:28 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "corewar.h"
 
-void	ft_print_hex(unsigned char num)
+void	dump_memory(char_u *mem)
 {
-	BASE_STR2;
-	if (num >= 16)
-		ft_print_hex(num / 16);
-	write(1, (base + (num % 16)), 1);
+	ul_int	i;
+	int		line;
+
+	i = -1;
+	while (++i < MEM_SIZE)
+	{
+		line = 32;
+		while (line--)
+		{
+			ft_print_hex(mem[i]);
+			ft_putchar(' ');
+		}
+		ft_putchar('\n');
+	}
 }

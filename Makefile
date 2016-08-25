@@ -6,7 +6,7 @@
 #    By: ghavenga <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/04 07:37:46 by ghavenga          #+#    #+#              #
-#    Updated: 2016/08/24 12:22:08 by rojones          ###   ########.fr        #
+#    Updated: 2016/08/25 12:30:50 by rojones          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SP= ./srcs/
 SRC= $(SP)main.c $(SP)read_programs.c $(SP)error-quit.c \
 	 $(SP)free_env.c $(SP)init_env.c $(SP)manage_args.c \
 	 $(SP)run_simulation.c $(SP)destroy_process.c		\
-	 $(SP)run_process.c
+	 $(SP)run_process.c $(SP)get_arg_len.c $(SP)op.c	\
+	 $(SP)dump_memory.c									\
 
 all: $(NAME)
 

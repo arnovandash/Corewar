@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/24 14:49:41 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/24 16:48:11 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/25 11:44:34 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,5 @@ int get_arg_len(int arg_code)
 		return (DIR_SIZE);
 	if (arg_code == IND_CODE)
 		return (IND_SIZE);
+	return (0);
 }

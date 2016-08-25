@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/25 10:06:56 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/25 12:30:33 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,9 @@ void			manage_args(t_env *env, int argc, char **argv);
 void			run_simulation(t_env *env);
 void			run_process(t_env *env, t_process *pro);
 void			destroy_process(t_list *dest, t_list *pre);
+int				get_arg_len(int arg_code);
+void			dump_memory(char_u *mem);
+
 /*
 **		read_program.c
 */
