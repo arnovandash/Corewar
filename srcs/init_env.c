@@ -25,14 +25,14 @@ int		ft_set_player_number(t_env *env, char *s1, char *s2)
 	k = -1;
 	if (!s2 || (s1 && !ft_are_all_digits(s1)) || (num > MAX_PLAYERS))
 		error_quit(4);
-	else if (s1)
+	else if (s1 != NULL)
 	{
 		while (++k < env->num_players)
 			if (env->players[k].number == num)
 				error_quit(5);
 		env->players[env->num_players].number = num;
 	}
-	else if (!s1)
+	else if (s1 == NULL)
 	{
 		while (++k < env->num_players)
 			if (env->players[k].number == env->num_players)
@@ -40,8 +40,8 @@ int		ft_set_player_number(t_env *env, char *s1, char *s2)
 		env->players[env->num_players].number = env->num_players;
 	}
 	env->players[env->num_players].file_name = ft_strdup(s2);
-	env->num_players++;
-	return (s1 == NULL);
+	(env->num_players)++;
+	return ((s1 == NULL) ? 1 : 2);
 }
 
 int		ft_set_dump_cycle(t_env *env, char *str)
