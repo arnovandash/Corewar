@@ -165,7 +165,7 @@ void			error_quit(int error);
 /*
 **		free_env.c
 */
-void			free_env(t_env *env);
+void			free_data(void *data, size_t size);
 void			free_env(t_env *env);
 /*
 **		init_env.c

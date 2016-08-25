@@ -33,7 +33,8 @@ void	free_env(t_env *env)
 	int		k;
 
 	k = -1;
-	free(env->memory);
+	if (env->memory)
+		free(env->memory);
 	while (++k < env->num_players)
 		if (env->players[k].file_name != NULL)
 			free(env->players[k].file_name);
