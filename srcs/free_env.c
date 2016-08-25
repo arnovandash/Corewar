@@ -18,8 +18,12 @@
 
 void	free_data(void *data, size_t size)
 {
+	t_process	*temp;
+
+	temp = (t_process *)data;
 	if (data == NULL || size <= 0)
 		return ;
+	free(temp->registers);
 	free(data);
 	(void)size;
 }
@@ -33,6 +37,6 @@ void	free_env(t_env *env)
 	while (++k < env->num_players)
 		if (env->players[k].file_name != NULL)
 			free(env->players[k].file_name);
-	if (env->processes != NULL)
+	while (env->processes && env->processes->next)
 		ft_lstdel(&(env->processes), free_data);
 }
