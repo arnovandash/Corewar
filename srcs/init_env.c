@@ -23,8 +23,10 @@ int		ft_set_player_number(t_env *env, char *s1, char *s2)
 
 	num = (s1) ? ft_atoi(s1) : 0;
 	k = -1;
-	if (!s2 || (s1 && !ft_are_all_digits(s1)) || (num > MAX_PLAYERS))
+	if (!s2 || (s1 && !ft_are_all_digits(s1)) || (num >= MAX_PLAYERS))
 		error_quit(4);
+	else if (env->num_players >= MAX_PLAYERS)
+		error_quit(6);
 	else if (s1 != NULL)
 	{
 		while (++k < env->num_players)
