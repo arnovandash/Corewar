@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/25 12:30:33 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/25 13:38:20 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,13 @@
 /*
 **		Error Messages:
 */
-# define ERR_MSG_00 "C_RED Error: Not enough memory avaliable.\n"
-# define ERR_MSG_01 "C_RED Error: No arguments specified.\n"
-# define ERR_MSG_02 "C_RED Error: Multiple definitions for dump cycles.\n"
-# define ERR_MSG_03 "C_RED Error: Invalid dump cycle.\n"
-# define ERR_MSG_04 "C_RED Error: Invalid player set.\n"
-# define ERR_MSG_05 "C_RED Error: Player Number has already been set.\n"
-# define ERR_MSG_06 "C_RED Error: Max players already reached.\n"
+# define ERR_MSG_00 "\e[31mError: Not enough memory avaliable.\n"
+# define ERR_MSG_01 "\e[31mError: No arguments specified.\n"
+# define ERR_MSG_02 "\e[31mError: Multiple definitions for dump cycles.\n"
+# define ERR_MSG_03 "\e[31mError: Invalid dump cycle.\n"
+# define ERR_MSG_04 "\e[31mError: Invalid player set.\n"
+# define ERR_MSG_05 "\e[31mError: Player Number has already been set.\n"
+# define ERR_MSG_06 "\e[31mError: Max players already reached.\n"
 
 /*
 **		Strings:
@@ -144,22 +144,16 @@ typedef struct	s_env
 
 /*
 ** --------------------
+** Function prototypes:
+** --------------------
 */
 
 /*
-**		Preprogramming prototypes:
+**		destroy_process.c
 */
-void			manage_args(t_env *env, int argc, char **argv);
-void			run_simulation(t_env *env);
-void			run_process(t_env *env, t_process *pro);
 void			destroy_process(t_list *dest, t_list *pre);
 int				get_arg_len(int arg_code);
-void			dump_memory(char_u *mem);
-
-/*
-**		read_program.c
-*/
-void			read_programs(t_env *env);
+void			dump_memory(char_u *mem, ul_int size);
 
 /*
 **		error_quit.c
@@ -168,6 +162,7 @@ void			error_quit(int error);
 /*
 **		free_env.c
 */
+void			free_data(void *data, size_t size);
 void			free_env(t_env *env);
 /*
 **		init_env.c
@@ -176,10 +171,30 @@ int				ft_set_player_number(t_env *env, char *s1, char *s2);
 int				ft_set_dump_cycle(t_env *env, char *str);
 void			init_env(t_env *env);
 /*
+**		init_functions.c
+*/
+void			init_functions(t_env *env);
+/*
 **		manage_args.c
 */
+void			init_list(t_env *env);
 void			manage_args(t_env *env, int argc, char **argv);
-
+/*
+**		read_program.c
+*/
+void			read_programs(t_env *env);
+/*
+**		run_process.c
+*/
+void			run_process(t_env *env, t_process *pro);
+/*
+**		run_simulation.c
+*/
+void			run_simulation(t_env *env);
+/*
+**		game operations
+*/
+void			ft_load(t_env *env, t_arg_code a_case, t_process *pro);
 #endif
 
 /*

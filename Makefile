@@ -6,23 +6,26 @@
 #    By: ghavenga <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/04 07:37:46 by ghavenga          #+#    #+#              #
-#    Updated: 2016/08/25 12:30:50 by rojones          ###   ########.fr        #
+#    Updated: 2016/08/25 13:37:08 by rojones          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME= corewar
 
 CC= gcc -o
-CFLAGS= -Wall -Werror -Wextra
+
+CFLAGS= -Wall -Werror -Wextra -g3
+
 LIBFT= -L libft/ -lft
+
 HEADER= -I ./includes/ -I ./libft/includes/
 
 SP= ./srcs/
-SRC= $(SP)main.c $(SP)read_programs.c $(SP)error-quit.c \
+SRC= $(SP)main.c $(SP)read_programs.c $(SP)error_quit.c \
 	 $(SP)free_env.c $(SP)init_env.c $(SP)manage_args.c \
 	 $(SP)run_simulation.c $(SP)destroy_process.c		\
 	 $(SP)run_process.c $(SP)get_arg_len.c $(SP)op.c	\
-	 $(SP)dump_memory.c									\
+	 $(SP)dump_memory.c $(SP)ft_load.c					\
 
 all: $(NAME)
 

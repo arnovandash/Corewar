@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 11:48:58 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/25 12:07:52 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/25 13:30:45 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	run_process(t_env *env, t_process *pro)
 		if (opcode > 0 && opcode < 17 && (opcode != 1 || opcode != 9 || opcode != 12
 					|| opcode != 14 || opcode != 16))
 		{
-			get_arg_code(env->memory[opcode + 1], &arg_code);
+			get_arg_code(env->memory[pro->pi + 1], &arg_code);
 			pro->pc = (pro->pc + arg_code.total > MEM_SIZE) ?
 				pro->pc + arg_code.total - MEM_SIZE :
 				pro->pc + arg_code.total;

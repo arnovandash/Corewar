@@ -19,7 +19,6 @@ void	ft_bzero(void *s, size_t n)
 
 	k = 0;
 	temp = (char *)s;
-	temp = (char *)s;
 	while (k < n)
 	{
 		temp[k] = '\0';

@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 14:47:20 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/25 12:33:34 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/25 13:27:39 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void	ft_print_hex(unsigned char num)
 {
 	BASE_STR2;
-	if (num >= 16)
-		ft_print_hex(num / 16);
+//	if (num >= 16)
+//		ft_print_hex(num / 16);
+	write(1, (base + (num / 16)), 1);
 	write(1, (base + (num % 16)), 1);
 }

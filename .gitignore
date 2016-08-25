@@ -33,3 +33,9 @@
 *.su
 .vscode
 *.vscode
+.nfs.*
+.DS*
+._DS*
+corewar
+asm
+*.swp
