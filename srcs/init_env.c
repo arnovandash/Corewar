@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 13:53:22 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/24 11:34:57 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/26 07:54:32 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	init_env(t_env *env)
 	if (!(env->memory = malloc(MEM_SIZE)))
 		error_quit(0);
 	ft_bzero(env->memory, (MEM_SIZE));
+//	init_player_struct(env, 0);
 	env->num_players = 0;
 	env->cycle = 0;
 	env->cycles_to_die = CYCLE_TO_DIE;
