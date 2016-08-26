@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/23 11:39:35 by arnovan-         ###   ########.fr       */
+/*   Updated: 2016/08/25 09:05:31 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@
 # define ERR_MSG_04 "C_RED Error: Invalid player set.\n"
 # define ERR_MSG_05 "C_RED Error: Player Number has already been set.\n"
 # define ERR_MSG_06 "C_RED Error: Max players already reached.\n"
+# define ERR_MSG_07 "C_RED Error: Unable to open champion file.\n"
+# define ERR_MSG_08 "C_RED Error: Invalid champion file.\n"
 
 /*
 **		Strings:
@@ -130,6 +132,7 @@ typedef struct	s_env
 	t_list		*processes;
 	ul_int		cycle;
 	int			dump_cycle;
+	int			fd;
 }				t_env;
 
 /*
@@ -158,6 +161,7 @@ void			free_env(t_env *env);
 /*
 **		init_env.c
 */
+void			init_player_struct(t_env *env, int player_num);
 int				ft_set_player_number(t_env *env, char *s1, char *s2);
 int				ft_set_dump_cycle(t_env *env, char *str);
 void			init_env(t_env *env);

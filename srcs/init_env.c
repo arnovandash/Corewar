@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 13:53:22 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/23 10:04:36 by arnovan-         ###   ########.fr       */
+/*   Updated: 2016/08/24 18:10:00 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,19 @@
 **	The functions in this file are for initialising the enviroment variables.
 */
 
+
+/*
+void init_player_struct(t_env *env, int player_num)
+{
+	env->players[player_num].player_ref
+	env->players[player_num]
+	env->players[player_num]
+	env->players[player_num]
+	env->players[player_num]
+	env->players[player_num]
+	env->players[player_num]
+}
+*/
 int		ft_set_player_number(t_env *env, char *s1, char *s2)
 {
 	int		num;
@@ -63,4 +76,5 @@ void	init_env(t_env *env)
 		error_quit(0);
 	ft_bzero(env->memory, (MEM_SIZE));
 	env->cycle = CYCLE_TO_DIE;
+//	init_player_struct(env, 0);
 }

@@ -6,11 +6,11 @@
 #    By: ghavenga <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/04 07:37:46 by ghavenga          #+#    #+#              #
-#    Updated: 2016/08/23 11:17:36 by arnovan-         ###   ########.fr        #
+#    Updated: 2016/08/23 17:53:52 by arnovan-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME= asm
+NAME= vm
 
 CC= gcc -o
 CFLAGS= -Wall -Werror -Wextra

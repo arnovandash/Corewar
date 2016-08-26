@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 13:59:13 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/22 13:59:14 by khansman         ###   ########.fr       */
+/*   Updated: 2016/08/25 09:06:14 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,9 @@ void	error_quit(int error)
 		ft_putstr(ERR_MSG_05);
 	else if (error == 6)
 		ft_putstr(ERR_MSG_06);
+	else if (error == 7)
+		ft_putstr(ERR_MSG_07);
+	else if (error == 8)
+		ft_putstr(ERR_MSG_08);
 	exit(0);
 }
