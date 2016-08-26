@@ -16,10 +16,28 @@
 **	The functions in this file are for freeing the enviroment variables.
 */
 
+void	free_data(void *data, size_t size)
+{
+	t_process	*temp;
+
+	temp = (t_process *)data;
+	if (data == NULL || size <= 0)
+		return ;
+	free(temp->registers);
+	free(data);
+	(void)size;
+}
+
 void	free_env(t_env *env)
 {
 	int		k;
 
-	k = 0;
-	free(env->memory);
+	k = -1;
+	if (env->memory)
+		free(env->memory);
+	while (++k < env->num_players)
+		if (env->players[k].file_name != NULL)
+			free(env->players[k].file_name);
+	while (env->processes && env->processes->next)
+		ft_lstdel(&(env->processes), free_data);
 }

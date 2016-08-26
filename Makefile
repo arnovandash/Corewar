@@ -6,24 +6,36 @@
 #    By: ghavenga <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/04 07:37:46 by ghavenga          #+#    #+#              #
-#    Updated: 2016/08/23 17:53:52 by arnovan-         ###   ########.fr        #
+#    Updated: 2016/08/26 08:07:12 by arnovan-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME= vm
+NAME= corewar
 
-CC= gcc -o
-CFLAGS= -Wall -Werror -Wextra
-LIBFT= -L libft/ -lft
-HEADER= -I ./includes/ -I ./libft/includes/
+CC = gcc -o
 
-SP= ./srcs/
-SRC= $(SP)main.c $(SP)read_programs.c $(SP)error-quit.c \
-	 $(SP)free_env.c $(SP)init_env.c $(SP)manage_args.c
+CFLAGS = -Wall -Werror -Wextra -g3
+
+LIBFT = -L libft/ -lft
+
+HEADER = -I ./includes/ -I ./libft/includes/
+
+SP = ./srcs/
+
+SRC =	$(SP)main.c					\
+		$(SP)read_programs.c		\
+		$(SP)error_quit.c			\
+		$(SP)free_env.c				\
+		$(SP)init_env.c				\
+		$(SP)manage_args.c			\
+	 	$(SP)run_simulation.c		\
+		$(SP)destroy_process.c		\
+	 	$(SP)run_process.c
 
 all: $(NAME)
 
 $(NAME):
+	@make qme
 	@clear
 	@echo "\x1b[31m-----Compiling Libft\x1b[0m"
 	@make -C libft fclean
@@ -33,6 +45,12 @@ $(NAME):
 	@$(CC) $(NAME) $(CFLAGS) $(SRC) $(LIBFT) $(HEADER)
 	@echo "\x1b[34m+++++Done Compiling $(NAME)\x1b[0m"
 	@echo "\x1b[32m+++++Completed All Compiling\x1b[0m"
+
+force:
+	@if [ -f $(NAME) ]; then \
+		make re; else \
+		make $(NAME); \
+		fi;
 
 quick:
 	@clear
@@ -51,9 +69,17 @@ fclean: clean
 re: fclean all
 
 me:
-	@echo ${LOGNAME} > author
+	@make qme
+	@echo "\x1b[32mAuthor:"
+	cat -e author
 
-norm:
+qme:
+	@if [ ! -f author ]; then \
+		whoami > author; git add author; git commit -m "added author"; \
+		git push; \
+		fi
+
+norme:
 	@clear
 	@echo "Starting Norminette, good luck!"
 	@norminette $(SRC)

@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/25 09:05:31 by arnovan-         ###   ########.fr       */
+/*   Updated: 2016/08/26 08:04:20 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <fcntl.h>
+# include <limits.h>
 
 # include "libft.h"
 # include "op.h"
@@ -45,16 +46,10 @@
 # define PROCESS t_process
 # define PROCES2 struct s_process
 
-# define C_TYPE 0b11110000000000000000000000000000 >> 28
-# define C_MO_A 0b00001100000000000000000000000000 >> 26
-# define C_MO_B 0b00000011000000000000000000000000 >> 24
-# define C_FI_A 0b00000000111111111111000000000000 >> 12
-# define C_FI_B 0b00000000000000000000111111111111 >> 00
-
-# define C_ARG1 0b11000000 >> 6
-# define C_ARG2 0b00110000 >> 4
-# define C_ARG3 0b00001100 >> 2
-# define C_ARG4 0b00000011
+# define C_ARG1(x) (x & 0b11000000) >> 6
+# define C_ARG2(x) (x & 0b00110000) >> 4
+# define C_ARG3(x) (x & 0b00001100) >> 2
+# define C_ARG4(x) (x & 0b00000011)
 
 /*
 **		Instructions:
@@ -84,15 +79,15 @@
 /*
 **		Error Messages:
 */
-# define ERR_MSG_00 "C_RED Error: Not enough memory avaliable.\n"
-# define ERR_MSG_01 "C_RED Error: No arguments specified.\n"
-# define ERR_MSG_02 "C_RED Error: Multiple definitions for dump cycles.\n"
-# define ERR_MSG_03 "C_RED Error: Invalid dump cycle.\n"
-# define ERR_MSG_04 "C_RED Error: Invalid player set.\n"
-# define ERR_MSG_05 "C_RED Error: Player Number has already been set.\n"
-# define ERR_MSG_06 "C_RED Error: Max players already reached.\n"
-# define ERR_MSG_07 "C_RED Error: Unable to open champion file.\n"
-# define ERR_MSG_08 "C_RED Error: Invalid champion file.\n"
+# define ERR_MSG_00 "\e[31mError: Not enough memory avaliable.\n"
+# define ERR_MSG_01 "\e[31mError: No arguments specified.\n"
+# define ERR_MSG_02 "\e[31mError: Multiple definitions for dump cycles.\n"
+# define ERR_MSG_03 "\e[31mError: Invalid dump cycle.\n"
+# define ERR_MSG_04 "\e[31mError: Invalid player set.\n"
+# define ERR_MSG_05 "\e[31mError: Player Number has already been set.\n"
+# define ERR_MSG_06 "\e[31mError: Max players already reached.\n"
+# define ERR_MSG_07 "\e[31mError: Unable to open champion file.\n"
+# define ERR_MSG_08 "\e[31mError: Invalid champion file.\n"
 
 /*
 **		Strings:
@@ -104,25 +99,36 @@
 ** -----------
 */
 
-typedef unsigned long int ul_int;
-typedef unsigned char char_u;
-typedef unsigned char reg_t[REG_SIZE];
+typedef unsigned long int	ul_int;
+typedef unsigned int		u_int;
+typedef unsigned char		char_u;
+typedef unsigned char		reg_t[REG_SIZE];
 
 typedef struct	s_player
 {
 	char		*file_name; //passed in argv
 	int			number; // if -n else the previous +1
-	header_t	player_ref; // filled by Arno
+	u_int		live;
+	t_header	player_ref; // filled by Arno
 }				t_player;
 
 typedef struct	s_process
 {
 	t_player	*player;
-	ul_int		pc;
+	ul_int		pc;// program counter the next function to run
+	ul_int		pi;// program index the current index of the program
 	char		carry;
 	int			cycle_to_next;
 	reg_t		*registers; //malloc to REG_NUMBER
 }				t_process;
+
+typedef struct	s_arg_len
+{
+	int	arg1;
+	int	arg2;
+	int	arg3;
+	int	total;
+}				t_arg_len;
 
 typedef struct	s_env
 {
@@ -131,25 +137,25 @@ typedef struct	s_env
 	t_player	players[MAX_PLAYERS];
 	t_list		*processes;
 	ul_int		cycle;
-	int			dump_cycle;
 	int			fd;
+	unsigned long int		dump_cycle;
+	int			check_for_mod;
+	ul_int		cycles_to_die;
+	t_player	*last_alive;
+	void        (*function[17])(struct s_env *env, t_arg_len arg_len,\
+		t_process *process);
 }				t_env;
 
 /*
 ** --------------------
+** Function prototypes:
+** --------------------
 */
 
 /*
-**		Preprogramming prototypes:
+**		destroy_process.c
 */
-void			manage_args(t_env *env, int argc, char **argv);
-void			run_simulation(t_env *env);
-
-/*
-**		read_program.c
-*/
-void			read_programs(t_env *env);
-
+void			destroy_process(t_list *dest, t_list *pre);
 /*
 **		error_quit.c
 */
@@ -157,6 +163,7 @@ void			error_quit(int error);
 /*
 **		free_env.c
 */
+void			free_data(void *data, size_t size);
 void			free_env(t_env *env);
 /*
 **		init_env.c
@@ -166,17 +173,28 @@ int				ft_set_player_number(t_env *env, char *s1, char *s2);
 int				ft_set_dump_cycle(t_env *env, char *str);
 void			init_env(t_env *env);
 /*
+**		init_functions.c
+*/
+void			init_functions(t_env *env);
+/*
 **		manage_args.c
 */
+void			init_list(t_env *env);
 void			manage_args(t_env *env, int argc, char **argv);
+/*
+**		read_program.c
+*/
+void			read_programs(t_env *env);
+/*
+**		run_process.c
+*/
+void			run_process(t_env *env, t_process *pro);
+/*
+**		run_simulation.c
+*/
+void			run_simulation(t_env *env);
 
 #endif
-
-/*
-** register = 1 byite code 01
-** direct = 4 code 10 define in op.h '%' else if index  byte = 2
-** indirect = 2 code 11
-*/
 
 /*
 **	Kesh:  1,   4,  7   0 assembler
