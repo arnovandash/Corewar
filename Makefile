@@ -6,7 +6,7 @@
 #    By: ghavenga <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/04 07:37:46 by ghavenga          #+#    #+#              #
-#    Updated: 2016/08/25 16:14:57 by rojones          ###   ########.fr        #
+#    Updated: 2016/08/26 08:44:56 by rojones          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC= $(SP)main.c $(SP)read_programs.c $(SP)error_quit.c \
 	 $(SP)run_simulation.c $(SP)destroy_process.c		\
 	 $(SP)run_process.c $(SP)get_arg_len.c $(SP)op.c	\
 	 $(SP)dump_memory.c $(SP)ft_load.c $(SP)ft_store.c	\
+	 $(SP)ft_sub.c $(SP)loop_mem.c
 
 all: $(NAME)
 

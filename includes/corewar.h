@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/25 16:17:16 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/26 08:44:25 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,10 @@ void			init_env(t_env *env);
 */
 void			init_functions(t_env *env);
 /*
+** loop_mem.c
+*/
+ul_int			loop_mem(ul_int check);
+/*
 **		manage_args.c
 */
 void			init_list(t_env *env);
@@ -196,6 +200,7 @@ void			run_simulation(t_env *env);
 */
 void			ft_load(t_env *env, t_arg_code a_case, t_process *pro);
 void			ft_store(t_env *env, t_arg_code acode, t_process *pro);
+void			ft_sub(t_env *env, t_arg_code arg_code, t_process *pro);
 #endif
 
 /*
