@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 08:05:50 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/26 17:00:17 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/26 17:03:04 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int	ft_xor(t_env *env, t_arg_code acode, t_process *pro)
 	else if(acode.arg2 == IND_CODE)
 		temp2 = get_indir(env->memory, pro->pi + 2 + get_arg_len(acode.arg1), pro);
 	arg3 = loop_mem(pro->pi + 2 + get_arg_len(acode.arg1) +  get_arg_len(acode.arg2));
-	dump_memory(temp1, REG_SIZE);
-	dump_memory(temp2, REG_SIZE);
 	store_result(env->memory[arg3] - 1, temp1, temp2, pro);
+	ft_strdel((char**)&temp1);
+	ft_strdel((char**)&temp2);
 	return (1);
 }
