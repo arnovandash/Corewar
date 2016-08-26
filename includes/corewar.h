@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/26 08:44:25 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/26 15:31:06 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ typedef struct	s_env
 	int			check_for_mod;
 	ul_int		cycles_to_die;
 	t_player	*last_alive;
-	void        (*function[17])(struct s_env *env, t_arg_code arg_code, t_process *process);
+	int        (*function[17])(struct s_env *env, t_arg_code arg_code, t_process *process);
 }				t_env;
 
 /*
@@ -196,11 +196,19 @@ void			run_process(t_env *env, t_process *pro);
 */
 void			run_simulation(t_env *env);
 /*
+**		get argument
+*/
+char_u			*get_dir(char_u *mem, ul_int offset);
+char_u			*get_indir(char_u *mem, ul_int offset, t_process *pro);
+char_u			*get_indir_long(char_u *mem, ul_int offset, t_process *pro);
+char_u			*get_reg(t_env *env, t_process *pro, ul_int offset);
+/*
 **		game operations
 */
 void			ft_load(t_env *env, t_arg_code a_case, t_process *pro);
 void			ft_store(t_env *env, t_arg_code acode, t_process *pro);
 void			ft_sub(t_env *env, t_arg_code arg_code, t_process *pro);
+int				ft_xor(t_env *env, t_arg_code acode, t_process *pro);
 #endif
 
 /*
