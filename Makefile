@@ -27,10 +27,15 @@ SRC =	$(SP)main.c					\
 		$(SP)error_quit.c			\
 		$(SP)free_env.c				\
 		$(SP)init_env.c				\
+		$(SP)pc_pos.c				\
 		$(SP)manage_args.c			\
 	 	$(SP)run_simulation.c		\
 		$(SP)destroy_process.c		\
-	 	$(SP)run_process.c
+	 	$(SP)run_process.c			\
+		$(SP)ft_aff.c				\
+		$(SP)ft_long_fork.c			\
+		$(SP)ft_long_load.c			\
+		$(SP)ft_long_load_index.c	\
 
 all: $(NAME)
 

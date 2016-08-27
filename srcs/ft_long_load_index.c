@@ -14,9 +14,9 @@
 
 int ft_long_load_index(t_env *env, t_arg_len arg_len, t_process *pro)
 {
-	reg_t		value;
+	char_u	value;
 
-	if (!(1 <= MEM_A(3) < REG_NUMBER))
+	if (!(1 <= MEM_A(3) && MEM_A(3) <= REG_NUMBER))
 		return (0);
 	if (C_ARG1(MEM_A(1)) == REG_CODE)
 		value = get_reg(env, pro, MEM_A(1));
@@ -34,6 +34,6 @@ int ft_long_load_index(t_env *env, t_arg_len arg_len, t_process *pro)
 		value += get_indir_long(MEM, MEM_A(2));
 	else
 		return (0);
-	pro->registers[MEM_A(3)] = value;
+	pro->registers[MEM_A(3)][0] = value;
 	return (1);
 }

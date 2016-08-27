@@ -107,6 +107,7 @@ typedef unsigned long int	ul_int;
 typedef unsigned int		u_int;
 typedef unsigned char		char_u;
 typedef unsigned char		reg_t[REG_SIZE];
+typedef unsigned char		t_reg[REG_SIZE];
 
 typedef struct	s_player
 {
@@ -123,7 +124,7 @@ typedef struct	s_process
 	ul_int		pi;// program index the current index of the program
 	char		carry;
 	int			cycle_to_next;
-	reg_t		*registers; //malloc to REG_NUMBER
+	t_reg		*registers; //malloc to REG_NUMBER
 }				t_process;
 
 typedef struct	s_arg_len
@@ -170,6 +171,22 @@ void			error_quit(int error);
 void			free_data(void *data, size_t size);
 void			free_env(t_env *env);
 /*
+**		ft_aff.c
+*/
+int				ft_aff(t_env *env, t_arg_len arg_len, t_process *pro);
+/*
+**		ft_long_fork.c
+*/
+int				ft_long_fork(t_env *env, t_arg_len arg_len, t_process *pro);
+/*
+**		ft_long_load.c
+*/
+int				ft_long_load(t_env *env, t_arg_len arg_len, t_process *pro);
+/*
+**		ft_long_load_index.c
+*/
+int 			ft_long_load_index(t_env *env, t_arg_len arg_len, t_process *pro);
+/*
 **		init_env.c
 */
 void			init_player_struct(t_env *env, int player_num);
@@ -188,7 +205,7 @@ void			manage_args(t_env *env, int argc, char **argv);
 /*
 **		pc_pos.c
 */
-ul_int			pc_pos(t_arg_len arg_len, char arg, unsigned long pc);
+ul_int			ft_pc_pos(t_arg_len arg_len, char arg, unsigned long pc);
 /*
 **		read_program.c
 */

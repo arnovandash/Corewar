@@ -12,7 +12,7 @@
 
 #include "corewar.h"
 
-ul_int	pc_pos(t_arg_len arg_len, char arg, unsigned long pc)
+ul_int	ft_pc_pos(t_arg_len arg_len, char arg, unsigned long pc)
 {
 	if (arg == -1)
 		return (pc % MEM_SIZE);

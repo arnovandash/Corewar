@@ -15,18 +15,19 @@
 int		ft_aff(t_env *env, t_arg_len arg_len, t_process *pro)
 {
 	int		k;
-	reg_t	reg;
-	char	*s;
+	char_u	reg;
+	char_u	*s;
 
-	if (C_ARG1(MEM_A(0)) != REG_CODE || !(1 <= MEM_A(0) < REG_NUMBER))
+	if (C_ARG1(MEM_A(0)) != REG_CODE || 
+				!(1 <= MEM_A(0) && MEM_A(0) <= REG_NUMBER))
 		return (pro->carry);
 	k = -1;
-	reg = get_reg(env, pro, MEM_A(1);
+	reg = get_reg(env, pro, MEM_A(1));
 	s = (char *)reg;
 	ft_putstr("Program (");
-	ft_putnbr(pro->player.number);
+	ft_putnbr(pro->player->number);
 	ft_putstr(") register = ");
-	while (++k < sizeof(reg_t))
+	while ((unsigned long)++k < sizeof(t_reg))
 		ft_putchar((*s)++);
 	ft_putchar('\n');
 	return (pro->carry);
