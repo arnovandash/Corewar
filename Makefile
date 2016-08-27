@@ -6,7 +6,7 @@
 #    By: ghavenga <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/04 07:37:46 by ghavenga          #+#    #+#              #
-#    Updated: 2016/08/27 09:18:56 by rojones          ###   ########.fr        #
+#    Updated: 2016/08/27 14:47:57 by rojones          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,12 @@ SRC= $(SP)main.c							\
 	 $(SP)get_arg_len.c						\
 	 $(SP)op.c								\
 	 $(SP)dump_memory.c						\
+	 $(SP)ft_live.c							\
 	 $(SP)ft_load.c							\
 	 $(SP)ft_store.c						\
 	 $(SP)ft_sub.c							\
+	 $(SP)ft_and.c							\
+	 $(SP)ft_or.c							\
 	 $(SP)ft_xor.c							\
 	 $(SP)loop_mem.c						\
 	 $(SP)get_reg.c							\
