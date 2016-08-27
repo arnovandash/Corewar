@@ -42,6 +42,10 @@
 /*
 **		Shorthand:
 */
+# define MEM env->memory
+# define PC_P(x) ft_pc_pos(arg_len, x, pro->pc)
+# define MEM_A(x) env->memory[ft_pc_pos(arg_len, x, pro->pc)]
+
 # define L_STATE t_live_state
 # define PROCESS t_process
 # define PROCES2 struct s_process
@@ -181,6 +185,10 @@ void			init_functions(t_env *env);
 */
 void			init_list(t_env *env);
 void			manage_args(t_env *env, int argc, char **argv);
+/*
+**		pc_pos.c
+*/
+ul_int			pc_pos(t_arg_len arg_len, char arg, unsigned long pc);
 /*
 **		read_program.c
 */
