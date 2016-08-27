@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 08:44:02 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/24 11:29:13 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/26 07:53:39 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_list(t_env *env)
 {
-	int		k;
+	int			k;
 	t_list		*list;
 	t_list		*element;
 	t_process	process;
@@ -23,22 +23,18 @@ void	init_list(t_env *env)
 	ft_bzero(&process, sizeof(process));
 	while (++k < env->num_players)
 	{
-		process.player = &(env->players[k]);
-		if (!(process.registers = (reg_t *)malloc(REG_NUMBER)))
+		if (!(process.registers = (reg_t *)malloc(REG_NUMBER * sizeof(reg_t))))
 			error_quit(0);
-		ft_bzero(process.registers, REG_NUMBER);
+		process.player = &(env->players[k]);
+		ft_bzero(process.registers, REG_NUMBER * sizeof(reg_t));
+		ft_memcpy(process.registers[0], &(process.player[k].number),
+			sizeof(int));
 		if (!(element = ft_lstnew(&process, sizeof(t_process))))
 			error_quit(0);
-		if (!env->processes)
-		{
-			env->processes = element;
+		if (!env->processes && (env->processes = element))
 			list = env->processes;
-		}
-		else
-		{
-			list->next = element;
+		else if ((list->next = element))
 			list = list->next;
-		}
 	}
 }
 

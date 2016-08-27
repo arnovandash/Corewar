@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/27 07:44:45 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/27 10:27:35 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@
 # define ERR_MSG_04 "\e[31mError: Invalid player set.\n"
 # define ERR_MSG_05 "\e[31mError: Player Number has already been set.\n"
 # define ERR_MSG_06 "\e[31mError: Max players already reached.\n"
+# define ERR_MSG_07 "\e[31mError: Unable to open champion file.\n"
+# define ERR_MSG_08 "\e[31mError: Invalid champion file.\n"
 
 /*
 **		Strings:
@@ -97,10 +99,10 @@
 ** -----------
 */
 
-typedef unsigned long int ul_int;
-typedef unsigned int u_int;
-typedef unsigned char char_u;
-typedef unsigned char reg_t[REG_SIZE];
+typedef unsigned long int	ul_int;
+typedef unsigned int		u_int;
+typedef unsigned char		char_u;
+typedef unsigned char		reg_t[REG_SIZE];
 
 typedef struct	s_player
 {
@@ -135,7 +137,8 @@ typedef struct	s_env
 	t_player	players[MAX_PLAYERS];
 	t_list		*processes;
 	ul_int		cycle;
-	unsigned long int		dump_cycle;
+	int			fd;
+	ul_int		dump_cycle;
 	int			check_for_mod;
 	ul_int		cycles_to_die;
 	t_player	*last_alive;
@@ -148,10 +151,7 @@ typedef struct	s_env
 ** --------------------
 */
 
-/*
-**		destroy_process.c
-*/
-void			destroy_process(t_list *dest, t_list *pre);
+void			destroy_process(t_list **dest, t_list **pre, t_list **head);
 int				get_arg_len(int arg_code);
 void			dump_memory(char_u *mem, ul_int size);
 
@@ -167,6 +167,7 @@ void			free_env(t_env *env);
 /*
 **		init_env.c
 */
+void			init_player_struct(t_env *env, int player_num);
 int				ft_set_player_number(t_env *env, char *s1, char *s2);
 int				ft_set_dump_cycle(t_env *env, char *str);
 void			init_env(t_env *env);

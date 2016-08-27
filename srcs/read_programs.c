@@ -6,35 +6,108 @@
 /*   By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 10:09:11 by arnovan-          #+#    #+#             */
-/*   Updated: 2016/08/24 11:43:03 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/26 07:53:11 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	read_programs(t_env *env)
+/*
+**	static char_u	reverse_bytes(unsigned char bytes)
+**	{
+**		char_u rev;
+**
+**		rev = bytes;
+**		rev = ((rev & 0b00001111) << 4) | ((rev & 0b11110000) >> 4);
+**		rev = ((rev & 0b00110011) << 2) | ((rev & 0b11001100) >> 2);
+**		rev = ((rev & 0b01010101) << 1) | ((rev & 0b10101010) >> 1);
+**		return (rev);
+**	}
+*/
+
+static void		make_magic(t_env *env, int p_num)
 {
-	int 	fd;
-	int		p_num;
-	char	*cursor;
+	char_u	buffer[4];
 
-				printf("num players %i\n", env->num_players);
-	p_num = 0;
-	while (p_num < env->num_players)
+	if (read(env->fd, buffer, 4) > 0)
 	{
-		fd = open(env->players[p_num].file_name, O_RDONLY);
+		if ((buffer[1] == 0xea) && (buffer[2] == 0x83) && (buffer[3] == 0xf3))
+			env->players[p_num].player_ref.magic = COREWAR_EXEC_MAGIC;
+		else
+			error_quit(8);
+	}
+	else
+		error_quit(8);
+}
 
-		printf("filename: %s\n", env->players[p_num].file_name);
-		while (get_next_line(fd, &cursor))
+static void		read_name(t_env *env, int p_num)
+{
+	char_u	buffer[PROG_NAME_LENGTH + 4];
+	int		x;
+
+	x = 0;
+	if (read(env->fd, buffer, PROG_NAME_LENGTH + 4) > 0)
+	{
+		while (buffer[x] != 0x00 && x < PROG_NAME_LENGTH)
 		{
-			while (*cursor != '\0')
-			{
-				printf("Blah: %s\n", cursor);
-			}
-			cursor = NULL;
-			cursor++;
+			env->players[p_num].player_ref.prog_name[x] = buffer[x];
+			x++;
 		}
-		close(fd);
+		env->players[p_num].player_ref.prog_name[x] = '\0';
+	}
+}
+
+static void		read_size(t_env *env, int p_num)
+{
+	char_u		buffer[4];
+	ul_int		result;
+	int			x;
+
+	x = 0;
+	result = 0;
+	if (read(env->fd, buffer, 4) > 0)
+	{
+		while (x < 4)
+		{
+			result = (result << 8) + buffer[x];
+			x++;
+		}
+		env->players[p_num].player_ref.prog_size = result;
+	}
+}
+
+static void		read_comment(t_env *env, int p_num)
+{
+	char_u	buffer[COMMENT_LENGTH + 4];
+	int		x;
+
+	x = 0;
+	if (read(env->fd, buffer, COMMENT_LENGTH + 4) > 0)
+	{
+		while (buffer[x] != 0x00 && x < COMMENT_LENGTH)
+		{
+			env->players[p_num].player_ref.comment[x] = buffer[x];
+			x++;
+		}
+		env->players[p_num].player_ref.comment[x] = '\0';
+	}
+}
+
+void		read_programs(t_env *env)
+{
+	int				p_num;
+
+	p_num = 0;
+	while (p_num <= (env->num_players - 1))
+	{
+		if ((env->fd = open(env->players[p_num].file_name, O_RDONLY)) == -1)
+			error_quit(7);
+		make_magic(env, p_num);
+		read_name(env, p_num);
+		read_size(env, p_num);
+		read_comment(env, p_num);
+		close(env->fd);
 		p_num++;
 	}
+	close(env->fd);
 }
