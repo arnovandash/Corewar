@@ -6,24 +6,11 @@
 /*   By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 10:09:11 by arnovan-          #+#    #+#             */
-/*   Updated: 2016/08/26 07:53:11 by arnovan-         ###   ########.fr       */
+/*   Updated: 2016/08/27 10:37:05 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
-
-/*
-**	static char_u	reverse_bytes(unsigned char bytes)
-**	{
-**		char_u rev;
-**
-**		rev = bytes;
-**		rev = ((rev & 0b00001111) << 4) | ((rev & 0b11110000) >> 4);
-**		rev = ((rev & 0b00110011) << 2) | ((rev & 0b11001100) >> 2);
-**		rev = ((rev & 0b01010101) << 1) | ((rev & 0b10101010) >> 1);
-**		return (rev);
-**	}
-*/
 
 static void		make_magic(t_env *env, int p_num)
 {
@@ -72,6 +59,8 @@ static void		read_size(t_env *env, int p_num)
 			result = (result << 8) + buffer[x];
 			x++;
 		}
+		if (result > CHAMP_MAX_SIZE)
+			error_quit(9);
 		env->players[p_num].player_ref.prog_size = result;
 	}
 }
@@ -93,7 +82,7 @@ static void		read_comment(t_env *env, int p_num)
 	}
 }
 
-void		read_programs(t_env *env)
+void			read_programs(t_env *env)
 {
 	int				p_num;
 
@@ -106,8 +95,8 @@ void		read_programs(t_env *env)
 		read_name(env, p_num);
 		read_size(env, p_num);
 		read_comment(env, p_num);
+		load_arena(env, p_num);
 		close(env->fd);
 		p_num++;
 	}
-	close(env->fd);
 }

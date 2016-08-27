@@ -6,7 +6,7 @@
 #    By: ghavenga <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/04 07:37:46 by ghavenga          #+#    #+#              #
-#    Updated: 2016/08/26 08:07:12 by arnovan-         ###   ########.fr        #
+#    Updated: 2016/08/26 09:55:09 by arnovan-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC =	$(SP)main.c					\
 		$(SP)error_quit.c			\
 		$(SP)free_env.c				\
 		$(SP)init_env.c				\
+		$(SP)load_arena.c			\
 		$(SP)manage_args.c			\
 	 	$(SP)run_simulation.c		\
 		$(SP)destroy_process.c		\
