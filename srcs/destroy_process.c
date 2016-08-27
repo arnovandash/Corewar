@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 10:39:40 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/27 10:49:15 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/27 10:59:21 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 ** dest = destroy
 ** pre = previous
-** function links previus->next to destroy->next frees destroy then moves 
+** function links previus->next to destroy->next frees destroy then moves
 ** destroy the the next eliment of the original list.
 */
 

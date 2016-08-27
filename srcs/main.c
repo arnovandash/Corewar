@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 10:02:10 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/27 10:48:59 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/27 11:35:09 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int		main(int argc, char **argv)
   arg_code->arg3 = (C_ARG3(encode));
   arg_code->total = get_arg_len(arg_code->arg1) +
   get_arg_len(arg_code->arg2) +  get_arg_len(arg_code->arg3);
-  }*/
+  }
 
-/*int	main()
+int	main()
   {
   t_env	env;
   t_process	pro;

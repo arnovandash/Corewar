@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 07:43:33 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/27 08:15:13 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/27 11:13:45 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_sub(t_env *env, t_arg_code code, t_process *pro)
 	int		i;
 
 	if (code.arg1 != REG_CODE || code.arg2 != REG_CODE ||
-			code.arg3 != REG_CODE )
+			code.arg3 != REG_CODE)
 		return (0);
 	reg1 = env->memory[loop_mem(pro->pi + 2)] - 1;
 	reg2 = env->memory[loop_mem(pro->pi + 3)] - 1;

@@ -6,13 +6,13 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/24 14:49:41 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/25 11:44:34 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/27 11:27:53 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int get_arg_len(int arg_code)
+int	get_arg_len(int arg_code)
 {
 	if (arg_code == REG_CODE)
 		return (1);

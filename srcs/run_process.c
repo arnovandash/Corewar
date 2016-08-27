@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 11:48:58 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/26 15:12:13 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/27 11:40:01 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	set_pc(t_process *pro, char_u opcode)
 			pro->pc + IND_SIZE + 1 - MEM_SIZE : pro->pc + IND_SIZE + 1;
 }
 
-static void init_arg_code(t_arg_code *arg_code)
+static void	init_arg_code(t_arg_code *arg_code)
 {
 	arg_code->arg1 = 0;
 	arg_code->arg2 = 0;
@@ -30,16 +30,16 @@ static void init_arg_code(t_arg_code *arg_code)
 	arg_code->total = 0;
 }
 
-static void get_arg_code(char_u encode, t_arg_code *arg_code )
-{   
+static void	get_arg_code(char_u encode, t_arg_code *arg_code)
+{
 	arg_code->arg1 = (C_ARG1(encode));
 	arg_code->arg2 = (C_ARG2(encode));
-	arg_code->arg3 = (C_ARG3(encode)); 
+	arg_code->arg3 = (C_ARG3(encode));
 	arg_code->total = get_arg_len(arg_code->arg1) +
-		get_arg_len(arg_code->arg2) +  get_arg_len(arg_code->arg3);
+		get_arg_len(arg_code->arg2) + get_arg_len(arg_code->arg3);
 }
 
-void	run_process(t_env *env, t_process *pro)
+void		run_process(t_env *env, t_process *pro)
 {
 	char_u		opcode;
 	t_arg_code	arg_code;
@@ -49,13 +49,11 @@ void	run_process(t_env *env, t_process *pro)
 		init_arg_code(&arg_code);
 		opcode = env->memory[pro->pc];
 		pro->pi = pro->pc;
-		if (opcode > 0 && opcode < 17 && (opcode != 1 || opcode != 9 || opcode != 12
-					|| opcode != 14 || opcode != 16))
+		if (opcode > 0 && opcode < 17 && (opcode != 1 || opcode != 9 ||
+					opcode != 12 || opcode != 14 || opcode != 16))
 		{
 			get_arg_code(env->memory[pro->pi + 1], &arg_code);
-			pro->pc = (pro->pc + 1 + arg_code.total > MEM_SIZE) ?
-				pro->pc + 1 + arg_code.total - MEM_SIZE :
-				pro->pc + 1 + arg_code.total;
+			pro->pc = loop_memory(pro->pc + 1 + arg_code.total);
 		}
 		else
 			set_pc(pro, opcode);

@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/26 10:19:20 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/26 17:00:14 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/27 11:35:36 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char_u	*get_indir(char_u *mem, ul_int offset, t_process *pro)
 	jump = 0;
 	i = -1;
 	if (!(temp = (char_u*)malloc(sizeof(u_char) * REG_SIZE)))
-		return(NULL);
+		return (NULL);
 	ft_bzero(temp, REG_SIZE);
 	while (++i < IND_SIZE)
 	{

@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 13:59:13 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/25 09:06:14 by arnovan-         ###   ########.fr       */
+/*   Updated: 2016/08/27 11:27:35 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*
 **	The functions in this file are supposed to display the appropiate
-**	error message, before exitting the program. 
+**	error message, before exitting the program.
 */
 
 void	error_quit(int error)

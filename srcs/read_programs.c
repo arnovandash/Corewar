@@ -6,7 +6,7 @@
 /*   By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 10:09:11 by arnovan-          #+#    #+#             */
-/*   Updated: 2016/08/26 07:53:11 by arnovan-         ###   ########.fr       */
+/*   Updated: 2016/08/27 11:40:56 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 **	}
 */
 
-static void		make_magic(t_env *env, int p_num)
+static void	make_magic(t_env *env, int p_num)
 {
 	char_u	buffer[4];
 
@@ -40,7 +40,7 @@ static void		make_magic(t_env *env, int p_num)
 		error_quit(8);
 }
 
-static void		read_name(t_env *env, int p_num)
+static void	read_name(t_env *env, int p_num)
 {
 	char_u	buffer[PROG_NAME_LENGTH + 4];
 	int		x;
@@ -57,7 +57,7 @@ static void		read_name(t_env *env, int p_num)
 	}
 }
 
-static void		read_size(t_env *env, int p_num)
+static void	read_size(t_env *env, int p_num)
 {
 	char_u		buffer[4];
 	ul_int		result;
@@ -76,7 +76,7 @@ static void		read_size(t_env *env, int p_num)
 	}
 }
 
-static void		read_comment(t_env *env, int p_num)
+static void	read_comment(t_env *env, int p_num)
 {
 	char_u	buffer[COMMENT_LENGTH + 4];
 	int		x;

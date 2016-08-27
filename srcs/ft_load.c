@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/24 12:38:03 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/27 08:09:26 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/27 10:58:00 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ static int	ft_load_reg(t_env *env, t_process *pro, char_u reg_arg2)
 static int	ft_load_dir(t_env *env, reg_t regarg2, ul_int index)
 {
 	int	i;
-	
+
 	i = -1;
 	while (++i < REG_SIZE)
 		regarg2[i] = env->memory[loop_mem(index + i)];
 	return (1);
 }
 
-static int ft_load_indir(t_env *env, t_process *pro, u_char reg_arg2)
+static int	ft_load_indir(t_env *env, t_process *pro, u_char reg_arg2)
 {
 	int		i;
 	ul_int	jump;
