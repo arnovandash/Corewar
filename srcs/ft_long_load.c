@@ -19,7 +19,8 @@
 
 int		ft_long_load(t_env *env, t_arg_len arg_len, t_process *pro)
 {
-	char_u	value;
+	char_u	*value;
+	int		k;
 
 	if ((C_ARG2(MEM_A(0)) != REG_CODE) ||
 				!(1 <= MEM_A(2) && MEM_A(2) < REG_NUMBER))
@@ -32,6 +33,8 @@ int		ft_long_load(t_env *env, t_arg_len arg_len, t_process *pro)
 		value = get_indir_long(MEM, MEM_A(2));
 	else
 		return (0);
-	pro->registers[MEM_A(1)][0] = value;
+	k = -1;
+	while (++k < sizeof(t_reg))
+		pro->registers[MEM_A(1)][R_SP(k)] = value;
 	return (1);
 }

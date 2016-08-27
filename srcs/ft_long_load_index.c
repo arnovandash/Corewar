@@ -14,7 +14,7 @@
 
 int ft_long_load_index(t_env *env, t_arg_len arg_len, t_process *pro)
 {
-	char_u	value;
+	char_u	*value;
 
 	if (!(1 <= MEM_A(3) && MEM_A(3) <= REG_NUMBER))
 		return (0);

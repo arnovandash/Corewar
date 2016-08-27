@@ -30,7 +30,7 @@
 # include <fcntl.h>
 # include <limits.h>
 
-# include "libft.h"
+//# include "libft.h"
 # include "op.h"
 
 /*
@@ -42,6 +42,7 @@
 /*
 **		Shorthand:
 */
+# define R_SP(x) x % (REG_SIZE * sizeof(t_reg))
 # define MEM env->memory
 # define PC_P(x) ft_pc_pos(arg_len, x, pro->pc)
 # define MEM_A(x) env->memory[ft_pc_pos(arg_len, x, pro->pc)]
