@@ -25,6 +25,8 @@ void	init_list(t_env *env)
 	{
 		if (!(process.registers = (t_reg *)malloc(REG_NUMBER * sizeof(t_reg))))
 			error_quit(0);
+		process.player = &(env->players[k]);
+		ft_bzero(process.registers, REG_NUMBER * sizeof(t_reg));
 		ft_memcpy(process.registers[0], &(process.player[k].number), sizeof(int));
 		if (!(element = ft_lstnew(&process, sizeof(t_process))))
 			error_quit(0);
