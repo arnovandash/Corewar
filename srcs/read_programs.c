@@ -6,7 +6,7 @@
 /*   By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 10:09:11 by arnovan-          #+#    #+#             */
-/*   Updated: 2016/08/27 11:40:56 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/27 15:17:55 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ static void	read_size(t_env *env, int p_num)
 			result = (result << 8) + buffer[x];
 			x++;
 		}
+		if (result > CHAMP_MAX_SIZE)
+			error_quit(9);
 		env->players[p_num].player_ref.prog_size = result;
 	}
 }
@@ -106,8 +108,8 @@ void		read_programs(t_env *env)
 		read_name(env, p_num);
 		read_size(env, p_num);
 		read_comment(env, p_num);
+		load_arena(env, p_num);
 		close(env->fd);
 		p_num++;
 	}
-	close(env->fd);
 }

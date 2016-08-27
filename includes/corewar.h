@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/27 10:27:35 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/27 16:04:08 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@
 # define ERR_MSG_06 "\e[31mError: Max players already reached.\n"
 # define ERR_MSG_07 "\e[31mError: Unable to open champion file.\n"
 # define ERR_MSG_08 "\e[31mError: Invalid champion file.\n"
+# define ERR_MSG_09 "\e[31mError: Champion too large for memory space.\n"
+# define ERR_MSG_10 "\e[31mError: Program size mismatch.\n"
 
 /*
 **		Strings:
@@ -142,9 +144,10 @@ typedef struct	s_env
 	int			check_for_mod;
 	ul_int		cycles_to_die;
 	t_player	*last_alive;
-	int        (*function[17])(struct s_env *env, t_arg_code arg_code, t_process *process);
+//	int        (*function[17])(struct s_env *env, t_arg_code arg_code, t_process *process);
 }				t_env;
 
+extern int        (*function[])(struct s_env *env, t_arg_code arg_code, t_process *process);
 /*
 ** --------------------
 ** Function prototypes:
@@ -180,6 +183,10 @@ void			init_functions(t_env *env);
 */
 ul_int			loop_mem(ul_int check);
 /*
+**		load_arena.c
+*/
+void			load_arena(t_env *env, int p_num);
+/*
 **		manage_args.c
 */
 void			init_list(t_env *env);
@@ -206,10 +213,22 @@ char_u			*get_reg(t_env *env, t_process *pro, ul_int offset);
 /*
 **		game operations
 */
-int				ft_load(t_env *env, t_arg_code a_case, t_process *pro);
-int				ft_store(t_env *env, t_arg_code acode, t_process *pro);
-int				ft_sub(t_env *env, t_arg_code arg_code, t_process *pro);
-int				ft_xor(t_env *env, t_arg_code acode, t_process *pro);
+int				ft_live(t_env *env, t_arg_code code, t_process *pro);
+int				ft_load(t_env *env, t_arg_code code, t_process *pro);
+int				ft_store(t_env *env, t_arg_code code, t_process *pro);
+int				ft_add(t_env *env, t_arg_code code, t_process *pro);
+int				ft_sub(t_env *env, t_arg_code code, t_process *pro);
+int				ft_and(t_env *env, t_arg_code code, t_process *pro);
+int				ft_or(t_env *env, t_arg_code code, t_process *pro);
+int				ft_xor(t_env *env, t_arg_code code, t_process *pro);
+int				ft_zjump(t_env *env, t_arg_code code, t_process *pro);
+int				ft_load_index(t_env *env, t_arg_code code, t_process *pro);
+int				ft_store_index(t_env *env, t_arg_code code, t_process *pro);
+int				ft_fork(t_env *env, t_arg_code code, t_process *pro);
+int				ft_long_load(t_env *env, t_arg_code code, t_process *pro);
+int				ft_long_load_index(t_env *env, t_arg_code code, t_process *pro);
+int				ft_long_fork(t_env *env, t_arg_code code, t_process *pro);
+int				ft_aff(t_env *env, t_arg_code code, t_process *pro);
 #endif
 
 /*
