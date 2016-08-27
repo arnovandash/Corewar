@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 08:34:36 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/27 10:49:22 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/27 10:52:41 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	run_simulation(t_env *env)
 	int			check;
 	int			mod;
 
-	while (env->processes && env->cycle <= env->dump_cycle && env->cycles_to_die > 0)
+	while (env->processes && env->cycle < env->dump_cycle && env->cycles_to_die > 0)
 	{
 		check = 0;
 		mod = 0;
