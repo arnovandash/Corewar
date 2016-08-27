@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/24 15:46:18 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/26 08:12:32 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/27 08:11:27 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,17 @@ static void	ft_store_indir(t_env *env, t_process *pro, char_u reg_num)
 	}
 }
 
-void	ft_store(t_env *env, t_arg_code acode, t_process *pro)
+int	ft_store(t_env *env, t_arg_code acode, t_process *pro)
 {
 	char_u	reg_num1;
 	char_u	reg_num2;
 
 	if (acode.arg1 != REG_CODE || acode.arg2 == DIR_CODE)
-		return ;
+		return (pro->carry);
 	reg_num1 = (pro->pi + 2 < MEM_SIZE) ? env->memory[pro->pi + 2] - 1 :
 		env->memory[pro->pi + 2 - MEM_SIZE] - 1;
 	if (reg_num1 > REG_NUMBER)
-		return ;
+		return (pro->carry);
 	if (acode.arg2 == REG_CODE)
 	{
 		reg_num2 = (pro->pi + 3 < MEM_SIZE) ? env->memory[pro->pi + 3] - 1 :
@@ -56,4 +56,5 @@ void	ft_store(t_env *env, t_arg_code acode, t_process *pro)
 	}
 	else
 		ft_store_indir(env, pro, reg_num1);
+	return (pro->carry);
 }

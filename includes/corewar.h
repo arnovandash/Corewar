@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/26 15:31:06 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/27 07:44:45 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,9 +205,9 @@ char_u			*get_reg(t_env *env, t_process *pro, ul_int offset);
 /*
 **		game operations
 */
-void			ft_load(t_env *env, t_arg_code a_case, t_process *pro);
-void			ft_store(t_env *env, t_arg_code acode, t_process *pro);
-void			ft_sub(t_env *env, t_arg_code arg_code, t_process *pro);
+int				ft_load(t_env *env, t_arg_code a_case, t_process *pro);
+int				ft_store(t_env *env, t_arg_code acode, t_process *pro);
+int				ft_sub(t_env *env, t_arg_code arg_code, t_process *pro);
 int				ft_xor(t_env *env, t_arg_code acode, t_process *pro);
 #endif
 
