@@ -30,7 +30,7 @@
 # include <fcntl.h>
 # include <limits.h>
 
-//# include "libft.h"
+# include "libft.h"
 # include "op.h"
 
 /*
