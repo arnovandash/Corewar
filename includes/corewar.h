@@ -47,6 +47,10 @@
 # define PC_P(x) ft_pc_pos(arg_len, x, pro->pc)
 # define MEM_A(x) env->memory[ft_pc_pos(arg_len, x, pro->pc)]
 
+# define P_R process.registers
+# define P_P process.player
+# define REG_SIZE sizeof(t_reg)
+
 # define L_STATE t_live_state
 # define PROCESS t_process
 # define PROCES2 struct s_process
