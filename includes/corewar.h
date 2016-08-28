@@ -49,7 +49,7 @@
 
 # define P_R process.registers
 # define P_P process.player
-# define REG_SIZE sizeof(t_reg)
+# define R_S sizeof(t_reg)
 
 # define L_STATE t_live_state
 # define PROCESS t_process
