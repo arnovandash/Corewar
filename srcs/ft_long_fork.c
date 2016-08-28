@@ -21,15 +21,14 @@ int		ft_long_fork(t_env *env, t_arg_len arg_len, t_process *pro)
 	if (!(new = ft_lstnew(pro, sizeof(t_process))))
 		error_quit(0);
 	n_pro = (t_process *)new->content;
-	if (!(n_pro->registers = (t_reg *)malloc(sizeof(t_reg) * REG_NUMBER)))
+	if (!(n_pro->registers = (t_reg *)malloc(REG_SIZ * REG_NUMBER)))
 		error_quit(0);
-	ft_memcpy(n_pro->registers, pro->registers, 
-			sizeof(t_reg) * REG_NUMBER);
-	n_pro->pc += MEM_A(0);
+	ft_memcpy(n_pro->registers, pro->registers, REG_SIZ * REG_NUMBER);
+	n_pro->pc += MEM_ARG(0);
 	temp = env->processes;
 	while (temp->next)
 		temp = temp->next;
 	temp->next = new;
 	(void)arg_len;
-	return (1);
+	return (pro->carry);
 }
