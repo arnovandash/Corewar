@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/27 16:04:08 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/29 16:12:39 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,7 +221,7 @@ int				ft_sub(t_env *env, t_arg_code code, t_process *pro);
 int				ft_and(t_env *env, t_arg_code code, t_process *pro);
 int				ft_or(t_env *env, t_arg_code code, t_process *pro);
 int				ft_xor(t_env *env, t_arg_code code, t_process *pro);
-int				ft_zjump(t_env *env, t_arg_code code, t_process *pro);
+int				ft_zjmp(t_env *env, t_arg_code code, t_process *pro);
 int				ft_load_index(t_env *env, t_arg_code code, t_process *pro);
 int				ft_store_index(t_env *env, t_arg_code code, t_process *pro);
 int				ft_fork(t_env *env, t_arg_code code, t_process *pro);

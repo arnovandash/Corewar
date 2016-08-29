@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 10:02:10 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/29 11:16:06 by arnovan-         ###   ########.fr       */
+/*   Updated: 2016/08/29 13:30:07 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,12 @@ int		main(int argc, char **argv)
 
 	//////////////////////// PRINT MEMORY FOR TESTING ////////////
 	ul_int snoop = 0;
-	ul_int line = 1;
-	while (snoop <= MEM_SIZE)
+	while (snoop < MEM_SIZE)
 	{
 		printf("%02x", env.memory[snoop]);
-		if (line % 40 == 0)
+		if ((snoop + 1) % 40 == 0)
 			printf("\n");
 		snoop++;
-		line++;
 	}
 		printf("\n");
 	///////////////////////////////////////////////////////////////

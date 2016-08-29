@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 11:48:58 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/29 12:02:11 by arnovan-         ###   ########.fr       */
+/*   Updated: 2016/08/29 18:04:00 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,15 @@ void		run_process(t_env *env, t_process *pro)
 		if (opcode < 17 && opcode > 0)
 		{
 			pro->cycle_to_next = g_op_tab[opcode - 1].no_cycles;
-//			pro->carry = (*function[opcode])(env, arg_code, pro);
+	
+			////////////////////////////////////////
+			printf("opcode :%x\n", opcode);
+			printf("carry :%x\n", pro->carry);
+			pro->carry = 1;
+			if (opcode == 9)
+			///////////////////////////////////////	
+				pro->carry = (*function[opcode])(env, arg_code, pro);
+
 		}
 	}
 	else
