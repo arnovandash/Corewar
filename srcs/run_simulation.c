@@ -69,7 +69,7 @@ static void	print_last_alive(t_player *player)
 		ft_putstr(") won\n");
 	}
 	else
-		ft_putstr("no one reported alive");
+		ft_putstr("no one reported alive\n");
 }
 
 void		run_simulation(t_env *env)

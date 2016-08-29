@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME		=	corewar
-LIBFT		=	-I libft/includes # -L libft -lft
+LIBFT		=	-I libft/includes -L libft -lft
 INCLUDE		=	-I includes
 LIBS		=
 CFLAGS		=	-Wall -Wextra -Werror -g $(INCLUDE) $(LIBFT) $(LIBS)

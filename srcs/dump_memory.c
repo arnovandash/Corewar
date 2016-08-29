@@ -24,9 +24,11 @@ void	dump_memory(char_u *mem, unsigned long size)
 		while (line-- && i < size)
 		{
 			ft_print_hex(mem[i]);
-			ft_putchar(' ');
+			if (line)
+				ft_putchar(' ');
+			else
+				ft_putchar('\n');
 			i++;
 		}
-		ft_putchar('\n');
 	}
 }
