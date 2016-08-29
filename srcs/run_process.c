@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 11:48:58 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/24 12:22:02 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/29 12:02:11 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,51 +22,47 @@ static void	set_pc(t_process *pro, char_u opcode)
 			pro->pc + IND_SIZE + 1 - MEM_SIZE : pro->pc + IND_SIZE + 1;
 }
 
-static void init_arg_len(t_arg_len *arg_len)
+static void	init_arg_code(t_arg_code *arg_code)
 {
-	arg_len->arg1 = 0;
-	arg_len->arg2 = 0;
-	arg_len->arg3 = 0;
-	arg_len->total = 0;
+	arg_code->arg1 = 0;
+	arg_code->arg2 = 0;
+	arg_code->arg3 = 0;
+	arg_code->total = 0;
 }
 
-static int arg_case(char_u code)
+static void	get_arg_code(char_u encode, t_arg_code *arg_code)
 {
-	if (code == 1)
-		return (1);
-	if (code == 2)
-		return (DIR_SIZE);
-	if (code == 3)
-		return (IND_SIZE);
-	return (0);
+	arg_code->arg1 = (C_ARG1(encode));
+	arg_code->arg2 = (C_ARG2(encode));
+	arg_code->arg3 = (C_ARG3(encode));
+	arg_code->total = get_arg_len(arg_code->arg1) +
+		get_arg_len(arg_code->arg2) + get_arg_len(arg_code->arg3);
 }
 
-static void get_arg_len(char_u encode, t_arg_len *arg_len )
-{   
-	arg_len->arg1 = arg_case(C_ARG1(encode));
-	arg_len->arg2 = arg_case(C_ARG2(encode));
-	arg_len->arg3 = arg_case(C_ARG3(encode)); 
-	arg_len->total = arg_len->arg1 + arg_len->arg2 + arg_len->arg3;
-}
-
-void	run_process(t_env *env, t_process *pro)
+void		run_process(t_env *env, t_process *pro)
 {
 	char_u		opcode;
-	t_arg_len	arg_len;
+	t_arg_code	arg_code;
 
-	init_arg_len(&arg_len);
-	opcode = env->memory[pro->pc];
-	pro->pi = pro->pc;
-	if (opcode > 0 && opcode < 17 && (opcode != 1 || opcode != 9 || opcode != 12
-				|| opcode != 14 || opcode != 16))
+	if (pro->cycle_to_next == 0)
 	{
-		get_arg_len(env->memory[opcode + 1], &arg_len);
-		pro->pc = (pro->pc + arg_len.total > MEM_SIZE) ?
-			pro->pc + arg_len.total - MEM_SIZE :
-			pro->pc + arg_len.total;
+		init_arg_code(&arg_code);
+		opcode = env->memory[pro->pc];
+		pro->pi = pro->pc;
+		if (opcode > 0 && opcode < 17 && (opcode != 1 || opcode != 9 ||
+					opcode != 12 || opcode != 14 || opcode != 15))
+		{
+			get_arg_code(env->memory[pro->pi + 1], &arg_code);
+			pro->pc = loop_mem(pro->pc + 1 + arg_code.total);
+		}
+		else
+			set_pc(pro, opcode);
+		if (opcode < 17 && opcode > 0)
+		{
+			pro->cycle_to_next = g_op_tab[opcode - 1].no_cycles;
+//			pro->carry = (*function[opcode])(env, arg_code, pro);
+		}
 	}
 	else
-		set_pc(pro, opcode);
-	if (opcode < 17)
-		(*env->function[opcode])(env, arg_len, pro);
+		pro->cycle_to_next--;
 }
