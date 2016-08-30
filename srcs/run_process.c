@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 11:48:58 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/27 15:40:28 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/30 10:41:48 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	set_pc(t_process *pro, char_u opcode)
 {
-	if (opcode == 0)
+	if (opcode == 1)
 		pro->pc = (pro->pc + 5 > MEM_SIZE) ?
 			pro->pc + 5 - MEM_SIZE : pro->pc + 5;
 	if (opcode == 9 || opcode == 12 || opcode == 15)
@@ -60,7 +60,7 @@ void		run_process(t_env *env, t_process *pro)
 		if (opcode < 17 && opcode > 0)
 		{
 			pro->cycle_to_next = g_op_tab[opcode - 1].no_cycles;
-//			pro->carry = (*function[opcode])(env, arg_code, pro);
+			pro->carry = (*function[opcode])(env, arg_code, pro);
 		}
 	}
 	else
