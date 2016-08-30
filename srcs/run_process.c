@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 11:48:58 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/29 18:04:00 by arnovan-         ###   ########.fr       */
+/*   Updated: 2016/08/30 07:58:54 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	set_pc(t_process *pro, char_u opcode)
 {
-	if (opcode == 0)
+	if (opcode == 1)
 		pro->pc = (pro->pc + 5 > MEM_SIZE) ?
 			pro->pc + 5 - MEM_SIZE : pro->pc + 5;
 	if (opcode == 9 || opcode == 12 || opcode == 15)

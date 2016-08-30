@@ -6,18 +6,18 @@
 #    By: adippena <angusdippenaar@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/09 12:47:08 by adippena          #+#    #+#              #
-#    Updated: 2016/08/29 11:06:02 by arnovan-         ###   ########.fr        #
+#    Updated: 2016/08/30 10:18:48 by arnovan-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	corewar
-LIBFT		=	-I libft/includes # -L libft -lft
-INCLUDE		=	-I includes
-LIBS		=
-CFLAGS		=	-Wall -Wextra -Werror -g $(INCLUDE) $(LIBFT) $(LIBS)
-LFLAGS		=	$(INCLUDE) $(LIBFT) $(LIBS)
+LIBFTL		=	-L libft -lft
+LIBFTI		=	-I libft/includes
+INCLUDE		=	-I includes $(LIBFTI)
+CFLAGS		=	-Wall -Wextra -Werror -g $(INCLUDE)
+LFLAGS		=	$(INCLUDE) $(LIBFTL)
 CC			=	gcc
-LD			=	gcc -L libft -lft
+LD			=	gcc 
 
 INC			=	$(shell find includes -name "*.h")
 SRC			=	$(shell find srcs -name "*.c")
