@@ -36,6 +36,7 @@ SRC =	$(SP)main.c					\
 		$(SP)ft_long_fork.c			\
 		$(SP)ft_long_load.c			\
 		$(SP)ft_long_load_index.c	\
+		$(SP)get_param_value.c		\
 
 all: $(NAME)
 

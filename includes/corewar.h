@@ -192,6 +192,10 @@ int				ft_long_load(t_env *env, t_arg_len arg_len, t_process *pro);
 */
 int 			ft_long_load_index(t_env *env, t_arg_len arg_len, t_process *pro);
 /*
+**		get_param_value.c
+*/
+long int		get_param_value(t_env *env, ul_int pi, t_process *pro, char type);
+/*
 **		init_env.c
 */
 void			init_player_struct(t_env *env, int player_num);
