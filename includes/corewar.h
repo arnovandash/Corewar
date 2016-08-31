@@ -227,6 +227,13 @@ void			run_process(t_env *env, t_process *pro);
 **		run_simulation.c
 */
 void			run_simulation(t_env *env);
+/*
+**		set_param_value.c
+*/
+int				set_reg_value(t_process *pro, int value, unsigned int reg);
+int				set_indir_value(t_env *env, int pi, int value);
+int				set_dir_value(t_env *env, int pi, int value);
+
 
 #endif
 

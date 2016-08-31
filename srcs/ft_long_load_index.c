@@ -12,33 +12,22 @@
 
 #include "corewar.h"
 
-/*
-**	Need to rewrite this function to take into consideration the variable
-**	address size.
-*/
-
 int ft_long_load_index(t_env *env, t_arg_len arg_len, t_process *pro)
 {
-	char_u	*value;
+	int		value;
+	int		k;
 
-	if (!(1 <= MEM_ARG(3) && MEM_ARG(3) <= REG_NUMBER))
+	if (!(1 <= MEM_ARG(3) && MEM_ARG(3) <= REG_NUMBER) || 
+				!(C_ARG3(MEM_ARG(0))) == REG_CODE)
 		return (0);
-	if (C_ARG1(MEM_ARG(1)) == REG_CODE)
-		value = get_reg(env, pro, MEM_ARG(1));
-	else if (C_ARG1(MEM_ARG(1)) == DIR_CODE)
-		value = get_dir(MEM, MEM_ARG(1));
-	else if (C_ARG1(MEM_ARG(1)) == IND_CODE)
-		value = get_indir_long(MEM, MEM_ARG(1));
-	else
+	k = C_ARG1(MEM_ARG(1));
+	if (k != REG_CODE && k != DIR_CODE && k != IND_CODE)
 		return (0);
-	if (C_ARG2(MEM_ARG(2)) == REG_CODE)
-		value += get_reg(env, pro, MEM_ARG(2));
-	else if (C_ARG2(MEM_ARG(2)) == DIR_CODE)
-		value += get_dir(MEM, MEM_ARG(2));
-	else if (C_ARG2(MEM_ARG(2)) == IND_CODE)
-		value += get_indir_long(MEM, MEM_ARG(2));
-	else
+	value = get_param_value(env, MEM_ARG(1), pro, k);
+	k = C_ARG2(MEM_ARG(0));
+	if (k != REG_CODE && k != DIR_CODE && k != IND_CODE)
 		return (0);
-	pro->registers[MEM_ARG(3)][0] = *value;
+	value += get_param_value(env, MEM_ARG(2), pro, k);
+	set_reg_value(pro, value, MEM_ARG(3));
 	return (1);
 }

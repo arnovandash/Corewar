@@ -12,7 +12,7 @@
 
 #include "corewar.h"
 
-int		set_reg_value(t_process *pro, nt value, unsigned int reg)
+int		set_reg_value(t_process *pro, int value, unsigned int reg)
 {
 	if (pro == NULL)
 		return (-1);
@@ -29,4 +29,15 @@ int		set_indir_value(t_env *env, int pi, int value)
 	temp = (char *)&value;
 	temp += 2;
 	ft_memcpy(MEM[loop_mem(pi)], temp, 2);
+	return (1);
+}
+
+
+int		set_dir_value(t_env *env, int pi, int value)
+{
+	char	*temp;
+
+	temp = (char *)value;
+	ft_memcpy(MEM[loop_mem(pi)], temp, 4);
+	return (1);
 }

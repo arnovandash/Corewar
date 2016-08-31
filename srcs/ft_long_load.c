@@ -19,22 +19,16 @@
 
 int		ft_long_load(t_env *env, t_arg_len arg_len, t_process *pro)
 {
-	ul_int		value;
+	int			value;
 	ul_int		k;
 
 	if ((C_ARG2(MEM_ARG(0)) != REG_CODE) ||
 				!(1 <= MEM_ARG(2) && MEM_ARG(2) < REG_NUMBER))
 		return (0);
-	if (C_ARG1(MEM_ARG(0)) != REG_CODE)
-		value = get_param_value(env, MEM_ARG(2), pro, REG_CODE);
-	else if (C_ARG1(MEM_ARG(0)) == DIR_CODE)
-		value = get_param_value(env, MEM_ARG(2), pro, DIR_CODE);
-	else if (C_ARG1(MEM_ARG(0)) == IND_CODE)
-		value = get_param_value(env, MEM_ARG(2), pro, IND_CODE);
-	else
+	k = C_ARG1(MEM_ARG(0));
+	if (k != REG_CODE && k != DIR_CODE && k != IND_CODE)
 		return (0);
-	k = -1;
-	while (++k < REG_SIZ)
-		pro->registers[MEM_ARG(1)][R_SP(k)] = value;
+	value = get_param_value(env, MEM_ARG(1), pro, k);
+	set_reg_value(pro, value, C_ARG2(MEM_ARG(2)));
 	return (1);
 }
