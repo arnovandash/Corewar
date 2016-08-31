@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME		=	corewar
-LIBFT		=	-I libft/includes -L libft -lft
+LIBFT		=	-I libft/includes #-L libft -lft
 INCLUDE		=	-I includes
 LIBS		=
 CFLAGS		=	-Wall -Wextra -Werror -g $(INCLUDE) $(LIBFT) $(LIBS)
@@ -47,5 +47,11 @@ fclean: clean
 	@rm -f $(NAME)
 	@rm -rf $(NAME).dSYM
 	@make -s -C libft fclean
+
+test:
+	@if [ $TERM_PROGRAM = "Apple_Terminal" -o $TERM_PROGRAM = "iTerm.app" ];\
+		then echo "True";\
+		else echo "False"; echo $TERM;\
+	fi;
 
 re: fclean all
