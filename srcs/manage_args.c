@@ -6,16 +6,23 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 08:44:02 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/26 07:53:39 by arnovan-         ###   ########.fr       */
+/*   Updated: 2016/08/30 10:41:56 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
+static void	ft_save_value(char_u *reg, ul_int value)
+{
+	reg[0] = (value & 0b1111000000000000) >> 12;
+	reg[1] = (value & 0b0000111100000000) >> 8;
+	reg[2] = (value & 0b0000000011110000) >> 4;
+	reg[3] = (value & 0b0000000000001111);
+}
+
 void	init_list(t_env *env)
 {
 	int			k;
-	t_list		*list;
 	t_list		*element;
 	t_process	process;
 
@@ -25,15 +32,15 @@ void	init_list(t_env *env)
 	{
 		if (!(PRO_REG = (t_reg *)malloc(REG_NUMBER * REG_SIZ)))
 			error_quit(0);
-		PRO_PLA = &(env->players[k]);
-		ft_bzero(PRO_REG, REG_NUMBER * REG_SIZ);
-		ft_memcpy(PRO_REG[0], &(PRO_PLA[k].number), sizeof(int));
+		process.player = &(env->players[k]);
+		ft_bzero(process.registers, REG_NUMBER * sizeof(reg_t));
+		ft_save_value(process.registers[0], ((ul_int)(env->players[k].number)));
 		if (!(element = ft_lstnew(&process, sizeof(t_process))))
 			error_quit(0);
-		if (!env->processes && (env->processes = element))
-			list = env->processes;
-		else if ((list->next = element))
-			list = list->next;
+		if (!env->processes )
+			env->processes = element;
+		else  
+			ft_lstadd(&env->processes, element);
 	}
 }
 

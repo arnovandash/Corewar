@@ -50,3 +50,9 @@ test:
 		then echo "True";
 		else echo "False";
 	fi;
+
+=======
+		PRO_PLA = &(env->players[k]);
+		ft_bzero(PRO_REG, REG_NUMBER * REG_SIZ);
+		ft_memcpy(PRO_REG[0], &(PRO_PLA[k].number), sizeof(int));
+>>>>>>> f1

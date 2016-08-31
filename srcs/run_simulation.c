@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 08:34:36 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/27 14:40:56 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/30 10:41:07 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void		run_simulation(t_env *env)
 		env->cycle++;
 	}
 	if (env->cycle == env->dump_cycle)
-		dump_memory(env->memory, MEM_SIZE);
+		dump_memory(env->memory, MEM_SIZE, 32);
 	else
 		print_last_alive(env->last_alive);
 }
