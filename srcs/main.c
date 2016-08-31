@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 10:02:10 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/30 17:04:26 by arnovan-         ###   ########.fr       */
+/*   Updated: 2016/08/31 18:24:04 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,17 @@ int	main()
 	t_env	env;
 	t_process	pro;
 	t_arg_code	acode;
-	char_u temp[] = {0x0a,0xf4,0x03,0x00,0x00,0x04,0x03};
+	char_u temp[] = {0x0a,0x54,0x01,0x02,0x03,0x01,0x02,0x03,0x04,0x05,0x06,0x07
+	,0x08,0x09,0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17,0x18,0x19};
 	
-	pro = (t_process){NULL, 7, 0, 0, 0, (reg_t*)malloc(sizeof(reg_t) * REG_NUMBER)};
+	pro = (t_process){NULL, 5, 0, 0, 0, (reg_t*)malloc(sizeof(reg_t) * REG_NUMBER)};
 	int	i = -1;
 	while (++i < REG_NUMBER)
 		bzero(pro.registers[i], REG_SIZE);
 	init_env(&env);
 	memcpy(env.memory, temp, sizeof(temp));
-	memcpy(&env.memory[7], &((reg_t){0xf0, 0x20, 0x0c, 0xff}), REG_SIZE);
-	memcpy(&env.memory[11], &((reg_t){0x50, 0x03, 0x0b, 0xf0}), REG_SIZE);
+	memcpy(pro.registers[0], &((reg_t){0x00, 0x00, 0x00, 0x03}), REG_SIZE);
+	memcpy(pro.registers[1], &((reg_t){0x00, 0x00, 0x00, 0x06}), REG_SIZE);
 	get_arg_code(env.memory[pro.pi + 1], &acode);
 	puts("reg three before ft_load");
 	dump_memory(pro.registers[2], sizeof(reg_t));
@@ -87,7 +88,7 @@ int	main()
 	puts("reg three after ft_load");
 	dump_memory(pro.registers[2], sizeof(reg_t));
 	dump_memory(env.memory, MEM_SIZE);
-	puts("using ul_int");
+	/*puts("using ul_int");
 	ul_int	t1;
 	ul_int	t2;
 	ul_int	t3;
@@ -96,7 +97,7 @@ int	main()
 	dump_memory((char_u*)&t1, REG_SIZE);
 	dump_memory((char_u*)&t2, REG_SIZE);
 	t3 = t1 ^ t2;
-	dump_memory((char_u*)&t3, REG_SIZE);
+	dump_memory((char_u*)&t3, REG_SIZE);*/
 }
 
 

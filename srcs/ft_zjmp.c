@@ -6,7 +6,7 @@
 /*   By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/27 11:52:24 by arnovan-          #+#    #+#             */
-/*   Updated: 2016/08/30 13:27:08 by arnovan-         ###   ########.fr       */
+/*   Updated: 2016/08/31 13:27:33 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		ft_zjmp(t_env *env, t_arg_code acode, t_process *pro)
 	{
 		while (++i < IND_SIZE)
 			offset = (offset << 8) + env->memory[loop_mem(pro->pi + 1 + i)];
-		pro->pc = (pro->pc + (offset % IDX_MOD));
+		pro->pc = loop_mem(pro->pc + (offset % IDX_MOD));
 	}
 	return (pro->carry);
 }
