@@ -28,7 +28,7 @@ int		set_indir_value(t_env *env, int pi, int value)
 
 	temp = (char *)&value;
 	temp += 2;
-	ft_memcpy(MEM[loop_mem(pi)], temp, 2);
+	ft_memcpy((void *)&MEM[(pi) % MEM_SIZE], temp, 2);
 	return (1);
 }
 
@@ -37,7 +37,7 @@ int		set_dir_value(t_env *env, int pi, int value)
 {
 	char	*temp;
 
-	temp = (char *)value;
-	ft_memcpy(MEM[loop_mem(pi)], temp, 4);
+	temp = (char *)&value;
+	ft_memcpy((void *)&MEM[(pi) % MEM_SIZE], temp, 4);
 	return (1);
 }

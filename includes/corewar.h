@@ -194,7 +194,7 @@ int 			ft_long_load_index(t_env *env, t_arg_len arg_len, t_process *pro);
 /*
 **		get_param_value.c
 */
-long int		get_param_value(t_env *env, ul_int pi, t_process *pro, char type);
+int		get_param_value(t_env *env, ul_int pi, t_process *pro, char type);
 /*
 **		init_env.c
 */
@@ -214,7 +214,7 @@ void			manage_args(t_env *env, int argc, char **argv);
 /*
 **		pc_pos.c
 */
-ul_int			ft_pc_pos(t_arg_len arg_len, char arg, unsigned long pc);
+int				ft_pc_pos(t_arg_len arg_len, char arg, unsigned long pc);
 /*
 **		read_program.c
 */

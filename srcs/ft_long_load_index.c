@@ -18,7 +18,7 @@ int ft_long_load_index(t_env *env, t_arg_len arg_len, t_process *pro)
 	int		k;
 
 	if (!(1 <= MEM_ARG(3) && MEM_ARG(3) <= REG_NUMBER) || 
-				!(C_ARG3(MEM_ARG(0))) == REG_CODE)
+				(C_ARG3(MEM_ARG(0)) != REG_CODE))
 		return (0);
 	k = C_ARG1(MEM_ARG(1));
 	if (k != REG_CODE && k != DIR_CODE && k != IND_CODE)
