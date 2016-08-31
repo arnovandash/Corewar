@@ -48,4 +48,10 @@ fclean: clean
 	@rm -rf $(NAME).dSYM
 	@make -s -C libft fclean
 
+test:
+	@if [ $TERM_PROGRAM = "Apple_Terminal" -o $TERM_PROGRAM = "iTerm.app" ];\
+		then echo "True";\
+		else echo "False"; echo $TERM;\
+	fi;
+
 re: fclean all

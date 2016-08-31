@@ -30,7 +30,7 @@ void	init_list(t_env *env)
 	ft_bzero(&process, sizeof(process));
 	while (++k < env->num_players)
 	{
-		if (!(process.registers = (reg_t *)malloc(REG_NUMBER * sizeof(reg_t))))
+		if (!(PRO_REG = (t_reg *)malloc(REG_NUMBER * REG_SIZ)))
 			error_quit(0);
 		process.player = &(env->players[k]);
 		ft_bzero(process.registers, REG_NUMBER * sizeof(reg_t));
