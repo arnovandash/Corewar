@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/30 08:23:24 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/31 10:29:14 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@
 # define ERR_MSG_01 "\e[31mError: No arguments specified.\n"
 # define ERR_MSG_02 "\e[31mError: Multiple definitions for dump cycles.\n"
 # define ERR_MSG_03 "\e[31mError: Invalid dump cycle.\n"
-# define ERR_MSG_04 "\e[31mError: Invalid player set.\n"
+# define ERR_MSG_04 "\e[31mError: Invalid player set. Expecting player 0 - 3\n"
 # define ERR_MSG_05 "\e[31mError: Player Number has already been set.\n"
 # define ERR_MSG_06 "\e[31mError: Max players already reached.\n"
 # define ERR_MSG_07 "\e[31mError: Unable to open champion file.\n"
@@ -110,6 +110,7 @@ typedef struct	s_player
 {
 	char		*file_name; //passed in argv
 	int			number; // if -n else the previous +1
+	int			init;
 	u_int		live;
 	t_header	player_ref; // filled by Arno
 }				t_player;
@@ -144,7 +145,6 @@ typedef struct	s_env
 	int			check_for_mod;
 	ul_int		cycles_to_die;
 	t_player	*last_alive;
-//	int        (*function[17])(struct s_env *env, t_arg_code arg_code, t_process *process);
 }				t_env;
 
 extern int        (*function[])(struct s_env *env, t_arg_code arg_code, t_process *process);

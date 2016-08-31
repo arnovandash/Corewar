@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 13:53:22 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/30 10:41:51 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/31 12:54:01 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,30 @@ int		ft_set_player_number(t_env *env, char *s1, char *s2)
 	int		num;
 	int		k;
 
-	num = (s1) ? ft_atoi(s1) : 0;
-	k = -1;
+	num = (s1) ? ft_atoi(s1) : -1;
+	k = 0;
 	if (!s2 || (s1 && !ft_are_all_digits(s1)) || (num >= MAX_PLAYERS))
 		error_quit(4);
 	else if (env->num_players >= MAX_PLAYERS)
 		error_quit(6);
 	else if (s1 != NULL)
 	{
-		while (++k < env->num_players)
-			if (env->players[k].number == num)
-				error_quit(5);
-		env->players[env->num_players].number = num;
+		if (env->players[num].init == 1)
+			error_quit(5);
+		env->players[num].number = num;
 	}
-	else if (s1 == NULL)
+	else 
 	{
-		while (++k < env->num_players)
-			if (env->players[k].number == env->num_players)
-				error_quit(5);
-		env->players[env->num_players].number = env->num_players;
+		while (k == 0 && ++num < MAX_PLAYERS)
+			if (env->players[num].init == 0)
+			{
+				env->players[num].number = num;
+				k = 1;
+			}
 	}
-	env->players[env->num_players].file_name = ft_strdup(s2);
-	(env->num_players)++;
+	env->players[num].file_name = ft_strdup(s2);
+	env->players[num].init = 1;
+	env->num_players++;
 	return ((s1 == NULL) ? 1 : 2);
 }
 
@@ -61,10 +63,14 @@ int		ft_set_dump_cycle(t_env *env, char *str)
 
 void	init_env(t_env *env)
 {
+	int	i;
+
+	i = MAX_PLAYERS;
 	if (!(env->memory = malloc(MEM_SIZE)))
 		error_quit(0);
 	ft_bzero(env->memory, (MEM_SIZE));
-//	init_player_struct(env, 0);
+	while (i--)
+		env->players[i].init = 0;
 	env->num_players = 0;
 	env->cycle = 0;
 	env->cycles_to_die = CYCLE_TO_DIE;

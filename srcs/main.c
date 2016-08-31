@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 10:02:10 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/30 10:40:52 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/31 15:27:06 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,46 +42,45 @@ int		main(int argc, char **argv)
   get_arg_len(arg_code->arg2) +  get_arg_len(arg_code->arg3);
   }
 
-int	main()
+  int	main(int argc, char **argv)
   {
   t_env	env;
   t_process	pro;
   t_arg_code	acode;
-  char_u temp[] = {0x08,0xf4,0x00,0x00,0x00,0x04,0x03};
+  char_u temp[] = {0x03,0xa4,0xf0, 0x20, 0x0c, 0xff, 0x50, 0x03, 0x0b, 0xf0, 0xff};
 
-  pro = (t_process){NULL, 7, 0, 0, 0, (reg_t*)malloc(sizeof(reg_t) * REG_NUMBER)};
+  init_env(&env);
+  manage_args(&env, argc, argv);
+  read_programs(&env);
+  pro = (t_process){&env.players[0], 5, 0, 0, 0, (reg_t*)malloc(sizeof(reg_t) * REG_NUMBER)};
   int	i = -1;
   while (++i < REG_NUMBER)
   bzero(pro.registers[i], REG_SIZE);
-  init_env(&env);
-  memcpy(env.memory, temp, sizeof(temp));
-  memcpy(&env.memory[7], &((reg_t){0xf0, 0x20, 0x0c, 0xff}), REG_SIZE);
-  memcpy(&env.memory[11], &((reg_t){0x50, 0x03, 0x0b, 0xf0}), REG_SIZE);
-  get_arg_code(env.memory[pro.pi + 1], &acode);
-//	puts("reg one before ft_load");
-//	dump_memory(pro.registers[0], sizeof(reg_t));
-//	puts("reg two before ft_load");
-//	dump_memory(pro.registers[1], sizeof(reg_t));
-//	puts("reg three before ft_load");
-//	dump_memory(pro.registers[2], sizeof(reg_t));
-ft_xor(&env, acode, &pro);
-//	puts("reg one after ft_load");
-//	dump_memory(pro.registers[0], sizeof(reg_t));
-//	puts("reg two after ft_load");
-//	dump_memory(pro.registers[1], sizeof(reg_t));
-//	puts("reg three after ft_load");
-dump_memory(pro.registers[2], sizeof(reg_t));
+
+  i = MAX_PLAYERS;
+  while(i--)
+//		printf("i %d, init %d num %d %s\n", i, env.players[i].init,env.players[i].number, env.players[i].player_ref.prog_name);
+
+memcpy(env.memory, temp, sizeof(temp));
+//	memcpy(pro.registers[0], &((reg_t){0xf0, 0x20, 0x0c, 0xff}), REG_SIZE);
+//	memcpy(pro.registers[2], &((reg_t){0x50, 0x03, 0x0b, 0xf0}), REG_SIZE);
+get_arg_code(env.memory[pro.pi + 1], &acode);
+//	acode = (t_arg_code){0,0,0,0};
+puts("reg one before ft_load");
+dump_memory(pro.registers[0], sizeof(reg_t),4);
+puts("reg two before ft_load");
+dump_memory(pro.registers[1], sizeof(reg_t),4);
+puts("reg three before ft_load");
+dump_memory(pro.registers[2], sizeof(reg_t), 4);
+ft_and(&env, acode, &pro);
+puts("reg one after ft_load");
+dump_memory(pro.registers[0], sizeof(reg_t), 4);
+puts("reg two after ft_load");
+dump_memory(pro.registers[1], sizeof(reg_t), 4);
+puts("reg three after ft_load");
+dump_memory(pro.registers[2], sizeof(reg_t), 4);
 //	dump_memory(env.memory, MEM_SIZE);
-
-puts("using ul_int");
-ul_int	t1;
-ul_int	t2;
-ul_int	t3;
-
-memcpy(&t1, &((reg_t){0xf0, 0x20, 0x0c, 0xff}), REG_SIZE); 
-memcpy(&t2, &((reg_t){0x50, 0x03, 0x0b, 0xf0}), REG_SIZE); 
-dump_memory((char_u*)&t1, REG_SIZE);
-dump_memory((char_u*)&t2, REG_SIZE);
-t3 = t1 ^ t2;
-dump_memory((char_u*)&t3, REG_SIZE);
+//		dump_memory(pro.carry, pro.carry, 4);
+free(pro.registers);
+free_env(&env);
 }*/
