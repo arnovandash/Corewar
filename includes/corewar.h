@@ -42,6 +42,15 @@
 /*
 **		Shorthand:
 */
+# define R_SP(x) x % (REG_SIZE * sizeof(t_reg))
+# define MEM env->memory
+# define PC_P(x) ft_pc_pos(arg_len, x, pro->pc)
+# define MEM_ARG(x) env->memory[ft_pc_pos(arg_len, x, pro->pc)]
+
+# define PRO_REG process.registers
+# define PRO_PLA process.player
+# define REG_SIZ sizeof(t_reg)
+
 # define L_STATE t_live_state
 # define PROCESS t_process
 # define PROCES2 struct s_process
@@ -105,6 +114,7 @@ typedef unsigned long int	ul_int;
 typedef unsigned int		u_int;
 typedef unsigned char		char_u;
 typedef unsigned char		reg_t[REG_SIZE];
+typedef unsigned char		t_reg[REG_SIZE];
 
 typedef struct	s_player
 {
@@ -122,7 +132,7 @@ typedef struct	s_process
 	ul_int		pi;// program index the current index of the program
 	char		carry;
 	int			cycle_to_next;
-	reg_t		*registers; //malloc to REG_NUMBER
+	t_reg		*registers; //malloc to REG_NUMBER
 }				t_process;
 
 typedef struct	s_arg_code
@@ -168,6 +178,26 @@ void			error_quit(int error);
 void			free_data(void *data, size_t size);
 void			free_env(t_env *env);
 /*
+**		ft_aff.c
+*/
+int				ft_aff(t_env *env, t_arg_code arg_len, t_process *pro);
+/*
+**		ft_long_fork.c
+*/
+int				ft_long_fork(t_env *env, t_arg_code arg_len, t_process *pro);
+/*
+**		ft_long_load.c
+*/
+int				ft_long_load(t_env *env, t_arg_code arg_len, t_process *pro);
+/*
+**		ft_long_load_index.c
+*/
+int 			ft_long_load_index(t_env *env, t_arg_code arg_len, t_process *pro);
+/*
+**		get_param_value.c
+*/
+int		get_param_value(t_env *env, ul_int pi, t_process *pro, char type);
+/*
 **		init_env.c
 */
 void			init_player_struct(t_env *env, int player_num);
@@ -192,6 +222,10 @@ void			load_arena(t_env *env, int p_num);
 void			init_list(t_env *env);
 void			manage_args(t_env *env, int argc, char **argv);
 /*
+**		pc_pos.c
+*/
+int				ft_pc_pos(t_arg_code arg_len, char arg, unsigned long pc);
+/*
 **		read_program.c
 */
 void			read_programs(t_env *env);
@@ -203,6 +237,14 @@ void			run_process(t_env *env, t_process *pro);
 **		run_simulation.c
 */
 void			run_simulation(t_env *env);
+/*
+**		set_param_value.c
+*/
+int				set_reg_value(t_process *pro, int value, unsigned int reg);
+int				set_indir_value(t_env *env, int pi, int value);
+int				set_dir_value(t_env *env, int pi, int value);
+
+
 /*
 **		get argument
 */
@@ -229,6 +271,7 @@ int				ft_long_load(t_env *env, t_arg_code code, t_process *pro);
 int				ft_long_load_index(t_env *env, t_arg_code code, t_process *pro);
 int				ft_long_fork(t_env *env, t_arg_code code, t_process *pro);
 int				ft_aff(t_env *env, t_arg_code code, t_process *pro);
+
 #endif
 
 /*
