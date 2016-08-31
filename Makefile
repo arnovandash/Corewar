@@ -34,7 +34,6 @@ corewar: $(OBJ)
 	@echo "\033[92m    LD    $(NAME)\033[0m"
 	@$(LD) $^ $(LFLAGS) -o $(NAME)
 
-
 lft:
 	@make -s -C libft all
 
