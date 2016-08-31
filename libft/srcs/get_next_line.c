@@ -47,6 +47,7 @@ static t_buff	get_line(const int fd, char **line, t_buff b)
 	unsigned int	line_pos;
 	char			*l;
 
+	l = NULL;
 	line_pos = 0;
 	if (b.buf_init == 0 || b.buf_pos >= BUFF_SIZE || b.eof < 0)
 		b = read_buffer(fd, b);

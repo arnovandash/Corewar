@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 10:02:10 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/24 11:32:26 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/29 11:16:06 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,7 @@ int		main(int argc, char **argv)
 
 	init_env(&env);//initialise all the enviroment variables.
 	manage_args(&env, argc, argv);//setup the flag details.
-	//read_programs(&env);//reads from the .cor files into memory.
-	if (env.processes == NULL)
-		puts("ERROR: no processes ?????????????????????\n");
-//	run_simulation(&env);//runs the corewar battle.
+	read_programs(&env);//reads from the .cor files into memory.
+	run_simulation(&env);//runs the corewar battle.
 	free_env(&env);//frees all the malloced instructions.
 }

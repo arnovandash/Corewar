@@ -1,0 +1,7 @@
+*.a
+libft.a
+*.o
+*.sw*
+asm
+*.dSYM
+Champions
