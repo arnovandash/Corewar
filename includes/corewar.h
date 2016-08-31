@@ -180,19 +180,19 @@ void			free_env(t_env *env);
 /*
 **		ft_aff.c
 */
-int				ft_aff(t_env *env, t_arg_len arg_len, t_process *pro);
+int				ft_aff(t_env *env, t_arg_code arg_len, t_process *pro);
 /*
 **		ft_long_fork.c
 */
-int				ft_long_fork(t_env *env, t_arg_len arg_len, t_process *pro);
+int				ft_long_fork(t_env *env, t_arg_code arg_len, t_process *pro);
 /*
 **		ft_long_load.c
 */
-int				ft_long_load(t_env *env, t_arg_len arg_len, t_process *pro);
+int				ft_long_load(t_env *env, t_arg_code arg_len, t_process *pro);
 /*
 **		ft_long_load_index.c
 */
-int 			ft_long_load_index(t_env *env, t_arg_len arg_len, t_process *pro);
+int 			ft_long_load_index(t_env *env, t_arg_code arg_len, t_process *pro);
 /*
 **		get_param_value.c
 */
@@ -224,7 +224,7 @@ void			manage_args(t_env *env, int argc, char **argv);
 /*
 **		pc_pos.c
 */
-int				ft_pc_pos(t_arg_len arg_len, char arg, unsigned long pc);
+int				ft_pc_pos(t_arg_code arg_len, char arg, unsigned long pc);
 /*
 **		read_program.c
 */

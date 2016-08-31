@@ -12,7 +12,7 @@
 
 #include "corewar.h"
 
-int ft_long_load_index(t_env *env, t_arg_len arg_len, t_process *pro)
+int ft_long_load_index(t_env *env, t_arg_code arg_len, t_process *pro)
 {
 	int		value;
 	int		k;
