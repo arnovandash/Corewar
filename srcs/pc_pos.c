@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   pc_pos.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/09 09:34:29 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/31 10:46:43 by khansman         ###   ########.fr       */
+/*   Created: 2016/08/27 08:26:16 by khansman          #+#    #+#             */
+/*   Updated: 2016/08/27 08:26:17 by khansman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdlib.h>
+#include "corewar.h"
 
-char	*ft_strnew(size_t size)
+int	ft_pc_pos(t_arg_code arg_len, char arg, unsigned long pc)
 {
-	char	*temp;
-	size_t	k;
-
-	if (!(temp = (char *)malloc((unsigned int)size + 1)))
-		return (NULL);
-	k = 0;
-	while (k <= size)
-	{
-		temp[k] = '\0';
-		k++;
-	}
-	return (temp);
+	if (arg == -1)
+		return (pc % MEM_SIZE);
+	else if (arg == 0)
+		return ((1 + pc) % MEM_SIZE);
+	else if (arg == 1)
+		return ((2 + pc) % MEM_SIZE);
+	else if (arg == 2)
+		return ((2 + arg_len.arg1 + pc) % MEM_SIZE);
+	else if (arg == 3)
+		return ((2 + arg_len.arg1 + arg_len.arg2 + pc) % MEM_SIZE);
+	return (0);
 }

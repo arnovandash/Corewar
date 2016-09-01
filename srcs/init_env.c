@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 13:53:22 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/27 09:25:31 by arnovan-         ###   ########.fr       */
+/*   Updated: 2016/08/30 10:41:51 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,4 @@ void	init_env(t_env *env)
 	env->dump_cycle = LONG_MAX;
 	env->last_alive = NULL;
 	env->processes = NULL;
-//	init_functions(env);
 }
