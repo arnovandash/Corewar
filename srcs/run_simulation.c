@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 08:34:36 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/30 10:41:07 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/31 15:46:19 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static int	check_process(t_list **mv, t_list **pre, t_env *env,
 		env->last_alive = pro->player;
 		*pre = *mv;
 		*mv = (*mv)->next;
+		pro->player->live = 0;
 	}
-	pro->player->live = 0;
 	return (mod);
 }
 

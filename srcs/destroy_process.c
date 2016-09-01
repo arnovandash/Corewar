@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 10:39:40 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/27 10:59:21 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/31 15:46:17 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	destroy_process(t_list **dest, t_list **pre, t_list **head)
 	tmp = (t_process*)(*dest)->content;
 	free(tmp->registers);
 	tmp->registers = NULL;
+	free((*dest)->content);
 	if (*dest)
 		free(*dest);
 	*dest = next;

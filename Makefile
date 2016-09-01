@@ -6,7 +6,7 @@
 #    By: adippena <angusdippenaar@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/09 12:47:08 by adippena          #+#    #+#              #
-#    Updated: 2016/08/30 08:22:39 by rojones          ###   ########.fr        #
+#    Updated: 2016/08/31 14:00:45 by rojones          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=	corewar
 LIBFT		=	-I libft/includes #-L libft -lft
 INCLUDE		=	-I includes
 LIBS		=
-CFLAGS		=	-Wall -Wextra -Werror -g $(INCLUDE) $(LIBFT) $(LIBS)
+CFLAGS		=	-Wall -Wextra -Werror -g3 $(INCLUDE) $(LIBFT) $(LIBS)
 LFLAGS		=	$(INCLUDE) $(LIBFT) $(LIBS)
 CC			=	gcc
 LD			=	gcc -L libft -lft
