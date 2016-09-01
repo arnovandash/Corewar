@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 10:02:10 by khansman          #+#    #+#             */
-/*   Updated: 2016/09/01 09:20:00 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/01 12:15:06 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	main(int argc, char **argv)
 
 	i = MAX_PLAYERS;
 	while(i--)
-		//		printf("i %d, init %d num %d %s\n", i, env.players[i].init,env.players[i].number, env.players[i].player_ref.prog_name);
+//		printf("i %d, init %d num %d %s\n", i, env.players[i].init,env.players[i].number, env.players[i].player_ref.prog_name);
 
 		memcpy(&env.memory[MEM_SIZE - 15], temp, sizeof(temp));
 		memcpy(pro.registers[0], &((reg_t){0xf0, 0x20, 0x0c, 0xff}), REG_SIZE);

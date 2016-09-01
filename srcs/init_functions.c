@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 16:59:18 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/01 09:23:09 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/01 12:16:05 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int	(*function[17])(struct s_env *env, t_arg_code arg_code, t_process *process) 
 	ft_and,
 	ft_or,
 	ft_xor,
-	0,//ft_zjump,
-	0,//ft_load_index,
-	0,//ft_store_index,
+	ft_zjmp,
+	ft_load_index,
+	ft_store_index,
 	ft_fork,
 	0,//ft_long_load,
 	0,//ft_long_load_index,
