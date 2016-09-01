@@ -6,7 +6,7 @@
 /*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/20 09:01:32 by exam              #+#    #+#             */
-/*   Updated: 2016/08/20 09:51:07 by exam             ###   ########.fr       */
+/*   Updated: 2016/09/01 09:33:17 by khansman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,7 @@ void		ft_print_memory(const void *addr, size_t size)
 	while (++k < l)
 	{
 		if (k < size)
-		{
-			if (str[k] < 16)
-				ft_putchar('0');
 			ft_print_hex(str[k]);
-		}
 		else
 			write(1, "  ", 2);
 		if (((k + 1) % 2) == 0)
