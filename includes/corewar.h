@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/31 10:29:14 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/01 08:32:49 by khansman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,8 @@ typedef struct	s_env
 	t_player	*last_alive;
 }				t_env;
 
-extern int        (*function[])(struct s_env *env, t_arg_code arg_code, t_process *process);
+extern int		(*function[])(struct s_env *env, t_arg_code arg_code, \
+		t_process *process);
 /*
 ** --------------------
 ** Function prototypes:
@@ -192,11 +193,13 @@ int				ft_long_load(t_env *env, t_arg_code arg_len, t_process *pro);
 /*
 **		ft_long_load_index.c
 */
-int 			ft_long_load_index(t_env *env, t_arg_code arg_len, t_process *pro);
+int 			ft_long_load_index(t_env *env, t_arg_code arg_len, \
+		t_process *pro);
 /*
 **		get_param_value.c
 */
-int		get_param_value(t_env *env, ul_int pi, t_process *pro, char type);
+int				get_param_value(t_env *env, ul_int pi, t_process *pro, \
+		char type);
 /*
 **		init_env.c
 */
@@ -244,7 +247,6 @@ int				set_reg_value(t_process *pro, int value, unsigned int reg);
 int				set_indir_value(t_env *env, int pi, int value);
 int				set_dir_value(t_env *env, int pi, int value);
 
-
 /*
 **		get argument
 */
@@ -252,6 +254,7 @@ char_u			*get_dir(char_u *mem, ul_int offset);
 char_u			*get_indir(char_u *mem, ul_int offset, t_process *pro);
 char_u			*get_indir_long(char_u *mem, ul_int offset, t_process *pro);
 char_u			*get_reg(t_env *env, t_process *pro, ul_int offset);
+
 /*
 **		game operations
 */
