@@ -6,16 +6,16 @@
 /*   By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/27 11:52:24 by arnovan-          #+#    #+#             */
-/*   Updated: 2016/08/31 13:27:33 by arnovan-         ###   ########.fr       */
+/*   Updated: 2016/09/01 12:06:45 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int		ft_zjmp(t_env *env, t_arg_code acode, t_process *pro)
+int	ft_zjmp(t_env *env, t_arg_code acode, t_process *pro)
 {
 	ul_int	offset;
-	int 	i;
+	int		i;
 
 	offset = 0;
 	i = -1;
