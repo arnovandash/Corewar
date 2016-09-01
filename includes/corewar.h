@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/09/01 12:18:48 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/01 12:53:59 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,7 +218,7 @@ ul_int			loop_mem(ul_int check);
 /*
 **		load_arena.c
 */
-void			load_arena(t_env *env, int p_num);
+void			load_arena(t_env *env, int p_num, int p_check);
 /*
 **		manage_args.c
 */

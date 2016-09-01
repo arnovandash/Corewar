@@ -6,7 +6,7 @@
 /*   By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 10:09:11 by arnovan-          #+#    #+#             */
-/*   Updated: 2016/08/31 12:55:02 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/01 12:41:30 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,10 @@ static void	read_comment(t_env *env, int p_num)
 void		read_programs(t_env *env)
 {
 	int				p_num;
+	int				p_check;
 
 	p_num = 0;
+	p_check = 0;
 	while (p_num < MAX_PLAYERS)
 	{
 		if (env->players[p_num].init == 1)
@@ -110,8 +112,9 @@ void		read_programs(t_env *env)
 			read_name(env, p_num);
 			read_size(env, p_num);
 			read_comment(env, p_num);
-			load_arena(env, p_num);
+			load_arena(env, p_num, p_check);
 			close(env->fd);
+			p_check++;
 		}
 		p_num++;
 	}
