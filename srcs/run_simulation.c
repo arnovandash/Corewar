@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 08:34:36 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/31 15:46:19 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/01 16:33:37 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	print_last_alive(t_player *player)
 	if (player)
 	{
 		ft_putstr("Player ");
-		ft_putnbr(player->number + 1);
+		ft_putnbr(player->number);
 		ft_putstr(" (");
 		ft_putstr(player->player_ref.prog_name);
 		ft_putstr(") won\n");

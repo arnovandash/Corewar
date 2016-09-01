@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/09/01 12:53:59 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/01 14:24:32 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ extern int		(*function[])(struct s_env *env, t_arg_code arg_code, \
 */
 
 void			destroy_process(t_list **dest, t_list **pre, t_list **head);
-int				get_arg_len(int arg_code);
+int				get_arg_len(int arg_code, int is_index);
 void			dump_memory(char_u *mem, ul_int size, int line);
 
 /*

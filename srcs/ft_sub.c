@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 07:43:33 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/31 15:10:41 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/01 13:16:01 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void 		save_value(char_u *reg, ul_int value)
 
 int					ft_sub(t_env *env, t_arg_code code, t_process *pro)
 {
+	puts("sub called");
 	char_u	reg1;
 	char_u	reg2;
 	char_u	reg3;

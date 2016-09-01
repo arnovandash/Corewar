@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/26 09:19:28 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/27 10:23:08 by khansman         ###   ########.fr       */
+/*   Updated: 2016/09/01 13:12:49 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 int		ft_long_load(t_env *env, t_arg_code arg_len, t_process *pro)
 {
+puts("long load called");
 	int			value;
 	ul_int		k;
 

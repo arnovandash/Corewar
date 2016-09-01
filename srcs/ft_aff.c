@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/27 10:24:36 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/27 10:24:38 by khansman         ###   ########.fr       */
+/*   Updated: 2016/09/01 13:09:41 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int		ft_aff(t_env *env, t_arg_code arg_len, t_process *pro)
 {
+puts("aff");
 	int			k;
 	long int	reg;
 	char		*s;

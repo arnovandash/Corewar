@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/27 09:43:14 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/27 10:22:44 by khansman         ###   ########.fr       */
+/*   Updated: 2016/09/01 13:12:13 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int		ft_long_fork(t_env *env, t_arg_code arg_len, t_process *pro)
 {
+puts("long fork called");
 	t_list		*new;
 	t_process	*n_pro;
 	t_list		*temp;
