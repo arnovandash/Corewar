@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 12:17:13 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/30 08:20:32 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/02 14:53:02 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,19 @@ void	dump_memory(char_u *mem, unsigned long size, int line)
 	while (i < size)
 	{
 		temp_line = line;
+	char temp[80];
+	sprintf(temp, "0x%04lx : ", i);
+	ft_putstr(temp);
 		while (temp_line-- && i < size)
 		{
 			ft_print_hex(mem[i]);
-			if (temp_line)
+			/*if (temp_line)
 				ft_putchar(' ');
 			else
-				ft_putchar('\n');
+				ft_putchar('\n');*/
+			ft_putchar(' ');
 			i++;
 		}
+		ft_putchar('\n');
 	}
 }

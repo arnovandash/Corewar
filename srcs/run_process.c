@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 11:48:58 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/02 11:10:54 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/02 12:43:38 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ void		run_process(t_env *env, t_process *pro)
 		}
 		if (opcode < 17 && opcode > 0)
 		{
-			printf ("cycle %lu call ",env->cycle);
+//			printf ("cycle %lu call ",env->cycle);
 			pro->carry = (*function[opcode])(env, arg_code, pro);
-			puts("");
+//			puts("");
 			if (opcode != 9)
 				set_pc(pro, opcode, arg_code.total);
 			pro->cycle_to_next = g_op_tab[env->memory[pro->pc] - 1].no_cycles;

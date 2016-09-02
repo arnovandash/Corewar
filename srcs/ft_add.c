@@ -6,16 +6,16 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 07:43:33 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/01 13:09:09 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/02 16:03:31 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-unsigned long int	get_value(unsigned char *reg)
+int32_t	get_value(unsigned char *reg)
 {
-	int					i;
-	unsigned long int	re;
+	int			i;
+	int32_t		re;
 
 	re = 0;
 	i = -1;
@@ -24,7 +24,7 @@ unsigned long int	get_value(unsigned char *reg)
 	return (re);
 }
 
-static void 		save_value(char_u *reg, ul_int value)
+static void 		save_value(char_u *reg, int32_t value)
 {
 	reg[0] = (value & 0b11111111000000000000000000000000) >> 24;
 	reg[1] = (value & 0b00000000111111110000000000000000) >> 16;

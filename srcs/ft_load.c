@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/24 12:38:03 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/01 14:27:46 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/02 15:19:20 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,14 @@ static int	ft_load_dir(t_env *env, reg_t regarg2, ul_int index)
 static int	ft_load_indir(t_env *env, t_process *pro, u_char reg_arg2)
 {
 	int		i;
-	ul_int	jump;
+	short	jump;
 	ul_int	start;
 
 	i = -1;
 	jump = 0;
 	while (++i < IND_SIZE)
 		jump = (jump << 8) + env->memory[pro->pi + 2 + i];
-	start = (pro->pc + (jump % IDX_MOD) < MEM_SIZE) ?
-		pro->pc + (jump % IDX_MOD) :
-		pro->pc + (jump % IDX_MOD) - MEM_SIZE;
+	start = loop_mem(pro->pc + (jump % IDX_MOD));
 	i = -1;
 	while (++i < REG_SIZE)
 		pro->registers[reg_arg2][i] = env->memory[loop_mem(start + i)];

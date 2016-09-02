@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 08:34:36 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/02 11:10:57 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/02 13:41:54 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,20 @@ void		run_simulation(t_env *env)
 	int			check;
 	int			mod;
 	int			dump;
+	ul_int		cycle_to_check;
 
 	dump = 0;
+	cycle_to_check = 0;
 	while (env->processes && dump == 0 &&
 			env->cycles_to_die > 0)
 	{
 		check = 0;
 		mod = 0;
-		if (env->cycle != 0 && env->cycle % env->cycles_to_die == 0)
+		if (env->cycle != 0 && cycle_to_check == env->cycles_to_die)
+		{
+			cycle_to_check = 0;
 			check = 1;
+		}
 		mod = loop_processes(env, check);
 		if (check == 1 && mod == 0)
 			env->check_for_mod++;
@@ -95,11 +100,12 @@ void		run_simulation(t_env *env)
 				env->cycles_to_die - CYCLE_DELTA : 0;
 			env->check_for_mod = 0;
 		}
+		cycle_to_check++;
 		if (env->cycle++ == env->dump_cycle)
 			dump = 1;
 	}
 	if (dump == 1)
-		dump_memory(env->memory, MEM_SIZE, 32);
+		dump_memory(env->memory, MEM_SIZE, 64);
 	else
 		print_last_alive(env->last_alive);
 }

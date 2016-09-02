@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/27 14:45:42 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/02 10:45:39 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/02 11:15:30 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static char_u	*get_arg(t_env *env, t_process *pro, int acode,
 
 int				ft_and(t_env *env, t_arg_code acode, t_process *pro)
 {
-puts("and");
+//puts("and");
 	char_u	*temp1;
 	char_u	*temp2;
 	ul_int	arg3;

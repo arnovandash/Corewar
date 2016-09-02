@@ -3,32 +3,76 @@
 /*                                                        :::      ::::::::   */
 /*   ft_long_load_index.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/27 08:32:31 by khansman          #+#    #+#             */
-/*   Updated: 2016/09/01 13:13:23 by rojones          ###   ########.fr       */
+/*   Created: 2016/08/30 13:11:44 by arnovan-          #+#    #+#             */
+/*   Updated: 2016/09/02 16:33:00 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int ft_long_load_index(t_env *env, t_arg_code arg_len, t_process *pro)
+static	ul_int	arg_fetch(char_u *mem, ul_int offset)
 {
-puts("long load index called");
-	int		value;
-	int		k;
+	ul_int	ret;
+	int		i;
 
-	if (!(1 <= MEM_ARG(3) && MEM_ARG(3) <= REG_NUMBER) || 
-				(C_ARG3(MEM_ARG(0)) != REG_CODE))
+	i = -1;
+	ret = 0;
+	while (++i < IND_SIZE)
+		ret = (ret << 8) + mem[loop_mem(offset + i)];
+	return (ret);
+}
+
+static ul_int	getarg(char_u *mem, int acode, t_process *pro, ul_int offset)
+{
+	ul_int	ret;
+	char_u	reg;
+	int		i;
+
+	i = -1;
+	ret = 0;
+	if (acode == REG_CODE)
+	{
+		reg = mem[loop_mem(offset)] - 1;
+		if (reg < REG_NUMBER)
+			while (++i < REG_SIZE)
+				ret = (ret << 8) + pro->registers[reg][i];
+	}
+	else if (acode == IND_CODE)
+		ret = arg_fetch(mem, pro->pc + arg_fetch(mem, offset));
+	else if (acode == DIR_CODE)
+		ret = arg_fetch(mem, offset);
+	return (ret);
+}
+
+static int		arg_len_ind(int acode)
+{
+	if (acode == REG_CODE)
+		return (1);
+	else
+		return (2);
+}
+
+int				ft_long_load_index(t_env *env, t_arg_code acode, t_process *pro)
+{
+	int		i;
+	u_char	reg_num;
+	ul_int	arg1;
+	ul_int	arg2;
+	ul_int	offset;
+
+	if (acode.arg3 != REG_CODE)
 		return (0);
-	k = C_ARG1(MEM_ARG(1));
-	if (k != REG_CODE && k != DIR_CODE && k != IND_CODE)
-		return (0);
-	value = get_param_value(env, MEM_ARG(1), pro, k);
-	k = C_ARG2(MEM_ARG(0));
-	if (k != REG_CODE && k != DIR_CODE && k != IND_CODE)
-		return (0);
-	value += get_param_value(env, MEM_ARG(2), pro, k);
-	set_reg_value(pro, value, MEM_ARG(3));
+	arg1 = getarg(env->memory, acode.arg1, pro, pro->pi + 2);
+	arg2 = getarg(env->memory, acode.arg2, pro, pro->pi + 2 +
+			arg_len_ind(acode.arg1));
+	reg_num = env->memory[loop_mem(pro->pi + arg_len_ind(acode.arg1) +
+			arg_len_ind(acode.arg2) + 2)] - 1;
+	offset = arg1 + arg2;
+	offset = loop_mem(pro->pc + (offset));
+	i = -1;
+	while (++i < REG_SIZE)
+		pro->registers[reg_num][i] = env->memory[loop_mem(offset + i)];
 	return (1);
 }
