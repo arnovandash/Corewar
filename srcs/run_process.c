@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 11:48:58 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/01 17:25:53 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/02 11:10:54 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,13 @@ void		run_process(t_env *env, t_process *pro)
 {
 	char_u		opcode;
 	t_arg_code	arg_code;
+	static int	init;
 
+	if (init == 0 && ++init)
+	{
+		opcode = env->memory[pro->pc];
+		pro->cycle_to_next = g_op_tab[opcode - 1].no_cycles;
+	}
 	if (pro->cycle_to_next == 0)
 	{
 		init_arg_code(&arg_code);
@@ -57,10 +63,12 @@ void		run_process(t_env *env, t_process *pro)
 		}
 		if (opcode < 17 && opcode > 0)
 		{
-			pro->cycle_to_next = g_op_tab[opcode - 1].no_cycles;
+			printf ("cycle %lu call ",env->cycle);
 			pro->carry = (*function[opcode])(env, arg_code, pro);
+			puts("");
 			if (opcode != 9)
 				set_pc(pro, opcode, arg_code.total);
+			pro->cycle_to_next = g_op_tab[env->memory[pro->pc] - 1].no_cycles;
 		}
 	}
 	pro->cycle_to_next--;
