@@ -56,3 +56,39 @@ test:
 		ft_bzero(PRO_REG, REG_NUMBER * REG_SIZ);
 		ft_memcpy(PRO_REG[0], &(PRO_PLA[k].number), sizeof(int));
 >>>>>>> f1
+
+start:
+	st		r1, 6
+	live	%0
+	fork	%:function2
+	st		r1, 6
+	live	%0
+	ld		%0, r2
+	zjmp	%:start
+
+function2:
+	ldi		%:start, %0, r7
+	st		r7, 200
+	zjmp	%:function2
+
+function:
+	ld		%:start, r3
+	ld 		%150994944, r4
+	st		r4, 101
+	st		r3, 100
+	ld		%0, r2
+
+alive:
+	st		r1, 6
+	live	%0
+
+loop:
+	ld		%0, r2
+	zjmp	%:alive;
+
+
+	ldi		%:function1, r5, r2
+	sti		r2, r4, %0
+	ldi		r5, %1, r5
+	#ldi		%1, r4, r4
+	st		r1, 6
