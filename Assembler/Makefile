@@ -6,7 +6,7 @@
 #    By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/25 11:55:33 by arnovan-          #+#    #+#              #
-#    Updated: 2016/08/27 09:37:45 by kchetty          ###   ########.fr        #
+#    Updated: 2016/09/03 14:19:27 by arnovan-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ OBJ = main.o ft_error.o ft_list.o ft_misc_one.o op.o ft_list_cmd.o \
 	  ft_print_params.o ft_print_lbl.o ft_check_digit.o
 
 $(NAME):
-	@echo "Compiling binaries..."
+	@echo "Compiling Assembler binaries..."
 	@make re -C libft/	
 	@$(CC) $(CFLAGS) $(PATH_HD) -c $(SRC)
 	@$(CC) -o $(NAME) $(OBJ) -lm $(INC_LIBFT) 
@@ -49,25 +49,18 @@ $(NAME):
 
 all: $(NAME)
 
-x11:
-	@echo "Compiling binaries..."
-	@make re -C libft/	
-	@$(CC) $(CFLAGS) $(PATH_HD) -c $(SRC)
-	@$(CC) -o $(NAME) $(OBJ) -lm $(INC_LIBFT) 
-	@echo "Compilation was successful!"
-
 clean:
-	@echo "Cleaning object files..."
+	@echo "Cleaning Assembler's object files..."
 	@$(RM) $(OBJ)
-	@echo "Cleaning libft object files..."
+	@echo "Cleaning Assembler's libft object files..."
 	@make -C libft/ clean
 	@echo "Done cleaning!"
 fclean:
-	@echo "Cleaning object files..."
+	@echo "Cleaning Assembler's object files..."
 	@$(RM) $(OBJ)
-	@echo "Cleaning libft object & binary files..."
+	@echo "Cleaning Assembler's libft object & binary files..."
 	@make -C libft/ fclean
-	@echo "Cleaning binaries..."
+	@echo "Cleaning Assembler binaries..."
 	@$(RM) $(NAME)
 	@echo "Done cleaning!"
 

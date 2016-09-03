@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 13:53:22 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/31 12:54:01 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/03 12:23:32 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,25 @@
 **	The functions in this file are for initialising the enviroment variables.
 */
 
-int		ft_set_player_number(t_env *env, char *s1, char *s2)
+static int	ft_auto_set(t_env *env)
+{
+	int num;
+	int	k;
+
+	k = 0;
+	num = -1;
+	while (k == 0 && ++num < MAX_PLAYERS)
+	{
+		if (env->players[num].init == 0)
+		{
+			env->players[num].number = num;
+			k = 1;
+		}
+	}
+	return (num);
+}
+
+int			ft_set_player_number(t_env *env, char *s1, char *s2)
 {
 	int		num;
 	int		k;
@@ -33,22 +51,15 @@ int		ft_set_player_number(t_env *env, char *s1, char *s2)
 			error_quit(5);
 		env->players[num].number = num;
 	}
-	else 
-	{
-		while (k == 0 && ++num < MAX_PLAYERS)
-			if (env->players[num].init == 0)
-			{
-				env->players[num].number = num;
-				k = 1;
-			}
-	}
+	else
+		num = ft_auto_set(env);
 	env->players[num].file_name = ft_strdup(s2);
 	env->players[num].init = 1;
 	env->num_players++;
 	return ((s1 == NULL) ? 1 : 2);
 }
 
-int		ft_set_dump_cycle(t_env *env, char *str)
+int			ft_set_dump_cycle(t_env *env, char *str)
 {
 	static int	set;
 
@@ -61,7 +72,7 @@ int		ft_set_dump_cycle(t_env *env, char *str)
 	return (1);
 }
 
-void	init_env(t_env *env)
+void		init_env(t_env *env)
 {
 	int	i;
 

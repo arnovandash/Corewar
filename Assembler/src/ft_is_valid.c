@@ -6,7 +6,7 @@
 /*   By: kchetty <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 11:04:33 by kchetty           #+#    #+#             */
-/*   Updated: 2016/08/27 09:41:08 by kchetty          ###   ########.fr       */
+/*   Updated: 2016/09/03 12:16:22 by kchetty          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	**check_params(char *str, int i, int len)
 			break ;
 		len++;
 	}
-	if (count > g_op_tab[i].no_args && count <= 0)
+	if (count != g_op_tab[i].no_args)
 		return (NULL);
 	return (ft_strsplit(&str[len], ' '));
 }
@@ -44,13 +44,13 @@ int		check_file_size(t_all *a, int i, int check)
 
 	p = -1;
 	if (check != 1)
-		return (-1);
+		return (0);
 	while (a->tab[++p] != '\0')
 	{
 		if ((a->tab[p][0] == 'r') && (check_digit(&a->tab[p][1]) == 1))
 		{
-			if (ft_atoi(a->tab[p]) > 16 && ft_atoi(a->tab[p]) <= 0) 
-				return (-1);
+			if (ft_atoi(a->tab[p]) > 16 && ft_atoi(a->tab[p]) <= 0)
+				return (0);
 			a->header.prog_size += 1;
 		}
 		else if (((a->tab[p][0]) == '%') && (check_digit(&a->tab[p][1]) == 1))
@@ -90,7 +90,7 @@ int		check(int test, int i)
 		}
 		k++;
 	}
-	return (-1);
+	return (0);
 }
 
 int		valid_params(char **tab, int i)
@@ -103,7 +103,7 @@ int		valid_params(char **tab, int i)
 	j = 0;
 	test = 0;
 	if (tab == NULL)
-		return (-1);
+		return (0);
 	while (tab[j] != '\0')
 	{
 		if (ft_strncmp(tab[j], "r", 1) == 0)
@@ -113,7 +113,7 @@ int		valid_params(char **tab, int i)
 		else
 			conf = check(3, i);
 		if (conf == -1)
-			return (-1);
+			return (0);
 		j++;
 	}
 	return (1);

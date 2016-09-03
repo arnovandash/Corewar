@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/09/01 08:32:49 by khansman         ###   ########.fr       */
+/*   Updated: 2016/09/01 14:24:32 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ extern int		(*function[])(struct s_env *env, t_arg_code arg_code, \
 */
 
 void			destroy_process(t_list **dest, t_list **pre, t_list **head);
-int				get_arg_len(int arg_code);
+int				get_arg_len(int arg_code, int is_index);
 void			dump_memory(char_u *mem, ul_int size, int line);
 
 /*
@@ -218,7 +218,7 @@ ul_int			loop_mem(ul_int check);
 /*
 **		load_arena.c
 */
-void			load_arena(t_env *env, int p_num);
+void			load_arena(t_env *env, int p_num, int p_check);
 /*
 **		manage_args.c
 */
@@ -266,7 +266,7 @@ int				ft_sub(t_env *env, t_arg_code code, t_process *pro);
 int				ft_and(t_env *env, t_arg_code code, t_process *pro);
 int				ft_or(t_env *env, t_arg_code code, t_process *pro);
 int				ft_xor(t_env *env, t_arg_code code, t_process *pro);
-int				ft_zjump(t_env *env, t_arg_code code, t_process *pro);
+int				ft_zjmp(t_env *env, t_arg_code code, t_process *pro);
 int				ft_load_index(t_env *env, t_arg_code code, t_process *pro);
 int				ft_store_index(t_env *env, t_arg_code code, t_process *pro);
 int				ft_fork(t_env *env, t_arg_code code, t_process *pro);

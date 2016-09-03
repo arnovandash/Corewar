@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 15:00:59 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/27 15:39:33 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/02 15:21:35 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 
 # define MAX_ARGS_NUMBER		4
 # define MAX_PLAYERS			4
-# define MEM_SIZE				(4*1024)
+# define MEM_SIZE				(MAX_PLAYERS*1024)
 # define IDX_MOD				(MEM_SIZE / 8)
-# define CHAMP_MAX_SIZE			(MEM_SIZE / 6)
+# define CHAMP_MAX_SIZE			(MEM_SIZE / MAX_PLAYERS)
 
 # define COMMENT_CHAR			'#'
 # define LABEL_CHAR				':'

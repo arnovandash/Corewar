@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_long_load_index.c                               :+:      :+:    :+:   */
+/*   ft_load_index.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/30 13:11:44 by arnovan-          #+#    #+#             */
-/*   Updated: 2016/09/02 16:33:00 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/03 10:12:30 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static	ul_int	arg_fetch(char_u *mem, ul_int offset)
+static	short	arg_fetch(char_u *mem, ul_int offset)
 {
-	ul_int	ret;
+	short	ret;
 	int		i;
 
 	i = -1;
@@ -24,9 +24,9 @@ static	ul_int	arg_fetch(char_u *mem, ul_int offset)
 	return (ret);
 }
 
-static ul_int	getarg(char_u *mem, int acode, t_process *pro, ul_int offset)
+static int32_t	getarg(char_u *mem, int acode, t_process *pro, ul_int offset)
 {
-	ul_int	ret;
+	int32_t	ret;
 	char_u	reg;
 	int		i;
 
@@ -40,7 +40,8 @@ static ul_int	getarg(char_u *mem, int acode, t_process *pro, ul_int offset)
 				ret = (ret << 8) + pro->registers[reg][i];
 	}
 	else if (acode == IND_CODE)
-		ret = arg_fetch(mem, pro->pc + arg_fetch(mem, offset));
+		ret = arg_fetch(mem, pro->pc +
+				(arg_fetch(mem, offset) % IDX_MOD));
 	else if (acode == DIR_CODE)
 		ret = arg_fetch(mem, offset);
 	return (ret);
@@ -54,12 +55,12 @@ static int		arg_len_ind(int acode)
 		return (2);
 }
 
-int				ft_long_load_index(t_env *env, t_arg_code acode, t_process *pro)
+int				ft_load_index(t_env *env, t_arg_code acode, t_process *pro)
 {
 	int		i;
 	u_char	reg_num;
-	ul_int	arg1;
-	ul_int	arg2;
+	int32_t	arg1;
+	int32_t	arg2;
 	ul_int	offset;
 
 	if (acode.arg3 != REG_CODE)
@@ -70,7 +71,7 @@ int				ft_long_load_index(t_env *env, t_arg_code acode, t_process *pro)
 	reg_num = env->memory[loop_mem(pro->pi + arg_len_ind(acode.arg1) +
 			arg_len_ind(acode.arg2) + 2)] - 1;
 	offset = arg1 + arg2;
-	offset = loop_mem(pro->pc + (offset));
+	offset = loop_mem(pro->pc + (offset % IDX_MOD));
 	i = -1;
 	while (++i < REG_SIZE)
 		pro->registers[reg_num][i] = env->memory[loop_mem(offset + i)];

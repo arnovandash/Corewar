@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/30 08:16:50 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/30 08:18:55 by khansman         ###   ########.fr       */
+/*   Updated: 2016/09/03 11:32:24 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int		set_indir_value(t_env *env, int pi, int value)
 	ft_memcpy((void *)&MEM[(pi) % MEM_SIZE], temp, 2);
 	return (1);
 }
-
 
 int		set_dir_value(t_env *env, int pi, int value)
 {

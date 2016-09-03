@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/26 10:19:20 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/27 11:35:36 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/02 16:05:09 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char_u	*get_indir(char_u *mem, ul_int offset, t_process *pro)
 {
 	ul_int	temp_ind;
 	char_u	*temp;
-	ul_int	jump;
+	short	jump;
 	int		i;
 
 	jump = 0;
@@ -30,8 +30,8 @@ char_u	*get_indir(char_u *mem, ul_int offset, t_process *pro)
 		jump = (jump << 8) + mem[temp_ind];
 	}
 	i = -1;
-	jump = loop_mem(pro->pc + (jump % IDX_MOD));
+	temp_ind = loop_mem(pro->pc + (jump % IDX_MOD));
 	while (++i < REG_SIZE)
-		temp[i] = mem[loop_mem(jump + i)];
+		temp[i] = mem[loop_mem(temp_ind + i)];
 	return (temp);
 }

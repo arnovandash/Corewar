@@ -3,14 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_read_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: kchetty <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/15 11:04:08 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/27 10:01:21 by kchetty          ###   ########.fr       */
+/*   Created: 2016/09/03 12:23:40 by kchetty           #+#    #+#             */
+/*   Updated: 2016/09/03 12:23:42 by kchetty          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <asm.h>
+
+int		checks(t_data *data)
+{
+	t_data	*tmp;
+	int		name;
+	int		comment;
+
+	name = 0;
+	comment = 0;
+	tmp = data;
+	while (tmp->next != NULL)
+	{
+		if (ft_strncmp(tmp->line, ".name", 5) == 0)
+			name = 1;
+		if (ft_strncmp(tmp->line, ".comment", 8) == 0 && name == 1)
+			comment = 1;
+		tmp = tmp->next;
+	}
+	if (name == 1 && comment == 1)
+		return (1);
+	else
+	{
+		(name == 0) ? ft_putstr("Error-> Missing .name\n") : 0;
+		(comment == 0) ? ft_putstr("Error-> Missing .comment\n") : 0;
+		return (-1);
+	}
+}
 
 int		ft_read_file(t_all *all)
 {
@@ -36,5 +63,6 @@ int		ft_read_file(t_all *all)
 		}
 	}
 	close(all->fd);
-	return (1);
+	i = checks(all->data);
+	return (i);
 }
