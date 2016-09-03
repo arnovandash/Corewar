@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/01 08:12:20 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/02 16:11:06 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/03 11:35:26 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	ft_fork(t_env *env, t_arg_code arg_code, t_process *pro)
 {
-puts("fork called");
 	short		jump;
 	int			i;
 	t_process	pro_new;
@@ -36,5 +35,5 @@ puts("fork called");
 		ft_lstadd(&env->processes, ls);
 	else
 		error_quit(0);
-	return(pro->carry);
+	return (pro->carry);
 }

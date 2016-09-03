@@ -6,7 +6,7 @@
 /*   By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/27 11:52:24 by arnovan-          #+#    #+#             */
-/*   Updated: 2016/09/02 11:15:51 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/03 11:16:33 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	ft_zjmp(t_env *env, t_arg_code acode, t_process *pro)
 {
-//puts("zjump called");
 	short	offset;
 	int		i;
 

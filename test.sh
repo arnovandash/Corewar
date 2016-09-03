@@ -1,3 +1,3 @@
-./corewarmaster -d 40 champions/test.cor >master
-./corewar -dump 40 champions/test.cor >test
+./corewarmaster champions/zork.cor champions/zork.cor >master
+./corewar champions/zork.cor champions/zork.cor >test
 diff master test

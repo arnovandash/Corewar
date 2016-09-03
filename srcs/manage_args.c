@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 08:44:02 by khansman          #+#    #+#             */
-/*   Updated: 2016/09/02 13:30:21 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/03 11:38:19 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,14 @@ void	init_list(t_env *env)
 				error_quit(0);
 			process.player = &(env->players[k]);
 			ft_bzero(process.registers, REG_NUMBER * sizeof(reg_t));
-			ft_save_value(process.registers[0], ((ul_int)(env->players[k].number)));
+			ft_save_value(process.registers[0],
+					((ul_int)(env->players[k].number)));
 			process.cycle_to_next = 0;
 			if (!(element = ft_lstnew(&process, sizeof(t_process))))
 				error_quit(0);
-			if (!env->processes )
+			if (!env->processes)
 				env->processes = element;
-			else  
+			else
 				ft_lstadd(&env->processes, element);
 		}
 	}

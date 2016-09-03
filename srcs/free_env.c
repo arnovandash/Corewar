@@ -6,15 +6,15 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 14:07:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/31 14:15:09 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/03 11:38:38 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
 /*
- **	The functions in this file are for freeing the enviroment variables.
- */
+**	The functions in this file are for freeing the enviroment variables.
+*/
 
 void	free_data(void *data, size_t size)
 {
