@@ -6,7 +6,7 @@
 /*   By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/31 11:09:05 by arnovan-          #+#    #+#             */
-/*   Updated: 2016/09/03 11:15:04 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/03 17:47:59 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,22 @@ static int32_t	getarg(char_u *mem, int acode, t_process *pro, ul_int offset)
 	if (acode == REG_CODE)
 	{
 		reg = mem[loop_mem(offset)] - 1;
+		printf("geting reg r%d\n", reg + 1);
 		if (reg < REG_NUMBER)
 			while (++i < REG_SIZE)
 				ret = (ret << 8) + pro->registers[reg][i];
 	}
 	else if (acode == IND_CODE)
+	{
+		puts ("geting inder");
 		ret = arg_fetch(mem, pro->pc +
 				(arg_fetch(mem, offset) % IDX_MOD));
+	}
 	else if (acode == DIR_CODE)
+	{
+		puts("getting dir");
 		ret = arg_fetch(mem, offset);
+	}
 	return (ret);
 }
 
@@ -57,6 +64,9 @@ static int		arg_len_ind(int acode)
 
 int				ft_store_index(t_env *env, t_arg_code acode, t_process *pro)
 {
+
+	printf("P	%d | store index  pc %lu ", pro->num, pro->pi);
+
 	int		i;
 	u_char	reg_num;
 	int32_t	arg2;
@@ -66,11 +76,16 @@ int				ft_store_index(t_env *env, t_arg_code acode, t_process *pro)
 	if (acode.arg1 != REG_CODE)
 		return (pro->carry);
 	reg_num = env->memory[loop_mem(pro->pi + 2)] - 1;
+	printf("arg1 reg num %d ", reg_num);
 	arg2 = getarg(env->memory, acode.arg2, pro, pro->pi + 3);
 	arg3 = getarg(env->memory, acode.arg3, pro, pro->pi + 3 +
 			arg_len_ind(acode.arg2));
-	offset = arg2 + arg3;
-	offset = loop_mem(pro->pc + (offset % IDX_MOD));
+
+	offset = loop_mem(pro->pc + (arg2 + arg3 % IDX_MOD));
+
+dump_memory(pro->registers[reg_num],4,4);
+
+	printf("resule %lu\n", offset);
 	i = -1;
 	while (++i < REG_SIZE)
 		env->memory[loop_mem(offset + i)] = pro->registers[reg_num][i];

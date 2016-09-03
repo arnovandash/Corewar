@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 08:05:50 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/03 12:17:50 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/03 13:11:19 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static char_u	*get_arg(t_env *env, t_process *pro, int acode,
 	return (re);
 }
 
-static int	set_carry(t_process *pro, int reg)
+static int		set_carry(t_process *pro, int reg)
 {
 	ul_int	check;
 	int		i;

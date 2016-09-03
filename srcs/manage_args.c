@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 08:44:02 by khansman          #+#    #+#             */
-/*   Updated: 2016/09/03 11:58:39 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/03 18:01:08 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void		init_list(t_env *env)
 			ft_save_value(process.registers[0],
 					((ul_int)(env->players[k].number)));
 			process.cycle_to_next = 0;
+			process.num = ++env->n_processes;
 			if (!(element = ft_lstnew(&process, sizeof(t_process))))
 				error_quit(0);
 			if (!env->processes)

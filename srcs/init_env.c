@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 13:53:22 by khansman          #+#    #+#             */
-/*   Updated: 2016/09/03 11:51:38 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/03 14:48:48 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void		init_env(t_env *env)
 	ft_bzero(env->memory, (MEM_SIZE));
 	while (i--)
 		env->players[i].init = 0;
+	env->n_processes = 0;
 	env->num_players = 0;
 	env->cycle = 0;
 	env->cycles_to_die = CYCLE_TO_DIE;
