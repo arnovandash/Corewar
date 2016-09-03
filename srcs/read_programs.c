@@ -6,24 +6,11 @@
 /*   By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 10:09:11 by arnovan-          #+#    #+#             */
-/*   Updated: 2016/09/01 12:41:30 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/03 12:15:58 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
-
-/*
- **	static char_u	reverse_bytes(unsigned char bytes)
- **	{
- **		char_u rev;
- **
- **		rev = bytes;
- **		rev = ((rev & 0b00001111) << 4) | ((rev & 0b11110000) >> 4);
- **		rev = ((rev & 0b00110011) << 2) | ((rev & 0b11001100) >> 2);
- **		rev = ((rev & 0b01010101) << 1) | ((rev & 0b10101010) >> 1);
- **		return (rev);
- **	}
- */
 
 static void	make_magic(t_env *env, int p_num)
 {
