@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/27 14:22:36 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/03 15:00:11 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/03 18:16:52 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 int	ft_live(t_env *env, t_arg_code code, t_process *pro)
 {
-
-	printf("P	%d | LIVE\n", pro->num);
-
 	int32_t	index;
 	int		i;
 

@@ -6,7 +6,7 @@
 /*   By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/30 13:11:44 by arnovan-          #+#    #+#             */
-/*   Updated: 2016/09/03 17:47:18 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/03 18:17:51 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,6 @@ static int		arg_len_ind(int acode)
 
 int				ft_load_index(t_env *env, t_arg_code acode, t_process *pro)
 {
-
-	printf("P	%d | load index ", pro->num);
-
 	int		i;
 	u_char	reg_num;
 	int32_t	arg1;
@@ -74,9 +71,6 @@ int				ft_load_index(t_env *env, t_arg_code acode, t_process *pro)
 	reg_num = env->memory[loop_mem(pro->pi + arg_len_ind(acode.arg1) +
 			arg_len_ind(acode.arg2) + 2)] - 1;
 	offset = loop_mem(pro->pc + ((arg1 + arg2) % IDX_MOD));
-	
-	printf("arg1 %d arg2 %d offset %lu reg %d\n", arg1, arg2, offset, reg_num);
-
 	i = -1;
 	while (++i < REG_SIZE)
 		pro->registers[reg_num][i] = env->memory[loop_mem(offset + i)];
