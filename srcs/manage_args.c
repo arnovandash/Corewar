@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 08:44:02 by khansman          #+#    #+#             */
-/*   Updated: 2016/09/03 18:01:08 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/03 18:07:46 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,33 +20,37 @@ static void	ft_save_value(char_u *reg, ul_int value)
 	reg[3] = (value & 0b00000000000000000000000011111111);
 }
 
+static void	save_list_element(t_env *env, int k)
+{
+	t_process	process;
+	t_list		*element;
+
+	ft_bzero(&process, sizeof(process));
+	if (!(PRO_REG = (t_reg *)malloc(REG_NUMBER * REG_SIZ)))
+		error_quit(0);
+	process.player = &(env->players[k]);
+	ft_bzero(process.registers, REG_NUMBER * sizeof(reg_t));
+	ft_save_value(process.registers[0],
+			((ul_int)(env->players[k].number)));
+	process.cycle_to_next = 0;
+	process.num = ++env->n_processes;
+	if (!(element = ft_lstnew(&process, sizeof(t_process))))
+		error_quit(0);
+	if (!env->processes)
+		env->processes = element;
+	else
+		ft_lstadd(&env->processes, element);
+}
+
 void		init_list(t_env *env)
 {
 	int			k;
-	t_list		*element;
-	t_process	process;
 
 	k = -1;
-	ft_bzero(&process, sizeof(process));
 	while (++k < MAX_PLAYERS)
 	{
 		if (env->players[k].init == 1)
-		{
-			if (!(PRO_REG = (t_reg *)malloc(REG_NUMBER * REG_SIZ)))
-				error_quit(0);
-			process.player = &(env->players[k]);
-			ft_bzero(process.registers, REG_NUMBER * sizeof(reg_t));
-			ft_save_value(process.registers[0],
-					((ul_int)(env->players[k].number)));
-			process.cycle_to_next = 0;
-			process.num = ++env->n_processes;
-			if (!(element = ft_lstnew(&process, sizeof(t_process))))
-				error_quit(0);
-			if (!env->processes)
-				env->processes = element;
-			else
-				ft_lstadd(&env->processes, element);
-		}
+			save_list_element(env, k);
 	}
 }
 

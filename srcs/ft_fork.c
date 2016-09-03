@@ -6,21 +6,33 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/01 08:12:20 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/03 15:40:48 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/03 18:13:41 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int	ft_fork(t_env *env, t_arg_code arg_code, t_process *pro)
+static void	add_list(t_process *pro_new, t_env *env)
 {
+	t_list		*ls;
 
-	puts("fork");
+	ls = ft_lstnew(pro_new, sizeof(t_process));
+	if (ls)
+	{
+		if (env->processes)
+			ft_lstadd(&env->processes, ls);
+		else
+			env->processes = ls;
+	}
+	else
+		error_quit(0);
+}
 
+int			ft_fork(t_env *env, t_arg_code arg_code, t_process *pro)
+{
 	short		jump;
 	int			i;
 	t_process	pro_new;
-	t_list		*ls;
 
 	jump = 0;
 	i = -1;
@@ -33,23 +45,9 @@ int	ft_fork(t_env *env, t_arg_code arg_code, t_process *pro)
 	pro_new.pc = loop_mem(pro->pc + (jump % IDX_MOD));
 	pro_new.pi = pro_new.pc;
 	pro_new.num = ++env->n_processes;
-	pro_new.cycle_to_next += g_op_tab[env->memory[pro_new.pc] - 1].no_cycles - 1; 
+	pro_new.cycle_to_next +=
+		g_op_tab[env->memory[pro_new.pc] - 1].no_cycles - 1;
 	ft_memcpy(pro_new.registers, pro->registers, REG_NUMBER * REG_SIZE);
-	ls = ft_lstnew(&pro_new, sizeof(pro_new));
-	if (ls)
-	{
-		if (env->processes)
-			ft_lstadd(&env->processes, ls);
-		else
-			env->processes = ls;
-	}
-	else
-		error_quit(0);
-
-
-printf("P	%d | Fork jump %d new_pc %lu\n",pro->num, jump, pro_new.pc);
-
-
-
+	add_list(&pro_new, env);
 	return (pro->carry);
 }

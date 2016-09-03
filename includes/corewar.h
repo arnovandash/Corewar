@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/09/01 14:24:32 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/03 14:46:02 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ typedef struct	s_process
 	ul_int		pi;// program index the current index of the program
 	char		carry;
 	int			cycle_to_next;
+	int			num;
 	t_reg		*registers; //malloc to REG_NUMBER
 }				t_process;
 
@@ -149,6 +150,7 @@ typedef struct	s_env
 	int			num_players;
 	t_player	players[MAX_PLAYERS];
 	t_list		*processes;
+	int			n_processes;
 	ul_int		cycle;
 	int			fd;
 	ul_int		dump_cycle;
