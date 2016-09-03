@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/24 15:46:18 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/01 13:14:39 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/03 12:14:35 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void	ft_store_indir(t_env *env, t_process *pro, char_u reg_num)
 
 int			ft_store(t_env *env, t_arg_code acode, t_process *pro)
 {
-puts("stor called");
 	char_u	reg_num1;
 	char_u	reg_num2;
 

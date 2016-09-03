@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/02 16:26:00 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/02 16:26:40 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/03 12:11:04 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ static int	ft_load_indir(t_env *env, t_process *pro, u_char reg_arg2)
 
 int			ft_long_load(t_env *env, t_arg_code a_case, t_process *pro)
 {
-puts("load called");
 	char_u	reg_num;
 
 	if (a_case.arg2 != REG_CODE)
 		return (0);
-	reg_num = env->memory[loop_mem(pro->pi + 2 + get_arg_len(a_case.arg1, g_op_tab[1].is_index))] - 1;
+	reg_num = env->memory[loop_mem(pro->pi + 2 +
+			get_arg_len(a_case.arg1, g_op_tab[12].is_index))] - 1;
 	if (reg_num < REG_NUMBER)
 	{
 		if (a_case.arg1 == REG_CODE)

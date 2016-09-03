@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 08:44:02 by khansman          #+#    #+#             */
-/*   Updated: 2016/09/03 11:38:19 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/03 11:58:39 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	ft_save_value(char_u *reg, ul_int value)
 	reg[3] = (value & 0b00000000000000000000000011111111);
 }
 
-void	init_list(t_env *env)
+void		init_list(t_env *env)
 {
 	int			k;
 	t_list		*element;
@@ -49,7 +49,7 @@ void	init_list(t_env *env)
 	}
 }
 
-void	manage_args(t_env *env, int argc, char **argv)
+void		manage_args(t_env *env, int argc, char **argv)
 {
 	int		k;
 
