@@ -1,4 +1,4 @@
-#First attempt at making a corewar champion.
+#Copies it's self whilst hi-jacking opponents code.
 
 .name "singularity v0.6"
 .comment "The more it consumes, the more it is able to consume."
