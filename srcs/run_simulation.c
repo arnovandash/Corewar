@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 08:34:36 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/03 15:27:43 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/03 18:18:08 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,6 @@ void		run_simulation(t_env *env)
 			env->cycles_to_die = (env->cycles_to_die > CYCLE_DELTA) ?
 				env->cycles_to_die - CYCLE_DELTA : 0;
 		cycle_to_check++;
-
-		printf("cycle %lu \n", env->cycle + 1);
-
 		(env->cycle++ == env->dump_cycle) ? (dump = 1) : 0;
 	}
 	(dump == 1) ? dump_memory(env->memory, MEM_SIZE, 64) :
