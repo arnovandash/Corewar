@@ -6,18 +6,18 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/26 10:18:34 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/04 09:47:29 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 10:38:10 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-char_u	*get_dir(char_u *mem, t_ulint offset)
+t_uchar	*get_dir(t_uchar *mem, t_ulint offset)
 {
-	char_u	*temp;
+	t_uchar	*temp;
 	int		i;
 
-	if (!(temp = (char_u*)malloc(sizeof(u_char) * REG_SIZE)))
+	if (!(temp = (t_uchar*)malloc(sizeof(t_uchar) * REG_SIZE)))
 		return (NULL);
 	ft_bzero(temp, REG_SIZE);
 	i = -1;

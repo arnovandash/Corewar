@@ -6,13 +6,13 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/27 14:45:42 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/04 09:52:51 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 10:33:32 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void		store_result(char_u reg3, t_reg reg1, t_reg reg2,
+static void		store_result(t_uchar reg3, t_reg reg1, t_reg reg2,
 		t_process *pro)
 {
 	int	i;
@@ -22,10 +22,10 @@ static void		store_result(char_u reg3, t_reg reg1, t_reg reg2,
 		pro->registers[reg3][i] = reg1[i] & reg2[i];
 }
 
-static char_u	*get_arg(t_env *env, t_process *pro, int acode,
+static t_uchar	*get_arg(t_env *env, t_process *pro, int acode,
 		t_ulint offset)
 {
-	char_u *re;
+	t_uchar *re;
 
 	re = NULL;
 	if (acode == REG_CODE)
@@ -52,8 +52,8 @@ static int		set_carry(t_process *pro, int reg)
 
 int				ft_and(t_env *env, t_arg_code acode, t_process *pro)
 {
-	char_u	*temp1;
-	char_u	*temp2;
+	t_uchar	*temp1;
+	t_uchar	*temp2;
 	t_ulint	arg3;
 
 	temp1 = NULL;

@@ -6,7 +6,7 @@
 /*   By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/26 09:33:03 by arnovan-          #+#    #+#             */
-/*   Updated: 2016/09/04 09:54:09 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 10:40:31 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void		load_arena(t_env *env, int p_num, int p_check)
 	u_int	size_verify;
 	t_ulint	x;
 	t_ulint	start;
-	char_u	buffer[env->players[p_num].player_ref.prog_size];
-	char_u	c;
+	t_uchar	buffer[env->players[p_num].player_ref.prog_size];
+	t_uchar	c;
 
 	size_verify = 0;
 	x = 0;

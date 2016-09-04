@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/27 10:24:36 by khansman          #+#    #+#             */
-/*   Updated: 2016/09/03 11:30:19 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 10:32:26 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		ft_aff(t_env *env, t_arg_code acode, t_process *pro)
 {
 	int			i;
-	char_u		reg;
+	t_uchar		reg;
 	int32_t		value;
 
 	if (acode.arg1 != REG_CODE)

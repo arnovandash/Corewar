@@ -6,13 +6,13 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 11:48:58 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/04 09:30:28 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 10:40:06 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void	set_pc(t_process *pro, char_u opcode, int total)
+static void	set_pc(t_process *pro, t_uchar opcode, int total)
 {
 	if (opcode == 1)
 		pro->pc = loop_mem(pro->pc + 5);
@@ -30,7 +30,7 @@ static void	init_arg_code(t_arg_code *arg_code)
 	arg_code->total = 0;
 }
 
-static void	get_arg_code(char_u encode, t_arg_code *arg_code, int opcode)
+static void	get_arg_code(t_uchar encode, t_arg_code *arg_code, int opcode)
 {
 	arg_code->arg1 = (C_ARG1(encode));
 	arg_code->arg2 = (C_ARG2(encode));
@@ -43,7 +43,7 @@ static void	get_arg_code(char_u encode, t_arg_code *arg_code, int opcode)
 
 void		run_process(t_env *env, t_process *pro)
 {
-	char_u		opcode;
+	t_uchar		opcode;
 	t_arg_code	arg_code;
 	static int	init;
 

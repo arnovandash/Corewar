@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/09/04 09:46:30 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 10:31:30 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,7 @@
 */
 
 typedef unsigned long int	t_ulint;
-typedef unsigned int		u_int;
-typedef unsigned char		char_u;
+typedef unsigned char		t_uchar;
 typedef unsigned char		t_reg[REG_SIZE];
 
 typedef struct	s_player
@@ -145,7 +144,7 @@ typedef struct	s_arg_code
 
 typedef struct	s_env
 {
-	char_u		*memory;
+	t_uchar		*memory;
 	int			num_players;
 	t_player	players[MAX_PLAYERS];
 	t_list		*processes;
@@ -168,7 +167,7 @@ extern int		(*g_function[])(struct s_env *env, t_arg_code arg_code, \
 
 void			destroy_process(t_list **dest, t_list **pre, t_list **head);
 int				get_arg_len(int arg_code, int is_index);
-void			dump_memory(char_u *mem, t_ulint size, int line);
+void			dump_memory(t_uchar *mem, t_ulint size, int line);
 
 /*
 **		error_quit.c
@@ -194,12 +193,12 @@ int				ft_long_load(t_env *env, t_arg_code arg_len, t_process *pro);
 /*
 **		ft_long_load_index.c
 */
-int 			ft_long_load_index(t_env *env, t_arg_code arg_len, \
+int				ft_long_load_index(t_env *env, t_arg_code arg_len,
 		t_process *pro);
 /*
 **		get_param_value.c
 */
-int				get_param_value(t_env *env, t_ulint pi, t_process *pro, \
+int				get_param_value(t_env *env, t_ulint pi, t_process *pro,
 		char type);
 /*
 **		init_env.c
@@ -251,10 +250,10 @@ int				set_dir_value(t_env *env, int pi, int value);
 /*
 **		get argument
 */
-char_u			*get_dir(char_u *mem, t_ulint offset);
-char_u			*get_indir(char_u *mem, t_ulint offset, t_process *pro);
-char_u			*get_indir_long(char_u *mem, t_ulint offset, t_process *pro);
-char_u			*get_reg(t_env *env, t_process *pro, t_ulint offset);
+t_uchar			*get_dir(t_uchar *mem, t_ulint offset);
+t_uchar			*get_indir(t_uchar *mem, t_ulint offset, t_process *pro);
+t_uchar			*get_indir_long(t_uchar *mem, t_ulint offset, t_process *pro);
+t_uchar			*get_reg(t_env *env, t_process *pro, t_ulint offset);
 
 /*
 **		game operations
