@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 08:34:36 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/03 12:13:01 by arnovan-         ###   ########.fr       */
+/*   Updated: 2016/09/04 12:42:54 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,20 @@ static int	check_process(t_list **mv, t_list **pre, t_env *env,
 		env->last_alive = pro->player;
 		*pre = *mv;
 		*mv = (*mv)->next;
-		pro->player->live = 0;
 	}
 	return (mod);
 }
 
-static int	loop_processes(t_env *env, int check)
+static void	reset_live(t_env *env)
+{
+	int	i;
+
+	i = -1;
+	while (++i < MAX_PLAYERS)
+		env->players[i].live = 0;
+}
+
+static int	loop_processes(t_env *env, int *check)
 {
 	t_list		*mv;
 	t_list		*pre;
@@ -46,8 +54,8 @@ static int	loop_processes(t_env *env, int check)
 	while (mv)
 	{
 		pro = (t_process *)(mv)->content;
-		if (check == 1)
-			mod = check_process(&mv, &pre, env, pro);
+		if (*check == 1)
+			mod += check_process(&mv, &pre, env, pro);
 		else
 		{
 			run_process(env, pro);
@@ -55,6 +63,9 @@ static int	loop_processes(t_env *env, int check)
 			(mv) = (mv)->next;
 		}
 	}
+	if (*check == 1)
+		reset_live(env);
+	*check = 0;
 	return (mod);
 }
 
@@ -77,30 +88,26 @@ void		run_simulation(t_env *env)
 	int			check;
 	int			mod;
 	int			dump;
-	ul_int		cycle_to_check;
+	t_ulint		cycle_to_check;
 
 	dump = 0;
 	cycle_to_check = 0;
+	check = 0;
 	while (env->processes && dump == 0 && env->cycles_to_die > 0)
 	{
-		check = 0;
 		mod = 0;
-		if (env->cycle != 0 && cycle_to_check == env->cycles_to_die)
-		{
+		mod = loop_processes(env, &check);
+		if (env->cycle != 0 && cycle_to_check == env->cycles_to_die &&
+				(check = 1))
 			cycle_to_check = 0;
-			check = 1;
-		}
-		mod = loop_processes(env, check);
 		(check == 1 && mod == 0) ? env->check_for_mod++ : 0;
-		if (env->check_for_mod == MAX_CHECKS || mod > 0)
-		{
+		if ((env->check_for_mod == MAX_CHECKS || mod > 0) &&
+				(env->check_for_mod = 0) == 0)
 			env->cycles_to_die = (env->cycles_to_die > CYCLE_DELTA) ?
 				env->cycles_to_die - CYCLE_DELTA : 0;
-			env->check_for_mod = 0;
-		}
 		cycle_to_check++;
 		(env->cycle++ == env->dump_cycle) ? (dump = 1) : 0;
 	}
-	(dump == 1) ? dump_memory(env->memory, MEM_SIZE, 64) : 
+	(dump == 1) ? dump_memory(env->memory, MEM_SIZE, 32) :
 		print_last_alive(env->last_alive);
 }

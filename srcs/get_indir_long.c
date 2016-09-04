@@ -6,22 +6,22 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/26 10:19:59 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/27 10:57:07 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 10:03:33 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-char_u	*get_indir_long(char_u *mem, ul_int offset, t_process *pro)
+t_uchar	*get_indir_long(t_uchar *mem, t_ulint offset, t_process *pro)
 {
-	ul_int	temp_ind;
-	char_u	*temp;
-	ul_int	jump;
+	t_ulint	temp_ind;
+	t_uchar	*temp;
+	t_ulint	jump;
 	int		i;
 
 	jump = 0;
 	i = -1;
-	if (!(temp = (char_u*)malloc(sizeof(u_char) * REG_SIZE)))
+	if (!(temp = (t_uchar*)malloc(sizeof(u_char) * REG_SIZE)))
 		return (NULL);
 	ft_bzero(temp, REG_SIZE);
 	while (++i < IND_SIZE)

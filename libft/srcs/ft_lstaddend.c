@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_arg_len.c                                      :+:      :+:    :+:   */
+/*   ft_lstaddend.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/24 14:49:41 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/04 12:24:04 by arnovan-         ###   ########.fr       */
+/*   Created: 2016/06/02 17:21:06 by rojones           #+#    #+#             */
+/*   Updated: 2016/07/14 08:55:29 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
+#include "libft.h"
 
-int	get_arg_len(int arg_code, int is_index)
+void	ft_lstaddend(t_list **alst, t_list *new)
 {
-	if (arg_code == REG_CODE)
-		return (1);
-	if (arg_code == DIR_CODE && is_index == 0)
-		return (DIR_SIZE);
-	if (arg_code == DIR_CODE && is_index == 1)
-		return (IND_SIZE);
-	if (arg_code == IND_CODE)
-		return (IND_SIZE);
-	return (0);
+	t_list	*temp;
+
+	temp = *alst;
+	while (temp->next != NULL)
+	{
+		temp = temp->next;
+	}
+	temp->next = new;
 }

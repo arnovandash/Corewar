@@ -6,16 +6,16 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/24 15:46:18 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/01 13:14:39 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 12:26:21 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void	ft_store_indir(t_env *env, t_process *pro, char_u reg_num)
+static void	ft_store_indir(t_env *env, t_process *pro, t_uchar reg_num)
 {
 	int		i;
-	ul_int	jump;
+	short	jump;
 
 	i = -1;
 	jump = 0;
@@ -32,9 +32,8 @@ static void	ft_store_indir(t_env *env, t_process *pro, char_u reg_num)
 
 int			ft_store(t_env *env, t_arg_code acode, t_process *pro)
 {
-puts("stor called");
-	char_u	reg_num1;
-	char_u	reg_num2;
+	t_uchar	reg_num1;
+	t_uchar	reg_num2;
 
 	if (acode.arg1 != REG_CODE || acode.arg2 == DIR_CODE)
 		return (pro->carry);

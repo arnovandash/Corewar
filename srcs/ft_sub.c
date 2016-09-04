@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 07:43:33 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/01 13:16:01 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 12:25:25 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static unsigned long int	get_value(unsigned char *reg)
 	return (re);
 }
 
-static void 		save_value(char_u *reg, ul_int value)
+static void					save_value(t_uchar *reg, t_ulint value)
 {
 	reg[0] = (value & 0b11111111000000000000000000000000) >> 24;
 	reg[1] = (value & 0b00000000111111110000000000000000) >> 16;
@@ -32,12 +32,12 @@ static void 		save_value(char_u *reg, ul_int value)
 	reg[3] = (value & 0b00000000000000000000000011111111);
 }
 
-int					ft_sub(t_env *env, t_arg_code code, t_process *pro)
+int							ft_sub(t_env *env, t_arg_code code,
+		t_process *pro)
 {
-	puts("sub called");
-	char_u	reg1;
-	char_u	reg2;
-	char_u	reg3;
+	t_uchar	reg1;
+	t_uchar	reg2;
+	t_uchar	reg3;
 
 	if (code.arg1 != REG_CODE || code.arg2 != REG_CODE ||
 			code.arg3 != REG_CODE)

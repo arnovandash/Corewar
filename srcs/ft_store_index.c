@@ -6,13 +6,13 @@
 /*   By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/31 11:09:05 by arnovan-          #+#    #+#             */
-/*   Updated: 2016/09/03 11:15:04 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 12:26:06 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static short	arg_fetch(char_u *mem, ul_int offset)
+static short	arg_fetch(t_uchar *mem, t_ulint offset)
 {
 	short	ret;
 	int		i;
@@ -24,10 +24,10 @@ static short	arg_fetch(char_u *mem, ul_int offset)
 	return (ret);
 }
 
-static int32_t	getarg(char_u *mem, int acode, t_process *pro, ul_int offset)
+static int32_t	getarg(t_uchar *mem, int acode, t_process *pro, t_ulint offset)
 {
 	int32_t	ret;
-	char_u	reg;
+	t_uchar	reg;
 	int		i;
 
 	i = -1;
@@ -58,10 +58,10 @@ static int		arg_len_ind(int acode)
 int				ft_store_index(t_env *env, t_arg_code acode, t_process *pro)
 {
 	int		i;
-	u_char	reg_num;
+	t_uchar	reg_num;
 	int32_t	arg2;
 	int32_t	arg3;
-	ul_int	offset;
+	t_ulint	offset;
 
 	if (acode.arg1 != REG_CODE)
 		return (pro->carry);
@@ -69,8 +69,7 @@ int				ft_store_index(t_env *env, t_arg_code acode, t_process *pro)
 	arg2 = getarg(env->memory, acode.arg2, pro, pro->pi + 3);
 	arg3 = getarg(env->memory, acode.arg3, pro, pro->pi + 3 +
 			arg_len_ind(acode.arg2));
-	offset = arg2 + arg3;
-	offset = loop_mem(pro->pc + (offset % IDX_MOD));
+	offset = loop_mem(pro->pc + (arg2 + arg3 % IDX_MOD));
 	i = -1;
 	while (++i < REG_SIZE)
 		env->memory[loop_mem(offset + i)] = pro->registers[reg_num][i];

@@ -6,18 +6,18 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/26 10:17:41 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/03 07:39:50 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 12:23:24 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-char_u	*get_reg(t_env *env, t_process *pro, ul_int offset)
+t_uchar	*get_reg(t_env *env, t_process *pro, t_ulint offset)
 {
-	char_u	*temp;
-	char_u	reg;
+	t_uchar	*temp;
+	t_uchar	reg;
 
-	if (!(temp = (char_u*)malloc(sizeof(u_char) * REG_SIZE)))
+	if (!(temp = (t_uchar*)malloc(sizeof(u_char) * REG_SIZE)))
 		return (NULL);
 	ft_bzero(temp, REG_SIZE);
 	reg = env->memory[loop_mem(offset)] - 1;

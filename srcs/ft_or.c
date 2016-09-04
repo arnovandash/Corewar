@@ -6,13 +6,13 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/27 13:53:05 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/03 11:53:21 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 12:27:34 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static int		store_result(char_u reg3, reg_t reg1, reg_t reg2,
+static int		store_result(t_uchar reg3, t_reg reg1, t_reg reg2,
 		t_process *pro)
 {
 	int	i;
@@ -25,10 +25,10 @@ static int		store_result(char_u reg3, reg_t reg1, reg_t reg2,
 	return (1);
 }
 
-static char_u	*get_arg(t_env *env, t_process *pro, int acode,
-		ul_int offset)
+static t_uchar	*get_arg(t_env *env, t_process *pro, int acode,
+		t_ulint offset)
 {
-	char_u *re;
+	t_uchar *re;
 
 	re = NULL;
 	if (acode == REG_CODE)
@@ -40,9 +40,9 @@ static char_u	*get_arg(t_env *env, t_process *pro, int acode,
 	return (re);
 }
 
-static int	set_carry(t_process *pro, int reg)
+static int		set_carry(t_process *pro, int reg)
 {
-	ul_int	check;
+	t_ulint	check;
 	int		i;
 
 	check = 0;
@@ -55,9 +55,9 @@ static int	set_carry(t_process *pro, int reg)
 
 int				ft_or(t_env *env, t_arg_code acode, t_process *pro)
 {
-	char_u	*temp1;
-	char_u	*temp2;
-	ul_int	arg3;
+	t_uchar	*temp1;
+	t_uchar	*temp2;
+	t_ulint	arg3;
 
 	temp1 = NULL;
 	temp2 = NULL;
@@ -65,9 +65,10 @@ int				ft_or(t_env *env, t_arg_code acode, t_process *pro)
 		return (0);
 	temp1 = get_arg(env, pro, acode.arg1, pro->pi + 2);
 	temp2 = get_arg(env, pro, acode.arg2, pro->pi + 2 +
-			get_arg_len(acode.arg1, g_op_tab[5].is_index));
-	arg3 = loop_mem(pro->pi + 2 + get_arg_len(acode.arg1,
-				g_op_tab[5].is_index) +	get_arg_len(acode.arg2, g_op_tab[5].is_index));
+			get_arg_len(acode.arg1, g_op_tab[6].is_index));
+	arg3 = loop_mem(pro->pi + 2 +
+			get_arg_len(acode.arg1, g_op_tab[6].is_index) +
+			get_arg_len(acode.arg2, g_op_tab[6].is_index));
 	if (env->memory[arg3] - 1 > REG_NUMBER)
 		return (0);
 	store_result(env->memory[arg3] - 1, temp1, temp2, pro);

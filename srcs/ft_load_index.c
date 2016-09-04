@@ -6,13 +6,13 @@
 /*   By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/30 13:11:44 by arnovan-          #+#    #+#             */
-/*   Updated: 2016/09/03 10:12:30 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 12:30:33 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static	short	arg_fetch(char_u *mem, ul_int offset)
+static	short	arg_fetch(t_uchar *mem, t_ulint offset)
 {
 	short	ret;
 	int		i;
@@ -24,10 +24,10 @@ static	short	arg_fetch(char_u *mem, ul_int offset)
 	return (ret);
 }
 
-static int32_t	getarg(char_u *mem, int acode, t_process *pro, ul_int offset)
+static int32_t	getarg(t_uchar *mem, int acode, t_process *pro, t_ulint offset)
 {
 	int32_t	ret;
-	char_u	reg;
+	t_uchar	reg;
 	int		i;
 
 	i = -1;
@@ -61,7 +61,7 @@ int				ft_load_index(t_env *env, t_arg_code acode, t_process *pro)
 	u_char	reg_num;
 	int32_t	arg1;
 	int32_t	arg2;
-	ul_int	offset;
+	t_ulint	offset;
 
 	if (acode.arg3 != REG_CODE)
 		return (0);
@@ -70,8 +70,7 @@ int				ft_load_index(t_env *env, t_arg_code acode, t_process *pro)
 			arg_len_ind(acode.arg1));
 	reg_num = env->memory[loop_mem(pro->pi + arg_len_ind(acode.arg1) +
 			arg_len_ind(acode.arg2) + 2)] - 1;
-	offset = arg1 + arg2;
-	offset = loop_mem(pro->pc + (offset % IDX_MOD));
+	offset = loop_mem(pro->pc + ((arg1 + arg2) % IDX_MOD));
 	i = -1;
 	while (++i < REG_SIZE)
 		pro->registers[reg_num][i] = env->memory[loop_mem(offset + i)];

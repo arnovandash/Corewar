@@ -6,15 +6,15 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/24 12:38:03 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/03 11:34:05 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 12:30:50 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static int	ft_load_reg(t_env *env, t_process *pro, char_u reg_arg2)
+static int	ft_load_reg(t_env *env, t_process *pro, t_uchar reg_arg2)
 {
-	char_u	reg_arg1;
+	t_uchar	reg_arg1;
 
 	reg_arg1 = 0;
 	reg_arg1 = env->memory[loop_mem(pro->pi + 2)] - 1;
@@ -26,7 +26,7 @@ static int	ft_load_reg(t_env *env, t_process *pro, char_u reg_arg2)
 	return (0);
 }
 
-static int	ft_load_dir(t_env *env, reg_t regarg2, ul_int index)
+static int	ft_load_dir(t_env *env, t_reg regarg2, t_ulint index)
 {
 	int	i;
 
@@ -40,7 +40,7 @@ static int	ft_load_indir(t_env *env, t_process *pro, u_char reg_arg2)
 {
 	int		i;
 	short	jump;
-	ul_int	start;
+	t_ulint	start;
 
 	i = -1;
 	jump = 0;
@@ -55,7 +55,7 @@ static int	ft_load_indir(t_env *env, t_process *pro, u_char reg_arg2)
 
 int			ft_load(t_env *env, t_arg_code a_case, t_process *pro)
 {
-	char_u	reg_num;
+	t_uchar	reg_num;
 
 	if (a_case.arg2 != REG_CODE)
 		return (0);

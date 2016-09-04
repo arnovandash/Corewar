@@ -6,7 +6,7 @@
 #    By: adippena <angusdippenaar@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/09 12:47:08 by adippena          #+#    #+#              #
-#    Updated: 2016/09/03 14:16:50 by arnovan-         ###   ########.fr        #
+#    Updated: 2016/09/04 12:35:28 by arnovan-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,6 @@ CFLAGS		=	-Wall -Wextra -Werror -g $(INCLUDE)
 LFLAGS		=	$(INCLUDE) $(LIBFTL)
 CC			=	gcc
 LD			=	gcc 
-
 INC			=	includes/corewar.h			\
 				includes/op.h
 
@@ -57,9 +56,7 @@ SRC			=	srcs/destroy_process.c		\
 				srcs/pc_pos.c				\
 				srcs/read_programs.c		\
 				srcs/run_process.c			\
-				srcs/run_simulation.c		\
-				srcs/set_param_value.c
-
+				srcs/run_simulation.c
 
 OBJ			=	$(SRC:srcs/%.c=build/%.o)
 
