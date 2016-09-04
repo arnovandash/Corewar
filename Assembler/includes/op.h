@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 15:00:59 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/22 10:21:49 by kchetty          ###   ########.fr       */
+/*   Updated: 2016/09/02 11:52:20 by kchetty          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ typedef struct		s_op
 extern t_op			g_op_tab[];
 
 # define T_REG					1
-# define T_DIR					2
-# define T_IND					4
-# define T_LAB					8
+# define T_DIR					4
+# define T_IND					2
+# define T_LAB					2
 
 # define PROG_NAME_LENGTH		(128)
 # define COMMENT_LENGTH			(2048)

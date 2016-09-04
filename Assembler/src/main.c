@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: kchetty <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/15 09:42:22 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/27 10:02:04 by kchetty          ###   ########.fr       */
+/*   Created: 2016/09/03 12:24:21 by kchetty           #+#    #+#             */
+/*   Updated: 2016/09/03 12:25:30 by kchetty          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@ static void	ft_free(t_all *all)
 {
 	all->header.magic = 0;
 	all->filename = NULL;
-	//all->header.prog_size = 0;
+	all->header.prog_size = 0;
 	ft_free_data(&all->data);
 	ft_free_cmd(&all->cmd);
-	//free(&all->tab);
 }
 
 static void	ft_print_details(t_all *all)
@@ -55,16 +54,17 @@ int			main(int argc, char **argv)
 	while (argv[++i])
 	{
 		all.filename = argv[i];
-		if (!ft_read_check(&all))
+		if (ft_read_check(&all) != 1)
 			break ;
-		if (!ft_read_file(&all))
+		if (ft_read_file(&all) != 1)
 			break ;
-		if (!ft_validate(&all))
+		if (ft_validate(&all) != 1)
 			break ;
-		if (!ft_print(&all))
+		if (ft_print(&all) != 1)
 			break ;
 		ft_print_details(&all);
 		ft_free(&all);
 	}
+	ft_free(&all);
 	return (0);
 }

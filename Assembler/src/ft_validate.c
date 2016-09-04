@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_validate.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: kchetty <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/15 13:20:09 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/22 10:38:56 by kchetty          ###   ########.fr       */
+/*   Created: 2016/09/03 12:24:07 by kchetty           #+#    #+#             */
+/*   Updated: 2016/09/03 12:26:35 by kchetty          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int		ft_validate(t_all *all)
 			res = ft_val_label(all, data->line);
 		else
 			res = ft_is_valid(all, data->line, NULL);
+		if (res == 0)
+			ft_putstr("Error-> Syntax..\n");
 		data = data->next;
 	}
 	return (res);

@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 08:34:36 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/04 11:55:11 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 12:42:54 by arnovan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,7 @@ static int	loop_processes(t_env *env, int *check)
 	{
 		pro = (t_process *)(mv)->content;
 		if (*check == 1)
-		{
 			mod += check_process(&mv, &pre, env, pro);
-		}
 		else
 		{
 			run_process(env, pro);
@@ -110,6 +108,6 @@ void		run_simulation(t_env *env)
 		cycle_to_check++;
 		(env->cycle++ == env->dump_cycle) ? (dump = 1) : 0;
 	}
-	(dump == 1) ? dump_memory(env->memory, MEM_SIZE, 64) :
+	(dump == 1) ? dump_memory(env->memory, MEM_SIZE, 32) :
 		print_last_alive(env->last_alive);
 }
