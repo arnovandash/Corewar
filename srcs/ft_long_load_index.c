@@ -6,13 +6,13 @@
 /*   By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/30 13:11:44 by arnovan-          #+#    #+#             */
-/*   Updated: 2016/09/04 09:52:32 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 10:06:23 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static	t_ulint	arg_fetch(char_u *mem, t_ulint offset)
+static	t_ulint	arg_fetch(t_uchar *mem, t_ulint offset)
 {
 	t_ulint	ret;
 	int		i;
@@ -24,10 +24,10 @@ static	t_ulint	arg_fetch(char_u *mem, t_ulint offset)
 	return (ret);
 }
 
-static t_ulint	getarg(char_u *mem, int acode, t_process *pro, t_ulint offset)
+static t_ulint	getarg(t_uchar *mem, int acode, t_process *pro, t_ulint offset)
 {
 	t_ulint	ret;
-	char_u	reg;
+	t_uchar	reg;
 	int		i;
 
 	i = -1;

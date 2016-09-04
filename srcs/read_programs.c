@@ -6,7 +6,7 @@
 /*   By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 10:09:11 by arnovan-          #+#    #+#             */
-/*   Updated: 2016/09/04 09:53:32 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 10:08:18 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	make_magic(t_env *env, int p_num)
 {
-	char_u	buffer[4];
+	t_uchar	buffer[4];
 
 	if (read(env->fd, buffer, 4) > 0)
 	{
@@ -29,7 +29,7 @@ static void	make_magic(t_env *env, int p_num)
 
 static void	read_name(t_env *env, int p_num)
 {
-	char_u	buffer[PROG_NAME_LENGTH + 4];
+	t_uchar	buffer[PROG_NAME_LENGTH + 4];
 	int		x;
 
 	x = 0;
@@ -46,7 +46,7 @@ static void	read_name(t_env *env, int p_num)
 
 static void	read_size(t_env *env, int p_num)
 {
-	char_u		buffer[4];
+	t_uchar		buffer[4];
 	t_ulint		result;
 	int			x;
 
@@ -67,7 +67,7 @@ static void	read_size(t_env *env, int p_num)
 
 static void	read_comment(t_env *env, int p_num)
 {
-	char_u	buffer[COMMENT_LENGTH + 4];
+	t_uchar	buffer[COMMENT_LENGTH + 4];
 	int		x;
 
 	x = 0;

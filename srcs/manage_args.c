@@ -6,13 +6,13 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 08:44:02 by khansman          #+#    #+#             */
-/*   Updated: 2016/09/04 09:49:02 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 10:04:00 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void	ft_save_value(char_u *reg, t_ulint value)
+static void	ft_save_value(t_uchar *reg, t_ulint value)
 {
 	reg[0] = (value & 0b11111111000000000000000000000000) >> 24;
 	reg[1] = (value & 0b00000000111111110000000000000000) >> 16;
