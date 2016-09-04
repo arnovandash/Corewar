@@ -6,15 +6,15 @@
 /*   By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/30 13:11:44 by arnovan-          #+#    #+#             */
-/*   Updated: 2016/09/03 12:12:07 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 09:52:32 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static	ul_int	arg_fetch(char_u *mem, ul_int offset)
+static	t_ulint	arg_fetch(char_u *mem, t_ulint offset)
 {
-	ul_int	ret;
+	t_ulint	ret;
 	int		i;
 
 	i = -1;
@@ -24,9 +24,9 @@ static	ul_int	arg_fetch(char_u *mem, ul_int offset)
 	return (ret);
 }
 
-static ul_int	getarg(char_u *mem, int acode, t_process *pro, ul_int offset)
+static t_ulint	getarg(char_u *mem, int acode, t_process *pro, t_ulint offset)
 {
-	ul_int	ret;
+	t_ulint	ret;
 	char_u	reg;
 	int		i;
 
@@ -58,9 +58,9 @@ int				ft_long_load_index(t_env *env, t_arg_code acode, t_process *pro)
 {
 	int		i;
 	u_char	reg_num;
-	ul_int	arg1;
-	ul_int	arg2;
-	ul_int	offset;
+	t_ulint	arg1;
+	t_ulint	arg2;
+	t_ulint	offset;
 
 	if (acode.arg3 != REG_CODE)
 		return (0);

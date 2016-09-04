@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 08:34:36 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/04 09:43:31 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 09:50:08 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void		run_simulation(t_env *env)
 	int			check;
 	int			mod;
 	int			dump;
-	ul_int		cycle_to_check;
+	t_ulint		cycle_to_check;
 
 	dump = 0;
 	cycle_to_check = 0;

@@ -6,7 +6,7 @@
 /*   By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 10:09:11 by arnovan-          #+#    #+#             */
-/*   Updated: 2016/09/03 12:15:58 by arnovan-         ###   ########.fr       */
+/*   Updated: 2016/09/04 09:53:32 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	read_name(t_env *env, int p_num)
 static void	read_size(t_env *env, int p_num)
 {
 	char_u		buffer[4];
-	ul_int		result;
+	t_ulint		result;
 	int			x;
 
 	x = 0;

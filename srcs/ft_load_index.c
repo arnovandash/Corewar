@@ -6,13 +6,13 @@
 /*   By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/30 13:11:44 by arnovan-          #+#    #+#             */
-/*   Updated: 2016/09/03 18:17:51 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 09:51:05 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static	short	arg_fetch(char_u *mem, ul_int offset)
+static	short	arg_fetch(char_u *mem, t_ulint offset)
 {
 	short	ret;
 	int		i;
@@ -24,7 +24,7 @@ static	short	arg_fetch(char_u *mem, ul_int offset)
 	return (ret);
 }
 
-static int32_t	getarg(char_u *mem, int acode, t_process *pro, ul_int offset)
+static int32_t	getarg(char_u *mem, int acode, t_process *pro, t_ulint offset)
 {
 	int32_t	ret;
 	char_u	reg;
@@ -61,7 +61,7 @@ int				ft_load_index(t_env *env, t_arg_code acode, t_process *pro)
 	u_char	reg_num;
 	int32_t	arg1;
 	int32_t	arg2;
-	ul_int	offset;
+	t_ulint	offset;
 
 	if (acode.arg3 != REG_CODE)
 		return (0);

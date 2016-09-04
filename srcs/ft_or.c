@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/27 13:53:05 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/04 09:35:26 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 09:49:40 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int		store_result(char_u reg3, t_reg reg1, t_reg reg2,
 }
 
 static char_u	*get_arg(t_env *env, t_process *pro, int acode,
-		ul_int offset)
+		t_ulint offset)
 {
 	char_u *re;
 
@@ -42,7 +42,7 @@ static char_u	*get_arg(t_env *env, t_process *pro, int acode,
 
 static int		set_carry(t_process *pro, int reg)
 {
-	ul_int	check;
+	t_ulint	check;
 	int		i;
 
 	check = 0;
@@ -57,7 +57,7 @@ int				ft_or(t_env *env, t_arg_code acode, t_process *pro)
 {
 	char_u	*temp1;
 	char_u	*temp2;
-	ul_int	arg3;
+	t_ulint	arg3;
 
 	temp1 = NULL;
 	temp2 = NULL;

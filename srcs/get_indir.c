@@ -6,15 +6,15 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/26 10:19:20 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/02 16:05:09 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 09:53:56 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-char_u	*get_indir(char_u *mem, ul_int offset, t_process *pro)
+char_u	*get_indir(char_u *mem, t_ulint offset, t_process *pro)
 {
-	ul_int	temp_ind;
+	t_ulint	temp_ind;
 	char_u	*temp;
 	short	jump;
 	int		i;

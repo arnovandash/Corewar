@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/02 16:26:00 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/04 09:36:27 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 09:53:16 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	ft_load_reg(t_env *env, t_process *pro, char_u reg_arg2)
 	return (0);
 }
 
-static int	ft_load_dir(t_env *env, t_reg regarg2, ul_int index)
+static int	ft_load_dir(t_env *env, t_reg regarg2, t_ulint index)
 {
 	int	i;
 
@@ -40,7 +40,7 @@ static int	ft_load_indir(t_env *env, t_process *pro, u_char reg_arg2)
 {
 	int		i;
 	short	jump;
-	ul_int	start;
+	t_ulint	start;
 
 	i = -1;
 	jump = 0;

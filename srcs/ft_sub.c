@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 07:43:33 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/03 12:16:26 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 09:51:40 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static unsigned long int	get_value(unsigned char *reg)
 	return (re);
 }
 
-static void					save_value(char_u *reg, ul_int value)
+static void					save_value(char_u *reg, t_ulint value)
 {
 	reg[0] = (value & 0b11111111000000000000000000000000) >> 24;
 	reg[1] = (value & 0b00000000111111110000000000000000) >> 16;

@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/09/04 09:41:32 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 09:46:30 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@
 ** -----------
 */
 
-typedef unsigned long int	ul_int;
+typedef unsigned long int	t_ulint;
 typedef unsigned int		u_int;
 typedef unsigned char		char_u;
 typedef unsigned char		t_reg[REG_SIZE];
@@ -127,8 +127,8 @@ typedef struct	s_player
 typedef struct	s_process
 {
 	t_player	*player;
-	ul_int		pc;
-	ul_int		pi;
+	t_ulint		pc;
+	t_ulint		pi;
 	char		carry;
 	int			cycle_to_next;
 	int			num;
@@ -150,11 +150,11 @@ typedef struct	s_env
 	t_player	players[MAX_PLAYERS];
 	t_list		*processes;
 	int			n_processes;
-	ul_int		cycle;
+	t_ulint		cycle;
 	int			fd;
-	ul_int		dump_cycle;
+	t_ulint		dump_cycle;
 	int			check_for_mod;
-	ul_int		cycles_to_die;
+	t_ulint		cycles_to_die;
 	t_player	*last_alive;
 }				t_env;
 
@@ -168,7 +168,7 @@ extern int		(*g_function[])(struct s_env *env, t_arg_code arg_code, \
 
 void			destroy_process(t_list **dest, t_list **pre, t_list **head);
 int				get_arg_len(int arg_code, int is_index);
-void			dump_memory(char_u *mem, ul_int size, int line);
+void			dump_memory(char_u *mem, t_ulint size, int line);
 
 /*
 **		error_quit.c
@@ -199,7 +199,7 @@ int 			ft_long_load_index(t_env *env, t_arg_code arg_len, \
 /*
 **		get_param_value.c
 */
-int				get_param_value(t_env *env, ul_int pi, t_process *pro, \
+int				get_param_value(t_env *env, t_ulint pi, t_process *pro, \
 		char type);
 /*
 **		init_env.c
@@ -215,7 +215,7 @@ void			init_functions(t_env *env);
 /*
 ** loop_mem.c
 */
-ul_int			loop_mem(ul_int check);
+t_ulint			loop_mem(t_ulint check);
 /*
 **		load_arena.c
 */
@@ -251,10 +251,10 @@ int				set_dir_value(t_env *env, int pi, int value);
 /*
 **		get argument
 */
-char_u			*get_dir(char_u *mem, ul_int offset);
-char_u			*get_indir(char_u *mem, ul_int offset, t_process *pro);
-char_u			*get_indir_long(char_u *mem, ul_int offset, t_process *pro);
-char_u			*get_reg(t_env *env, t_process *pro, ul_int offset);
+char_u			*get_dir(char_u *mem, t_ulint offset);
+char_u			*get_indir(char_u *mem, t_ulint offset, t_process *pro);
+char_u			*get_indir_long(char_u *mem, t_ulint offset, t_process *pro);
+char_u			*get_reg(t_env *env, t_process *pro, t_ulint offset);
 
 /*
 **		game operations

@@ -6,7 +6,7 @@
 /*   By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/26 09:33:03 by arnovan-          #+#    #+#             */
-/*   Updated: 2016/09/01 12:53:57 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 09:54:09 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ static void	set_pc(t_list *processes, int p_num, unsigned long int start)
 void		load_arena(t_env *env, int p_num, int p_check)
 {
 	u_int	size_verify;
-	ul_int	x;
-	ul_int	start;
+	t_ulint	x;
+	t_ulint	start;
 	char_u	buffer[env->players[p_num].player_ref.prog_size];
 	char_u	c;
 
