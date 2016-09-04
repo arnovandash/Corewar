@@ -6,7 +6,7 @@
 /*   By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/31 11:09:05 by arnovan-          #+#    #+#             */
-/*   Updated: 2016/09/04 10:05:52 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 12:02:18 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int		arg_len_ind(int acode)
 int				ft_store_index(t_env *env, t_arg_code acode, t_process *pro)
 {
 	int		i;
-	u_char	reg_num;
+	t_uchar	reg_num;
 	int32_t	arg2;
 	int32_t	arg3;
 	t_ulint	offset;

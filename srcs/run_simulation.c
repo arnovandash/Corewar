@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 08:34:36 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/04 09:50:08 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 11:55:11 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,17 @@ static int	check_process(t_list **mv, t_list **pre, t_env *env,
 		env->last_alive = pro->player;
 		*pre = *mv;
 		*mv = (*mv)->next;
-		pro->player->live = 0;
 	}
 	return (mod);
+}
+
+static void	reset_live(t_env *env)
+{
+	int	i;
+
+	i = -1;
+	while (++i < MAX_PLAYERS)
+		env->players[i].live = 0;
 }
 
 static int	loop_processes(t_env *env, int *check)
@@ -47,7 +55,9 @@ static int	loop_processes(t_env *env, int *check)
 	{
 		pro = (t_process *)(mv)->content;
 		if (*check == 1)
+		{
 			mod += check_process(&mv, &pre, env, pro);
+		}
 		else
 		{
 			run_process(env, pro);
@@ -55,6 +65,8 @@ static int	loop_processes(t_env *env, int *check)
 			(mv) = (mv)->next;
 		}
 	}
+	if (*check == 1)
+		reset_live(env);
 	*check = 0;
 	return (mod);
 }
