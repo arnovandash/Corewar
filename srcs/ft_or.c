@@ -6,13 +6,13 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/27 13:53:05 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/03 12:13:47 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 09:35:26 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static int		store_result(char_u reg3, reg_t reg1, reg_t reg2,
+static int		store_result(char_u reg3, t_reg reg1, t_reg reg2,
 		t_process *pro)
 {
 	int	i;

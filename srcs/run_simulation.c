@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 08:34:36 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/03 18:18:08 by arnovan-         ###   ########.fr       */
+/*   Updated: 2016/09/04 09:43:31 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	check_process(t_list **mv, t_list **pre, t_env *env,
 	return (mod);
 }
 
-static int	loop_processes(t_env *env, int check)
+static int	loop_processes(t_env *env, int *check)
 {
 	t_list		*mv;
 	t_list		*pre;
@@ -46,8 +46,8 @@ static int	loop_processes(t_env *env, int check)
 	while (mv)
 	{
 		pro = (t_process *)(mv)->content;
-		if (check == 1)
-			mod = check_process(&mv, &pre, env, pro);
+		if (*check == 1)
+			mod += check_process(&mv, &pre, env, pro);
 		else
 		{
 			run_process(env, pro);
@@ -55,6 +55,7 @@ static int	loop_processes(t_env *env, int check)
 			(mv) = (mv)->next;
 		}
 	}
+	*check = 0;
 	return (mod);
 }
 
@@ -81,17 +82,17 @@ void		run_simulation(t_env *env)
 
 	dump = 0;
 	cycle_to_check = 0;
+	check = 0;
 	while (env->processes && dump == 0 && env->cycles_to_die > 0)
 	{
-		check = 0;
 		mod = 0;
-		mod = loop_processes(env, check);
+		mod = loop_processes(env, &check);
 		if (env->cycle != 0 && cycle_to_check == env->cycles_to_die &&
 				(check = 1))
 			cycle_to_check = 0;
 		(check == 1 && mod == 0) ? env->check_for_mod++ : 0;
 		if ((env->check_for_mod == MAX_CHECKS || mod > 0) &&
-				!(env->check_for_mod = 0))
+				(env->check_for_mod = 0) == 0)
 			env->cycles_to_die = (env->cycles_to_die > CYCLE_DELTA) ?
 				env->cycles_to_die - CYCLE_DELTA : 0;
 		cycle_to_check++;

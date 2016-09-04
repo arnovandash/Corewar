@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/02 16:26:00 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/03 12:11:04 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 09:36:27 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	ft_load_reg(t_env *env, t_process *pro, char_u reg_arg2)
 	return (0);
 }
 
-static int	ft_load_dir(t_env *env, reg_t regarg2, ul_int index)
+static int	ft_load_dir(t_env *env, t_reg regarg2, ul_int index)
 {
 	int	i;
 

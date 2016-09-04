@@ -6,13 +6,14 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 16:59:18 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/01 13:05:22 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 09:29:01 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int	(*function[17])(struct s_env *env, t_arg_code arg_code, t_process *process) = 
+int	(*g_function[17])(struct s_env *env, t_arg_code arg_code,
+		t_process *process) =
 {
 	NULL,
 	ft_live,

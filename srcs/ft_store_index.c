@@ -6,7 +6,7 @@
 /*   By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/31 11:09:05 by arnovan-          #+#    #+#             */
-/*   Updated: 2016/09/03 18:20:22 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 08:07:43 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static int32_t	getarg(char_u *mem, int acode, t_process *pro, ul_int offset)
 	if (acode == REG_CODE)
 	{
 		reg = mem[loop_mem(offset)] - 1;
-		printf("geting reg r%d\n", reg + 1);
 		if (reg < REG_NUMBER)
 			while (++i < REG_SIZE)
 				ret = (ret << 8) + pro->registers[reg][i];

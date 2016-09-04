@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 08:44:02 by khansman          #+#    #+#             */
-/*   Updated: 2016/09/03 18:07:46 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 09:41:56 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ static void	save_list_element(t_env *env, int k)
 	t_list		*element;
 
 	ft_bzero(&process, sizeof(process));
-	if (!(PRO_REG = (t_reg *)malloc(REG_NUMBER * REG_SIZ)))
+	if (!(PRO_REG = (t_reg *)malloc(REG_NUMBER * REG_ARR_SIZE)))
 		error_quit(0);
 	process.player = &(env->players[k]);
-	ft_bzero(process.registers, REG_NUMBER * sizeof(reg_t));
+	ft_bzero(process.registers, REG_NUMBER * sizeof(t_reg));
 	ft_save_value(process.registers[0],
 			((ul_int)(env->players[k].number)));
 	process.cycle_to_next = 0;

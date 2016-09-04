@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 11:48:58 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/03 15:31:58 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 09:30:28 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void		run_process(t_env *env, t_process *pro)
 			get_arg_code(env->memory[pro->pi + 1], &arg_code, opcode);
 		if (opcode < 17 && opcode > 0)
 		{
-			pro->carry = (*function[opcode])(env, arg_code, pro);
+			pro->carry = (*g_function[opcode])(env, arg_code, pro);
 			if (pro->carry == 0 || opcode != 9)
 				set_pc(pro, opcode, arg_code.total);
 			pro->cycle_to_next = g_op_tab[env->memory[pro->pc] - 1].no_cycles;

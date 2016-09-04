@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/09/03 14:46:02 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 09:41:32 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@
 
 # define PRO_REG process.registers
 # define PRO_PLA process.player
-# define REG_SIZ sizeof(t_reg)
+# define REG_ARR_SIZE sizeof(t_reg)
 
 # define L_STATE t_live_state
 # define PROCESS t_process
@@ -113,27 +113,26 @@
 typedef unsigned long int	ul_int;
 typedef unsigned int		u_int;
 typedef unsigned char		char_u;
-typedef unsigned char		reg_t[REG_SIZE];
 typedef unsigned char		t_reg[REG_SIZE];
 
 typedef struct	s_player
 {
-	char		*file_name; //passed in argv
-	int			number; // if -n else the previous +1
+	char		*file_name;
+	int			number;
 	int			init;
 	u_int		live;
-	t_header	player_ref; // filled by Arno
+	t_header	player_ref;
 }				t_player;
 
 typedef struct	s_process
 {
 	t_player	*player;
-	ul_int		pc;// program counter the next function to run
-	ul_int		pi;// program index the current index of the program
+	ul_int		pc;
+	ul_int		pi;
 	char		carry;
 	int			cycle_to_next;
 	int			num;
-	t_reg		*registers; //malloc to REG_NUMBER
+	t_reg		*registers;
 }				t_process;
 
 typedef struct	s_arg_code
@@ -146,7 +145,7 @@ typedef struct	s_arg_code
 
 typedef struct	s_env
 {
-	char_u		*memory; //malloc to MEM_SIZE
+	char_u		*memory;
 	int			num_players;
 	t_player	players[MAX_PLAYERS];
 	t_list		*processes;
@@ -159,7 +158,7 @@ typedef struct	s_env
 	t_player	*last_alive;
 }				t_env;
 
-extern int		(*function[])(struct s_env *env, t_arg_code arg_code, \
+extern int		(*g_function[])(struct s_env *env, t_arg_code arg_code, \
 		t_process *process);
 /*
 ** --------------------
