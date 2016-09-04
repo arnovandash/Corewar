@@ -6,23 +6,42 @@
 /*   By: arnovan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/26 09:33:03 by arnovan-          #+#    #+#             */
-/*   Updated: 2016/08/27 10:35:31 by arnovan-         ###   ########.fr       */
+/*   Updated: 2016/09/04 09:54:09 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void		load_arena(t_env *env, int p_num)
+static void	set_pc(t_list *processes, int p_num, unsigned long int start)
+{
+	t_list		*ls;
+	t_process	*pro;
+
+	ls = processes;
+	while (ls)
+	{
+		pro = (t_process*)ls->content;
+		if (pro->player->number == p_num)
+		{
+			pro->pc = start;
+			ls = NULL;
+		}
+		else
+			ls = ls->next;
+	}
+}
+
+void		load_arena(t_env *env, int p_num, int p_check)
 {
 	u_int	size_verify;
-	ul_int	x;
-	ul_int	start;
+	t_ulint	x;
+	t_ulint	start;
 	char_u	buffer[env->players[p_num].player_ref.prog_size];
 	char_u	c;
 
 	size_verify = 0;
 	x = 0;
-	start = (MEM_SIZE / env->num_players) * p_num;
+	start = (MEM_SIZE / env->num_players) * p_check;
 	while (read(env->fd, &c, 1) > 0)
 	{
 		buffer[size_verify] = c;
@@ -35,4 +54,5 @@ void		load_arena(t_env *env, int p_num)
 		env->memory[x + start] = buffer[x];
 		x++;
 	}
+	set_pc(env->processes, p_num, start);
 }

@@ -6,7 +6,7 @@
 #    By: khansman <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/15 10:33:49 by khansman          #+#    #+#              #
-#    Updated: 2016/09/01 09:29:45 by khansman         ###   ########.fr        #
+#    Updated: 2016/09/03 15:21:48 by rojones          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,6 +85,7 @@ SRCS4 = ft_lstnew.c			\
 		ft_lstdelone.c		\
 		ft_lstdel.c			\
 		ft_lstadd.c			\
+		ft_lstaddend.c		\
 		ft_lstiter.c		\
 		ft_lstmap.c			\
 		ft_free2d.c			\

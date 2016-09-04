@@ -6,13 +6,13 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/26 10:18:34 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/27 10:55:29 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 09:47:29 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-char_u	*get_dir(char_u *mem, ul_int offset)
+char_u	*get_dir(char_u *mem, t_ulint offset)
 {
 	char_u	*temp;
 	int		i;

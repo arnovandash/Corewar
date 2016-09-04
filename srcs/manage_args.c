@@ -6,13 +6,13 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 08:44:02 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/31 15:24:10 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 09:49:02 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void	ft_save_value(char_u *reg, ul_int value)
+static void	ft_save_value(char_u *reg, t_ulint value)
 {
 	reg[0] = (value & 0b11111111000000000000000000000000) >> 24;
 	reg[1] = (value & 0b00000000111111110000000000000000) >> 16;
@@ -20,31 +20,41 @@ static void	ft_save_value(char_u *reg, ul_int value)
 	reg[3] = (value & 0b00000000000000000000000011111111);
 }
 
-void	init_list(t_env *env)
+static void	save_list_element(t_env *env, int k)
+{
+	t_process	process;
+	t_list		*element;
+
+	ft_bzero(&process, sizeof(process));
+	if (!(PRO_REG = (t_reg *)malloc(REG_NUMBER * REG_ARR_SIZE)))
+		error_quit(0);
+	process.player = &(env->players[k]);
+	ft_bzero(process.registers, REG_NUMBER * sizeof(t_reg));
+	ft_save_value(process.registers[0],
+			((t_ulint)(env->players[k].number)));
+	process.cycle_to_next = 0;
+	process.num = ++env->n_processes;
+	if (!(element = ft_lstnew(&process, sizeof(t_process))))
+		error_quit(0);
+	if (!env->processes)
+		env->processes = element;
+	else
+		ft_lstadd(&env->processes, element);
+}
+
+void		init_list(t_env *env)
 {
 	int			k;
-	t_list		*element;
-	t_process	process;
 
 	k = -1;
-	ft_bzero(&process, sizeof(process));
-	while (++k < env->num_players)
+	while (++k < MAX_PLAYERS)
 	{
-		if (!(PRO_REG = (t_reg *)malloc(REG_NUMBER * REG_SIZ)))
-			error_quit(0);
-		process.player = &(env->players[k]);
-		ft_bzero(process.registers, REG_NUMBER * sizeof(reg_t));
-		ft_save_value(process.registers[0], ((ul_int)(env->players[k].number)));
-		if (!(element = ft_lstnew(&process, sizeof(t_process))))
-			error_quit(0);
-		if (!env->processes )
-			env->processes = element;
-		else  
-			ft_lstadd(&env->processes, element);
+		if (env->players[k].init == 1)
+			save_list_element(env, k);
 	}
 }
 
-void	manage_args(t_env *env, int argc, char **argv)
+void		manage_args(t_env *env, int argc, char **argv)
 {
 	int		k;
 

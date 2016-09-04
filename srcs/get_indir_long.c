@@ -6,17 +6,17 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/26 10:19:59 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/27 10:57:07 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 09:48:42 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-char_u	*get_indir_long(char_u *mem, ul_int offset, t_process *pro)
+char_u	*get_indir_long(char_u *mem, t_ulint offset, t_process *pro)
 {
-	ul_int	temp_ind;
+	t_ulint	temp_ind;
 	char_u	*temp;
-	ul_int	jump;
+	t_ulint	jump;
 	int		i;
 
 	jump = 0;

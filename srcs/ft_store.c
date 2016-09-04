@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/24 15:46:18 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/30 11:19:52 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/03 18:18:44 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	ft_store_indir(t_env *env, t_process *pro, char_u reg_num)
 {
 	int		i;
-	ul_int	jump;
+	short	jump;
 
 	i = -1;
 	jump = 0;

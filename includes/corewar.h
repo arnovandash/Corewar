@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/21 09:45:12 by khansman          #+#    #+#             */
-/*   Updated: 2016/09/01 08:32:49 by khansman         ###   ########.fr       */
+/*   Updated: 2016/09/04 09:46:30 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@
 
 # define PRO_REG process.registers
 # define PRO_PLA process.player
-# define REG_SIZ sizeof(t_reg)
+# define REG_ARR_SIZE sizeof(t_reg)
 
 # define L_STATE t_live_state
 # define PROCESS t_process
@@ -110,29 +110,29 @@
 ** -----------
 */
 
-typedef unsigned long int	ul_int;
+typedef unsigned long int	t_ulint;
 typedef unsigned int		u_int;
 typedef unsigned char		char_u;
-typedef unsigned char		reg_t[REG_SIZE];
 typedef unsigned char		t_reg[REG_SIZE];
 
 typedef struct	s_player
 {
-	char		*file_name; //passed in argv
-	int			number; // if -n else the previous +1
+	char		*file_name;
+	int			number;
 	int			init;
 	u_int		live;
-	t_header	player_ref; // filled by Arno
+	t_header	player_ref;
 }				t_player;
 
 typedef struct	s_process
 {
 	t_player	*player;
-	ul_int		pc;// program counter the next function to run
-	ul_int		pi;// program index the current index of the program
+	t_ulint		pc;
+	t_ulint		pi;
 	char		carry;
 	int			cycle_to_next;
-	t_reg		*registers; //malloc to REG_NUMBER
+	int			num;
+	t_reg		*registers;
 }				t_process;
 
 typedef struct	s_arg_code
@@ -145,19 +145,20 @@ typedef struct	s_arg_code
 
 typedef struct	s_env
 {
-	char_u		*memory; //malloc to MEM_SIZE
+	char_u		*memory;
 	int			num_players;
 	t_player	players[MAX_PLAYERS];
 	t_list		*processes;
-	ul_int		cycle;
+	int			n_processes;
+	t_ulint		cycle;
 	int			fd;
-	ul_int		dump_cycle;
+	t_ulint		dump_cycle;
 	int			check_for_mod;
-	ul_int		cycles_to_die;
+	t_ulint		cycles_to_die;
 	t_player	*last_alive;
 }				t_env;
 
-extern int		(*function[])(struct s_env *env, t_arg_code arg_code, \
+extern int		(*g_function[])(struct s_env *env, t_arg_code arg_code, \
 		t_process *process);
 /*
 ** --------------------
@@ -166,8 +167,8 @@ extern int		(*function[])(struct s_env *env, t_arg_code arg_code, \
 */
 
 void			destroy_process(t_list **dest, t_list **pre, t_list **head);
-int				get_arg_len(int arg_code);
-void			dump_memory(char_u *mem, ul_int size, int line);
+int				get_arg_len(int arg_code, int is_index);
+void			dump_memory(char_u *mem, t_ulint size, int line);
 
 /*
 **		error_quit.c
@@ -198,7 +199,7 @@ int 			ft_long_load_index(t_env *env, t_arg_code arg_len, \
 /*
 **		get_param_value.c
 */
-int				get_param_value(t_env *env, ul_int pi, t_process *pro, \
+int				get_param_value(t_env *env, t_ulint pi, t_process *pro, \
 		char type);
 /*
 **		init_env.c
@@ -214,11 +215,11 @@ void			init_functions(t_env *env);
 /*
 ** loop_mem.c
 */
-ul_int			loop_mem(ul_int check);
+t_ulint			loop_mem(t_ulint check);
 /*
 **		load_arena.c
 */
-void			load_arena(t_env *env, int p_num);
+void			load_arena(t_env *env, int p_num, int p_check);
 /*
 **		manage_args.c
 */
@@ -250,10 +251,10 @@ int				set_dir_value(t_env *env, int pi, int value);
 /*
 **		get argument
 */
-char_u			*get_dir(char_u *mem, ul_int offset);
-char_u			*get_indir(char_u *mem, ul_int offset, t_process *pro);
-char_u			*get_indir_long(char_u *mem, ul_int offset, t_process *pro);
-char_u			*get_reg(t_env *env, t_process *pro, ul_int offset);
+char_u			*get_dir(char_u *mem, t_ulint offset);
+char_u			*get_indir(char_u *mem, t_ulint offset, t_process *pro);
+char_u			*get_indir_long(char_u *mem, t_ulint offset, t_process *pro);
+char_u			*get_reg(t_env *env, t_process *pro, t_ulint offset);
 
 /*
 **		game operations
@@ -266,7 +267,7 @@ int				ft_sub(t_env *env, t_arg_code code, t_process *pro);
 int				ft_and(t_env *env, t_arg_code code, t_process *pro);
 int				ft_or(t_env *env, t_arg_code code, t_process *pro);
 int				ft_xor(t_env *env, t_arg_code code, t_process *pro);
-int				ft_zjump(t_env *env, t_arg_code code, t_process *pro);
+int				ft_zjmp(t_env *env, t_arg_code code, t_process *pro);
 int				ft_load_index(t_env *env, t_arg_code code, t_process *pro);
 int				ft_store_index(t_env *env, t_arg_code code, t_process *pro);
 int				ft_fork(t_env *env, t_arg_code code, t_process *pro);

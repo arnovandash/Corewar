@@ -6,7 +6,7 @@
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 13:59:13 by khansman          #+#    #+#             */
-/*   Updated: 2016/08/27 15:19:27 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/03 09:28:36 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ void	error_quit(int error)
 		ft_putstr(ERR_MSG_09);
 	else if (error == 10)
 		ft_putstr(ERR_MSG_10);
+	ft_putstr("\e[30m");
 	exit(0);
 }

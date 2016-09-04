@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dump_memory.c                                      :+:      :+:    :+:   */
+/*   ft_lstaddend.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/25 12:17:13 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/04 09:47:45 by rojones          ###   ########.fr       */
+/*   Created: 2016/06/02 17:21:06 by rojones           #+#    #+#             */
+/*   Updated: 2016/07/14 08:55:29 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
+#include "libft.h"
 
-void	dump_memory(char_u *mem, unsigned long size, int line)
+void	ft_lstaddend(t_list **alst, t_list *new)
 {
-	t_ulint	i;
-	int		temp_line;
+	t_list	*temp;
 
-	i = 0;
-	while (i < size)
+	temp = *alst;
+	while (temp->next != NULL)
 	{
-		temp_line = line;
-		while (temp_line-- && i < size)
-		{
-			ft_print_hex(mem[i]);
-			if (temp_line)
-				ft_putchar(' ');
-			else
-				ft_putchar('\n');
-			i++;
-		}
+		temp = temp->next;
 	}
+	temp->next = new;
 }

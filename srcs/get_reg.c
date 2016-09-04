@@ -6,13 +6,13 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/26 10:17:41 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/27 11:00:19 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 09:50:24 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-char_u	*get_reg(t_env *env, t_process *pro, ul_int offset)
+char_u	*get_reg(t_env *env, t_process *pro, t_ulint offset)
 {
 	char_u	*temp;
 	char_u	reg;

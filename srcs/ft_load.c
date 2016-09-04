@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/24 12:38:03 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/31 13:58:58 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/04 09:48:04 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	ft_load_reg(t_env *env, t_process *pro, char_u reg_arg2)
 	return (0);
 }
 
-static int	ft_load_dir(t_env *env, reg_t regarg2, ul_int index)
+static int	ft_load_dir(t_env *env, t_reg regarg2, t_ulint index)
 {
 	int	i;
 
@@ -39,16 +39,14 @@ static int	ft_load_dir(t_env *env, reg_t regarg2, ul_int index)
 static int	ft_load_indir(t_env *env, t_process *pro, u_char reg_arg2)
 {
 	int		i;
-	ul_int	jump;
-	ul_int	start;
+	short	jump;
+	t_ulint	start;
 
 	i = -1;
 	jump = 0;
 	while (++i < IND_SIZE)
 		jump = (jump << 8) + env->memory[pro->pi + 2 + i];
-	start = (pro->pc + (jump % IDX_MOD) < MEM_SIZE) ?
-		pro->pc + (jump % IDX_MOD) :
-		pro->pc + (jump % IDX_MOD) - MEM_SIZE;
+	start = loop_mem(pro->pc + (jump % IDX_MOD));
 	i = -1;
 	while (++i < REG_SIZE)
 		pro->registers[reg_arg2][i] = env->memory[loop_mem(start + i)];
@@ -61,7 +59,8 @@ int			ft_load(t_env *env, t_arg_code a_case, t_process *pro)
 
 	if (a_case.arg2 != REG_CODE)
 		return (0);
-	reg_num = env->memory[loop_mem(pro->pi + 2 + get_arg_len(a_case.arg1))] - 1;
+	reg_num = env->memory[loop_mem(pro->pi + 2 +
+			get_arg_len(a_case.arg1, g_op_tab[1].is_index))] - 1;
 	if (reg_num < REG_NUMBER)
 	{
 		if (a_case.arg1 == REG_CODE)
